@@ -1,5 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class LeadModel {
   // ignore: non_constant_identifier_names
   final String? c_name;
@@ -32,5 +36,19 @@ class LeadModel {
       "Priority": priority,
       "Sales Person": sales_person
     };
+  }
+
+  factory LeadModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
+    final data = documentSnapshot.data();
+    return LeadModel(
+      c_name: data!["Company Name"],
+      c_first_name: data["Client First Name"],
+      c_last_name: data["Client Last Name"],
+      closing_date: data["Closing Date"],
+      lead_name: data["Lead Name"],
+      phone_no: data["Phone Number"],
+      sales_person: data["Sales Person"],
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/on_press_action.dart';
+import 'package:crm/screens/auth/database/fetch_leads.dart';
 import 'package:crm/screens/auth/database/lead_repo.dart';
 import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/lead_card_widget.dart';
@@ -15,108 +16,42 @@ class LeadPage extends StatefulWidget {
 class _LeadPageState extends State<LeadPage> {
   List leadList = [];
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   fetchDatabaseList();
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchDatabaseList();
+  }
 
-  // fetchDatabaseList() async {
-  //   dynamic result = await LeadRepo().getLeadList();
+  fetchDatabaseList() async {
+    dynamic result = await FetchLeads().getLeadList();
 
-  //   if (result == null) {
-  //     print("Unable to retreive");
-  //   } else {
-  //     setState(() {
-  //       leadList = result;
-  //     });
-  //   }
-  // }
+    if (result == null) {
+      print("Unable to retreive");
+    } else {
+      setState(() {
+        leadList = result;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWidget(title: jAppbarLeadPageTitle),
-      body: ListView(
-        children: [
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "12 April 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription:
-                  "Meeting setup for the audit community. Meeting setup for the audit community.Meeting setup for the audit community.",
-              leadPriorityInt: 3,
-              leadStatus: "New"),
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "05 May 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 2,
-              leadStatus: "Qualified"),
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "05 May 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 1,
-              leadStatus: "Won"),
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "05 May 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 0,
-              leadStatus: "Lost"),
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "05 May 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 1,
-              leadStatus: "Won"),
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "12 April 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription:
-                  "Meeting setup for the audit community. Meeting setup for the audit community.Meeting setup for the audit community.",
-              leadPriorityInt: 3,
-              leadStatus: "New"),
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "12 April 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription:
-                  "Meeting setup for the audit community. Meeting setup for the audit community.Meeting setup for the audit community.",
-              leadPriorityInt: 3,
-              leadStatus: "New"),
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "05 May 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 1,
-              leadStatus: "Won"),
-          LeadCardWidget(
-              leadName: "Product Enquiry",
-              leadClosingDate: "05 May 2023",
-              leadCompanyName: "ABC Company",
-              leadPersonName: "Ramesh Shah",
-              leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 0,
-              leadStatus: "Lost"),
-        ],
-      ),
+      body: ListView.builder(
+          itemCount: leadList.length,
+          itemBuilder: (context, index) {
+            return LeadCardWidget(
+                leadName: leadList[index]["Lead Name"],
+                leadClosingDate: leadList[index]["Closing Date"],
+                leadCompanyName: leadList[index]["Company Name"],
+                leadPersonName: leadList[index]["Client First Name"],
+                leadDescription:
+                    "Meeting setup for the audit community. Meeting setup for the audit community.Meeting setup for the audit community.",
+                leadPriorityInt: 3,
+                leadStatus: "New");
+          }),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),

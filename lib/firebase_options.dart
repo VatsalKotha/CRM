@@ -4,16 +4,16 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
+// Default [FirebaseOptions] for use with your Firebase apps.
 ///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
+// Example:
+// ```dart
+// import 'firebase_options.dart';
+// // ...
+// await Firebase.initializeApp(
+//   options: DefaultFirebaseOptions.currentPlatform,
+// );
+// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -66,7 +66,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '381841773844',
     projectId: 'crm-project-demo',
     storageBucket: 'crm-project-demo.appspot.com',
-    iosClientId: '381841773844-qna8r9n4uv16adlotrg37iqror0pf63p.apps.googleusercontent.com',
+    iosClientId:
+        '381841773844-qna8r9n4uv16adlotrg37iqror0pf63p.apps.googleusercontent.com',
     iosBundleId: 'com.example.crm',
   );
 
@@ -76,7 +77,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '381841773844',
     projectId: 'crm-project-demo',
     storageBucket: 'crm-project-demo.appspot.com',
-    iosClientId: '381841773844-qna8r9n4uv16adlotrg37iqror0pf63p.apps.googleusercontent.com',
+    iosClientId:
+        '381841773844-qna8r9n4uv16adlotrg37iqror0pf63p.apps.googleusercontent.com',
     iosBundleId: 'com.example.crm',
   );
 }
