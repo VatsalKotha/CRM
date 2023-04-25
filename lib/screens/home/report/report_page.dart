@@ -1,4 +1,3 @@
-
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/screens/home/report/feedback_page.dart';
 import 'package:crm/screens/home/report/meeting_page.dart';
@@ -11,7 +10,7 @@ class ReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 1,
+      length: 2,
       child: Scaffold(
         appBar: const AppBarWidget(title: jAppbarReportPageTitle),
         body: Column(
@@ -19,17 +18,18 @@ class ReportPage extends StatelessWidget {
             TabBar(
               tabs: [
                 // Tab(text: "Feedback",),
-                Tab(text: "Meeting",),
+                Tab(
+                  text: "Meeting",
+                ),
               ],
             ),
             Expanded(
               child: TabBarView(children: [
                 // Feedback
-                // FeedbackScreen(),
+                FeedbackScreen(),
 
                 // Meeting Tab
                 MeetingPage(),
-
               ]),
             )
           ],
@@ -38,4 +38,3 @@ class ReportPage extends StatelessWidget {
     );
   }
 }
-

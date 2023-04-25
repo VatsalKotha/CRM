@@ -23,6 +23,16 @@ class MeetingForm extends StatefulWidget {
 
 class _MeetingFormState extends State<MeetingForm> {
   // LeadPriority _selectedOption = LeadPriority.high;
+  void clearController() {
+    cfname.dispose();
+    claname.dispose();
+    name.dispose();
+    time.dispose();
+    date.dispose();
+    title.dispose();
+    salesPerson.dispose();
+    desc.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +126,7 @@ class _MeetingFormState extends State<MeetingForm> {
                   buttonHeight: 50,
                   onPressed: () {
                     AddMeetings().dataToSave();
-
+                    clearController();
                     Get.to(() => const HomePage());
                   },
                   buttonTextSize: 20,

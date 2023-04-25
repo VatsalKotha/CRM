@@ -26,6 +26,20 @@ class LeadForm extends StatefulWidget {
 class _LeadFormState extends State<LeadForm> {
   // LeadPriority _selectedOption = LeadPriority.high;
 
+  void clearController() {
+    cname.dispose();
+    cfname.dispose();
+    claname.dispose();
+    name.dispose();
+    status.dispose();
+    startDate.dispose();
+    closing.dispose();
+    label.dispose();
+    phoneNo.dispose();
+    salesPerson.dispose();
+    priority.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,7 +165,7 @@ class _LeadFormState extends State<LeadForm> {
                   buttonHeight: 50,
                   onPressed: () {
                     AddLead().dataToSave();
-
+                    clearController();
                     Get.to(() => const HomePage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },
