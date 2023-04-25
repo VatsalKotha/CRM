@@ -97,7 +97,7 @@ class _LeadFormState extends State<LeadForm> {
                     Expanded(
                       child: FormTextBox(
                         hintText: "Label",
-                        prefixIcon: const Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.label),
                         title: "Label",
                         controller: label,
                       ),
@@ -106,7 +106,7 @@ class _LeadFormState extends State<LeadForm> {
                     Expanded(
                       child: FormTextBox(
                         hintText: "Phone Number",
-                        prefixIcon: const Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.phone),
                         title: "Phone Number",
                         controller: phoneNo,
                       ),
@@ -127,7 +127,7 @@ class _LeadFormState extends State<LeadForm> {
                 ),
                 FormTextBox(
                   hintText: "Priority",
-                  prefixIcon: const Icon(Icons.people),
+                  prefixIcon: const Icon(Icons.priority_high),
                   title: "Priority",
                   controller: priority,
                 ),
