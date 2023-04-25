@@ -1,12 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crm/constants/text_string.dart';
+import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crm/screens/auth/database/AddLead.dart';
 import '../../../utility/widget/form_widget.dart';
-import '../../../utility/widget/radio_button_widget.dart';
+// import '../../../utility/widget/radio_button_widget.dart';
 import 'lead_page.dart';
 
 enum LeadPriority {
@@ -24,7 +24,7 @@ class LeadForm extends StatefulWidget {
 }
 
 class _LeadFormState extends State<LeadForm> {
-  LeadPriority _selectedOption = LeadPriority.high;
+  // LeadPriority _selectedOption = LeadPriority.high;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +44,18 @@ class _LeadFormState extends State<LeadForm> {
                   title: "Lead Name",
                   controller: name,
                 ),
+                FormTextBox(
+                  hintText: "New / Won/ Qualified",
+                  prefixIcon: const Icon(Icons.people),
+                  title: "Status",
+                  controller: status,
+                ),
                 Row(
                   children: [
                     Expanded(
                       child: FormTextBox(
                         hintText: "12 April 2023",
-                        prefixIcon: Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.date_range),
                         title: "Start Date",
                         controller: startDate,
                       ),
@@ -58,7 +64,7 @@ class _LeadFormState extends State<LeadForm> {
                     Expanded(
                       child: FormTextBox(
                         hintText: "12 April 2023",
-                        prefixIcon: Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.date_range),
                         title: "End Date",
                         controller: closing,
                       ),
@@ -70,7 +76,7 @@ class _LeadFormState extends State<LeadForm> {
                     Expanded(
                       child: FormTextBox(
                         hintText: "First Name",
-                        prefixIcon: Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.date_range),
                         title: "Client Name",
                         controller: cfname,
                       ),
@@ -79,7 +85,7 @@ class _LeadFormState extends State<LeadForm> {
                     Expanded(
                       child: FormTextBox(
                         hintText: "",
-                        prefixIcon: Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.date_range),
                         title: "Last Name",
                         controller: claname,
                       ),
@@ -91,7 +97,7 @@ class _LeadFormState extends State<LeadForm> {
                     Expanded(
                       child: FormTextBox(
                         hintText: "Label",
-                        prefixIcon: Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.date_range),
                         title: "Label",
                         controller: label,
                       ),
@@ -100,7 +106,7 @@ class _LeadFormState extends State<LeadForm> {
                     Expanded(
                       child: FormTextBox(
                         hintText: "Phone Number",
-                        prefixIcon: Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.date_range),
                         title: "Phone Number",
                         controller: phoneNo,
                       ),
@@ -119,17 +125,23 @@ class _LeadFormState extends State<LeadForm> {
                   title: "Company Name",
                   controller: cname,
                 ),
-                RadioButtonWidget(
-                  options: LeadPriority.values,
-                  groupValue: _selectedOption,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedOption = (value as LeadPriority?)!;
-                    });
-                  },
-                  textBuilder: (option) => option.toString().split('.')[1],
-                  valueBuilder: (option) => option.toString(),
+                FormTextBox(
+                  hintText: "Priority",
+                  prefixIcon: const Icon(Icons.people),
+                  title: "Priority",
+                  controller: priority,
                 ),
+                // RadioButtonWidget(
+                //   options: LeadPriority.values,
+                //   groupValue: _selectedOption,
+                //   onChanged: (value) {
+                //     setState(() {
+                //       _selectedOption = (value as LeadPriority?)!;
+                //     });
+                //   },
+                //   textBuilder: (option) => option.toString().split('.')[1],
+                //   valueBuilder: (option) => option.toString(),
+                // ),
                 const SizedBox(height: 40),
                 Button(
                   marginHorizontal: 30,
@@ -140,7 +152,8 @@ class _LeadFormState extends State<LeadForm> {
                   onPressed: () {
                     AddLead().dataToSave();
 
-                    Get.to(() => const LeadPage());
+                    Get.to(() => const HomePage());
+                    // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },
                   buttonTextSize: 20,
                 ),

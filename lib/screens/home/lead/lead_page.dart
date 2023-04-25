@@ -1,7 +1,6 @@
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/on_press_action.dart';
 import 'package:crm/screens/auth/database/fetch_leads.dart';
-import 'package:crm/screens/auth/database/lead_repo.dart';
 import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/lead_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +12,9 @@ class LeadPage extends StatefulWidget {
   State<LeadPage> createState() => _LeadPageState();
 }
 
-class _LeadPageState extends State<LeadPage> {
-  List leadList = [];
+List leadList = [];
 
+class _LeadPageState extends State<LeadPage> {
   @override
   void initState() {
     // TODO: implement initState
@@ -47,10 +46,8 @@ class _LeadPageState extends State<LeadPage> {
                 leadClosingDate: leadList[index]["Closing Date"],
                 leadCompanyName: leadList[index]["Company Name"],
                 leadPersonName: leadList[index]["Client First Name"],
-                leadDescription:
-                    "Meeting setup for the audit community. Meeting setup for the audit community.Meeting setup for the audit community.",
-                leadPriorityInt: 3,
-                leadStatus: "New");
+                leadPriorityInt: leadList[index]["Priority"],
+                leadStatus: leadList[index]["Status"]);
           }),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(

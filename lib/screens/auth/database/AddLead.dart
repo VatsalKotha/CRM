@@ -12,6 +12,8 @@ final TextEditingController name = TextEditingController();
 final TextEditingController startDate = TextEditingController();
 final TextEditingController phoneNo = TextEditingController();
 final TextEditingController salesPerson = TextEditingController();
+final TextEditingController priority = TextEditingController();
+final TextEditingController status = TextEditingController();
 
 class AddLead {
   dataToSave() {
@@ -25,6 +27,8 @@ class AddLead {
       "Phone Number": phoneNo.text,
       "Sales Person": salesPerson.text,
       "Lead Name": name.text,
+      "Priority": priority.text,
+      "Status": status.text,
     };
 
     FirebaseFirestore.instance.collection("Lead").add(dataToSave);

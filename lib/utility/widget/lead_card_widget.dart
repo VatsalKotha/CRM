@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import '../../constants/image_string.dart';
 
 class LeadCardWidget extends StatelessWidget {
-   LeadCardWidget({
+  LeadCardWidget({
     super.key,
     required this.leadName,
     required this.leadClosingDate,
     required this.leadCompanyName,
     required this.leadPersonName,
-    required this.leadDescription,
     required this.leadPriorityInt,
     required this.leadStatus,
   });
 
-  int leadPriorityInt;
+  String? leadPriorityInt;
   String? leadName;
   String? leadClosingDate;
   String? leadCompanyName;
@@ -25,11 +24,11 @@ class LeadCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Color leadPriorityColor, leadStatusColor;
 
-    if (leadPriorityInt == 3) {
+    if (leadPriorityInt == "3") {
       leadPriorityColor = Colors.redAccent;
-    } else if (leadPriorityInt == 2) {
+    } else if (leadPriorityInt == "2") {
       leadPriorityColor = Colors.orange;
-    } else if (leadPriorityInt == 1) {
+    } else if (leadPriorityInt == "1") {
       leadPriorityColor = Colors.yellow;
     } else {
       leadPriorityColor = Colors.grey;
@@ -104,16 +103,6 @@ class LeadCardWidget extends StatelessWidget {
                     ),
 
                     // Description
-                    const SizedBox(height: 2.0),
-                    Text(
-                      leadDescription!,
-                      textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -128,7 +117,8 @@ class LeadCardWidget extends StatelessWidget {
                 // status of lead
                 Container(
                   alignment: Alignment.centerRight,
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 5.0, bottom: 5.0),
+                  padding: const EdgeInsets.only(
+                      left: 8.0, right: 8.0, top: 5.0, bottom: 5.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3.0),
                     color: leadStatusColor,
