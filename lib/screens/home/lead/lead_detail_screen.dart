@@ -1,4 +1,3 @@
-
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/action_event.dart';
 import 'package:crm/utility/widget/appbar.dart';
@@ -7,19 +6,52 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LeadDetailScreen extends StatefulWidget {
-  const LeadDetailScreen({Key? key, required this.leadName}) : super(key: key);
+  const LeadDetailScreen(
+      {Key? key,
+        required this.leadName,
+        required this.leadId,
+        required this.leadSalesPersonName,
+        required this.leadStatus,
+        required this.leadClosingDate,
+        required this.leadCompanyName,
+        required this.leadClientName,
+        required this.leadClientPhnNo1,
+        required this.leadPriority,
+        this.leadEmailAddress,
+        this.leadAddress,
+        this.leadClientPhnNo2,
+        this.leadWebsite,
+        this.leadDescription,
+        required this.leadCreatedBy,
+        required this.leadModifiedBy,
+        required this.leadDateCreated})
+      : super(key: key);
 
   final String leadName;
-
-
+  final String leadId;
+  final String leadSalesPersonName;
+  final String leadStatus;
+  final String leadClosingDate;
+  final String leadCompanyName;
+  final String leadClientName;
+  final String leadClientPhnNo1;
+  final String leadPriority;
+  final String? leadEmailAddress;
+  final String? leadAddress;
+  final String? leadClientPhnNo2;
+  final String? leadWebsite;
+  final String? leadDescription;
+  final String leadCreatedBy;
+  final String leadModifiedBy;
+  final String leadDateCreated;
 
   @override
   State<LeadDetailScreen> createState() => _LeadDetailScreenState();
 }
 
 class _LeadDetailScreenState extends State<LeadDetailScreen> {
-
-  IconButton buildIconButton({required IconData iconData, required VoidCallback onPressed}) {
+  IconButton buildIconButton(
+      {required IconData iconData, required VoidCallback onPressed}) {
     return IconButton(
       iconSize: 40.0,
       onPressed: onPressed,
@@ -31,6 +63,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
       ),
     );
   }
+
   Text tableHeading({required String heading}) {
     return Text(
       heading,
@@ -61,29 +94,36 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.leadName, style: const TextStyle(fontSize: 30,fontWeight: FontWeight.w600)),
+                  Text(widget.leadName,
+                      style: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 2.0),
-                  const Text("lead id : MEL230001",style: TextStyle(fontSize: 13.5)),
+                  Text(widget.leadId,
+                      style: const TextStyle(fontSize: 13.5)),
                   const SizedBox(height: 5.0),
-                  const Text("Ramesh Shah",style: TextStyle(fontSize: 18,)),
+                  Text(widget.leadSalesPersonName,
+                      style: const TextStyle(
+                        fontSize: 18,
+                      )),
                   const SizedBox(height: 5.0),
                   Container(
-                    padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 1.0, bottom: 1.0),
+                    padding: const EdgeInsets.only(
+                        left: 12.0, right: 12.0, top: 1.0, bottom: 1.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(2.0),
                       color: const Color(0xFFF75555),
                     ),
-                    child: const Text(
-                      "Lost",
-                      style: TextStyle(
+                    child: Text(
+                      widget.leadStatus,
+                      style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(height: 5.0),
                   Row(
-                    children: const [
-                      Icon(Icons.date_range_outlined, size: 20.0),
-                      Text("12 April 2023"),
+                    children: [
+                      const Icon(Icons.date_range_outlined, size: 20.0),
+                      Text(widget.leadClosingDate),
                     ],
                   ),
                 ],
@@ -94,7 +134,6 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-
                   buildIconButton(
                     iconData: Icons.local_phone_outlined,
                     onPressed: ActionEvent.phoneEventHandler,
@@ -111,11 +150,11 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     iconData: Icons.delete_outline,
                     onPressed: ActionEvent.deleteEventHandler,
                   ),
-
                 ],
               ),
               const SizedBox(height: 5.0),
-              const Divider(),
+
+              const Divider(thickness: 2.0),
               const SizedBox(height: 25.0),
 
               // lead details - main & others
@@ -124,12 +163,12 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
               tableHeading(heading: 'Lead Details'),
               const SizedBox(height: 10.0),
               Table(
-                children: const [
+                children: [
                   TableRow(
                     children: [
                       TableWidget(
                         heading: "Company Name",
-                        value: "Logitech Pvt.LTD",
+                        value: widget.leadCompanyName,
                       ),
                     ],
                   ),
@@ -137,7 +176,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Client Name",
-                        value: "John Shah",
+                        value: widget.leadClientName,
                         isBold: true,
                       ),
                     ],
@@ -146,7 +185,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Phone Number",
-                        value: "+91 9876543210",
+                        value: widget.leadClientPhnNo1,
                       ),
                     ],
                   ),
@@ -154,7 +193,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Lead Priority",
-                        value: "Low",
+                        value: widget.leadPriority,
                       ),
                     ],
                   ),
@@ -162,7 +201,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Sale's Person",
-                        value: "Ramesh Shah",
+                        value: widget.leadSalesPersonName,
                         isBold: true,
                         valueColor: Colors.blue,
                         isUnderlined: true,
@@ -176,12 +215,12 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
               tableHeading(heading: 'Other Details'),
               const SizedBox(height: 10.0),
               Table(
-                children: const [
+                children: [
                   TableRow(
                     children: [
                       TableWidget(
                         heading: "Email Address",
-                        value: "johnshah@logitech.com",
+                        value: widget.leadEmailAddress ?? "-",
                       ),
                     ],
                   ),
@@ -189,7 +228,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Address",
-                        value: "Navi Mumbai West",
+                        value: widget.leadAddress ?? "-",
                       ),
                     ],
                   ),
@@ -197,7 +236,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Phone Number",
-                        value: "+91 9876543210",
+                        value: widget.leadClientPhnNo2 ?? "-",
                       ),
                     ],
                   ),
@@ -205,7 +244,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Website",
-                        value: "logitech.org",
+                        value: widget.leadWebsite ?? "-",
                         isUnderlined: true,
                         valueColor: Colors.blue,
                       ),
@@ -215,7 +254,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Description",
-                        value: "Hello World Hello World Hello World Hello ",
+                        value: widget.leadDescription ?? "-",
                       ),
                     ],
                   ),
@@ -223,7 +262,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Created By",
-                        value: "Issac Newton",
+                        value: widget.leadCreatedBy,
                       ),
                     ],
                   ),
@@ -231,7 +270,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Modified By",
-                        value: "Ramesh Shah",
+                        value: widget.leadModifiedBy,
                       ),
                     ],
                   ),
@@ -239,13 +278,14 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                     children: [
                       TableWidget(
                         heading: "Date Created",
-                        value: "1 April 2023",
+                        value: widget.leadCreatedBy,
                       ),
                     ],
                   ),
-
                 ],
               ),
+              const SizedBox(height: 25.0),
+
             ],
           ),
         ),
