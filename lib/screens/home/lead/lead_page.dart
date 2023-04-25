@@ -47,6 +47,7 @@ class _LeadPageState extends State<LeadPage> {
                 leadCompanyName: leadList[index]["Company Name"],
                 leadPersonName: leadList[index]["Client First Name"],
                 leadPriorityInt: leadList[index]["Priority"],
+                phoneNumber: leadList[index]["Phone Number"],
                 leadStatus: leadList[index]["Status"]);
           }),
       floatingActionButton: FloatingActionButton(

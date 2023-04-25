@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import '../../constants/image_string.dart';
 
 class LeadCardWidget extends StatelessWidget {
-  LeadCardWidget({
-    super.key,
-    required this.leadName,
-    required this.leadClosingDate,
-    required this.leadCompanyName,
-    required this.leadPersonName,
-    required this.leadPriorityInt,
-    required this.leadStatus,
-  });
+  LeadCardWidget(
+      {super.key,
+      required this.leadName,
+      required this.leadClosingDate,
+      required this.leadCompanyName,
+      required this.leadPersonName,
+      required this.leadPriorityInt,
+      required this.leadStatus,
+      required this.phoneNumber});
 
   String? leadPriorityInt;
   String? leadName;
@@ -19,6 +19,7 @@ class LeadCardWidget extends StatelessWidget {
   String? leadPersonName;
   String? leadDescription;
   String? leadStatus;
+  String? phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +103,14 @@ class LeadCardWidget extends StatelessWidget {
                       ),
                     ),
 
-                    // Description
+                    // Phone Number
+                    Text(
+                      phoneNumber!,
+                      style: const TextStyle(
+                        fontSize: 15.5,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ],
                 ),
               ),

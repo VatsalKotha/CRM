@@ -5,8 +5,6 @@ import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utility/widget/form_widget.dart';
-import '../../../utility/widget/radio_button_widget.dart';
-import 'meeting_page.dart';
 import 'package:crm/screens/auth/database/AddMeetings.dart';
 
 enum LeadPriority {
@@ -24,7 +22,7 @@ class MeetingForm extends StatefulWidget {
 }
 
 class _MeetingFormState extends State<MeetingForm> {
-  LeadPriority _selectedOption = LeadPriority.high;
+  // LeadPriority _selectedOption = LeadPriority.high;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +31,8 @@ class _MeetingFormState extends State<MeetingForm> {
         margin: const EdgeInsets.only(
             left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
         child: FormWidget(
-          formTitle: jLeadFormTitle,
-          formSubtitle: jLeadFormSubtitle,
+          formTitle: VMeetingFormTitle,
+          formSubtitle: VMeetingFormSubtitle,
           myFormWidget: Form(
             child: Column(
               children: [
@@ -57,7 +55,7 @@ class _MeetingFormState extends State<MeetingForm> {
                     const SizedBox(width: 25),
                     Expanded(
                       child: FormTextBox(
-                        hintText: "",
+                        hintText: "10.00",
                         prefixIcon: const Icon(Icons.timelapse_rounded),
                         title: "Time",
                         controller: time,
@@ -78,7 +76,7 @@ class _MeetingFormState extends State<MeetingForm> {
                     const SizedBox(width: 25),
                     Expanded(
                       child: FormTextBox(
-                        hintText: "",
+                        hintText: "Last Name",
                         prefixIcon: const Icon(Icons.people),
                         title: "Last Name",
                         controller: claname,
@@ -98,17 +96,17 @@ class _MeetingFormState extends State<MeetingForm> {
                   title: "Description",
                   controller: desc,
                 ),
-                RadioButtonWidget(
-                  options: LeadPriority.values,
-                  groupValue: _selectedOption,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedOption = (value as LeadPriority?)!;
-                    });
-                  },
-                  textBuilder: (option) => option.toString().split('.')[1],
-                  valueBuilder: (option) => option.toString(),
-                ),
+                // RadioButtonWidget(
+                //   options: LeadPriority.values,
+                //   groupValue: _selectedOption,
+                //   onChanged: (value) {
+                //     setState(() {
+                //       _selectedOption = (value as LeadPriority?)!;
+                //     });
+                //   },
+                //   textBuilder: (option) => option.toString().split('.')[1],
+                //   valueBuilder: (option) => option.toString(),
+                // ),
                 const SizedBox(height: 40),
                 Button(
                   marginHorizontal: 30,
