@@ -1,0 +1,6 @@
+{
+    "dart.flutterHotReloadOnSave": "all",
+    "dart.hotReloadOnSave": "all",
+    "cmake.configureOnOpen": false,
+    "editor.mouseWheelZoom": true
+}
