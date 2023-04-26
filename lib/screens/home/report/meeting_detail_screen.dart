@@ -11,7 +11,7 @@ class MeetingDetailScreen extends StatefulWidget {
 class _MeetingDetailScreenState extends State<MeetingDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text("Meeting Detail View"),
       ),

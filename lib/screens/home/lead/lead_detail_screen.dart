@@ -50,6 +50,7 @@ class LeadDetailScreen extends StatefulWidget {
 }
 
 class _LeadDetailScreenState extends State<LeadDetailScreen> {
+
   IconButton buildIconButton(
       {required IconData iconData, required VoidCallback onPressed}) {
     return IconButton(
@@ -77,6 +78,18 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    Color leadStatusColor;
+    if (widget.leadStatus == "New") {
+      leadStatusColor = const Color(0xFF92D5F8);
+    } else if (widget.leadStatus == "Won") {
+      leadStatusColor = const Color(0xFF45CA53);
+    } else if (widget.leadStatus == "Lost") {
+      leadStatusColor = const Color(0xFFF75555);
+    } else {
+      leadStatusColor = const Color(0xFFCE4CC8);
+    }
+
     return Scaffold(
       appBar: const AppBarWidget(
           title: jAppbarLeadDetailScreenTitle,
@@ -86,6 +99,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
       body: Container(
         margin: const EdgeInsets.only(
             left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
+
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,12 +120,13 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                         fontSize: 18,
                       )),
                   const SizedBox(height: 5.0),
+                  // status
                   Container(
                     padding: const EdgeInsets.only(
                         left: 12.0, right: 12.0, top: 1.0, bottom: 1.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(2.0),
-                      color: const Color(0xFFF75555),
+                      color: leadStatusColor,
                     ),
                     child: Text(
                       widget.leadStatus,

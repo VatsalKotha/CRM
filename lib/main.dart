@@ -2,7 +2,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:crm/routes/routes.dart';
-import 'package:crm/screens/auth/login/loginScreen.dart';
+import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
 
       initialRoute: Routes.getLoginScreenRoute(),
 
-       home: LoginScreen(),
-      // home: LeadDetailScreen(leadName: "Jash Parmar"),
+       // home: LoginScreen(),
+      home: HomePage(),
     );
   }
 }

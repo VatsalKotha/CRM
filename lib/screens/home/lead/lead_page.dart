@@ -1,11 +1,9 @@
 
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/on_press_action.dart';
-import 'package:crm/screens/home/lead/lead_form.dart';
 import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/lead_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LeadPage extends StatelessWidget {
   const LeadPage({Key? key}) : super(key: key);
@@ -22,7 +20,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community. Meeting setup for the audit community.Meeting setup for the audit community.",
-              leadPriorityInt: 3,
+              leadPriority: "High",
               leadStatus: "New"),
           LeadCardWidget(
               leadName: "Product Enquiry",
@@ -30,7 +28,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 2,
+              leadPriority: "High",
               leadStatus: "Qualified"),
           LeadCardWidget(
               leadName: "Product Enquiry",
@@ -38,7 +36,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 1,
+              leadPriority: "High",
               leadStatus: "Won"),
           LeadCardWidget(
               leadName: "Product Enquiry",
@@ -46,7 +44,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 0,
+              leadPriority: "High",
               leadStatus: "Lost"),
           LeadCardWidget(
               leadName: "Product Enquiry",
@@ -54,7 +52,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 1,
+              leadPriority: "High",
               leadStatus: "Won"),
           LeadCardWidget(
               leadName: "Product Enquiry",
@@ -62,7 +60,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community. Meeting setup for the audit community.Meeting setup for the audit community.",
-              leadPriorityInt: 3,
+              leadPriority: "High",
               leadStatus: "New"),
           LeadCardWidget(
               leadName: "Product Enquiry",
@@ -70,7 +68,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community. Meeting setup for the audit community.Meeting setup for the audit community.",
-              leadPriorityInt: 3,
+              leadPriority: "High",
               leadStatus: "New"),
           LeadCardWidget(
               leadName: "Product Enquiry",
@@ -78,7 +76,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 1,
+              leadPriority: "High",
               leadStatus: "Won"),
           LeadCardWidget(
               leadName: "Product Enquiry",
@@ -86,7 +84,7 @@ class LeadPage extends StatelessWidget {
               leadCompanyName: "ABC Company",
               leadPersonName: "Ramesh Shah",
               leadDescription: "Meeting setup for the audit community",
-              leadPriorityInt: 0,
+              leadPriority: "High",
               leadStatus: "Lost"),
         ],
       ),

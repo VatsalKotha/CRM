@@ -9,27 +9,27 @@ class LeadCardWidget extends StatelessWidget {
     required this.leadCompanyName,
     required this.leadPersonName,
     required this.leadDescription,
-    required this.leadPriorityInt,
+    required this.leadPriority,
     required this.leadStatus,
   });
 
-  int leadPriorityInt;
-  String? leadName;
-  String? leadClosingDate;
-  String? leadCompanyName;
-  String? leadPersonName;
+  String leadPriority;
+  String leadName;
+  String leadClosingDate;
+  String leadCompanyName;
+  String leadPersonName;
+  String leadStatus;
   String? leadDescription;
-  String? leadStatus;
 
   @override
   Widget build(BuildContext context) {
     Color leadPriorityColor, leadStatusColor;
 
-    if (leadPriorityInt == 3) {
+    if (leadPriority == "High") {
       leadPriorityColor = Colors.redAccent;
-    } else if (leadPriorityInt == 2) {
+    } else if (leadPriority == "Medium") {
       leadPriorityColor = Colors.orange;
-    } else if (leadPriorityInt == 1) {
+    } else if (leadPriority == "Low") {
       leadPriorityColor = Colors.yellow;
     } else {
       leadPriorityColor = Colors.grey;
@@ -68,7 +68,7 @@ class LeadCardWidget extends StatelessWidget {
                     const SizedBox(height: 5.0),
                     // Lead title
                     Text(
-                      leadName!,
+                      leadName,
                       style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class LeadCardWidget extends StatelessWidget {
 
                     // Company Name
                     Text(
-                      leadCompanyName!,
+                      leadCompanyName,
                       style: const TextStyle(
                         fontSize: 15.0,
                         fontWeight: FontWeight.normal,
@@ -96,7 +96,7 @@ class LeadCardWidget extends StatelessWidget {
 
                     // Person Name
                     Text(
-                      leadPersonName!,
+                      leadPersonName,
                       style: const TextStyle(
                         fontSize: 15.5,
                         fontWeight: FontWeight.w600,
@@ -136,7 +136,7 @@ class LeadCardWidget extends StatelessWidget {
                     color: leadStatusColor,
                   ),
                   child: Text(
-                    leadStatus!,
+                    leadStatus,
                     style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
