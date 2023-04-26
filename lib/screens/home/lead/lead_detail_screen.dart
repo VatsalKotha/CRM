@@ -96,11 +96,10 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
           actions: [],
           centerTitle: false,
           automaticallyImplyLeading: true),
-      body: Container(
-        margin: const EdgeInsets.only(
-            left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
-
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.only(
+              left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

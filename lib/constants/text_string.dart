@@ -7,6 +7,8 @@
 
  // AppBar Titles
  const String jAppbarReportPageTitle = "Report";
+ const String jAppbarMeetingDetailScreenTitle = "Meeting Details";
+ const String jAppbarFeedbackDetailScreenTitle = "Feedback Details";
  const String jAppbarLeadPageTitle = "Lead Management";
  const String jAppbarLeadDetailScreenTitle = "Lead Details";
  const String jAppbarInstallmentPageTitle = "Installment Management";
