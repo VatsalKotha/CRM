@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utility/widget/form_widget.dart';
 import 'package:crm/screens/auth/database/AddMeetings.dart';
+import 'package:crm/screens/home/report/meeting_page.dart';
+import 'package:intl/intl.dart';
 
 enum LeadPriority {
   high,
@@ -22,6 +24,8 @@ class MeetingForm extends StatefulWidget {
 }
 
 class _MeetingFormState extends State<MeetingForm> {
+  DateTime? selectedDay;
+  Map<String, List> selectedEvents = {};
   // LeadPriority _selectedOption = LeadPriority.high;
   void clearController() {
     cfname.dispose();
@@ -128,6 +132,11 @@ class _MeetingFormState extends State<MeetingForm> {
                     AddMeetings().dataToSave();
                     clearController();
                     Get.to(() => const HomePage());
+
+                    if (selectedEvents[
+                            DateFormat('yyyy-MM-dd').format(selectedDay)] !=
+                        null) {
+                    } else {}
                   },
                   buttonTextSize: 20,
                 ),
