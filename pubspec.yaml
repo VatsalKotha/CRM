@@ -43,6 +43,7 @@ dependencies:
   cloud_firestore: ^4.5.2
   firebase_core: ^2.10.0
   email_otp: ^2.0.1
+  quickalert: ^1.0.1
 
 dev_dependencies:
   flutter_test:

@@ -6,17 +6,20 @@ const String jPhoneNumberRequired = "Phone number is required";
 
 // AppBar Titles
 const String jAppbarReportPageTitle = "Report";
+const String jAppbarMeetingDetailScreenTitle = "Meeting Details";
+const String jAppbarFeedbackDetailScreenTitle = "Feedback Details";
 const String jAppbarLeadPageTitle = "Lead Management";
+const String jAppbarLeadDetailScreenTitle = "Lead Details";
 const String jAppbarInstallmentPageTitle = "Installment Management";
 const String jAppbarDashboardPageTitle = "Dashboard";
-const String jAppbarDealPageTitle = "Deal Management";
+const String jAppbarProfilePageTitle = "Profile";
+const String jAppbarSettingPageTitle = "Setting";
 
-// AppBar Titles
-const String jAppbarAdminReportPageTitle = "Report";
-const String jAppbarAdminLeadPageTitle = "Lead Management";
-const String jAppbarAdminInstallmentPageTitle = "Installment Management";
-const String jAppbarAdminDashboardPageTitle = "Dashboard";
-const String jAppbarAdminDealPageTitle = "Deal Management";
+// Title for admin page
+const String jAppbarContactPageTitle = "Contact Management";
+const String jAppbarDealPageTitle = "Deal Management";
+const String jAppbarEmployeePageTitle = "Employee Management";
+const String jAppbarAdminDashboardPageTitle = "Admin Dashboard";
 
 // Login Screen
 const String jLoginScreenEmailFieldValidatorText =

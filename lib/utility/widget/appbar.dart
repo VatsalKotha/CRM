@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -7,6 +6,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor;
   final double elevation;
   final List<Widget>? actions;
+  final bool automaticallyImplyLeading;
 
   const AppBarWidget({
     Key? key,
@@ -15,6 +15,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = const Color(0xFFFAFAFA),
     this.elevation = 1.0,
     this.actions,
+    this.automaticallyImplyLeading = false,
   }) : super(key: key);
 
   @override
@@ -25,13 +26,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor,
       actionsIconTheme: const IconThemeData(color: Colors.grey),
       elevation: elevation,
-      automaticallyImplyLeading: false,
-      actions: actions ?? <Widget>[
-        const Padding(
-          padding: EdgeInsets.only(right: 10.0),
-          child: Icon(Icons.search),
-        ),
-      ],
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      actions: actions ??
+          <Widget>[
+            const Padding(
+              padding: EdgeInsets.only(right: 10.0),
+              child: Icon(Icons.search),
+            ),
+          ],
     );
   }
 
