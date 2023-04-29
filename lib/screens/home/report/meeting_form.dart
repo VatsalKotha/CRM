@@ -26,6 +26,7 @@ class MeetingForm extends StatefulWidget {
 class _MeetingFormState extends State<MeetingForm> {
   DateTime? selectedDay;
   Map<String, List> selectedEvents = {};
+
   // LeadPriority _selectedOption = LeadPriority.high;
   void clearController() {
     cfname.dispose();
@@ -132,11 +133,6 @@ class _MeetingFormState extends State<MeetingForm> {
                     AddMeetings().dataToSave();
                     clearController();
                     Get.to(() => const HomePage());
-
-                    if (selectedEvents[
-                            DateFormat('yyyy-MM-dd').format(selectedDay)] !=
-                        null) {
-                    } else {}
                   },
                   buttonTextSize: 20,
                 ),
