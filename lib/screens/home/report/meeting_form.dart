@@ -1,8 +1,10 @@
 import 'package:crm/constants/text_string.dart';
+import 'package:crm/screens/auth/database/event_firstore.dart';
 import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import '../../../utility/widget/form_widget.dart';
 import 'package:crm/screens/auth/database/AddMeetings.dart';
@@ -24,20 +26,11 @@ class MeetingForm extends StatefulWidget {
 }
 
 class _MeetingFormState extends State<MeetingForm> {
-  DateTime? selectedDay;
+  final formkey = GlobalKey<FormBuilderState>();
+  // final DateTime selectedDay;
   Map<String, List> selectedEvents = {};
 
   // LeadPriority _selectedOption = LeadPriority.high;
-  void clearController() {
-    cfname.dispose();
-    claname.dispose();
-    name.dispose();
-    time.dispose();
-    date.dispose();
-    title.dispose();
-    salesPerson.dispose();
-    desc.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +42,15 @@ class _MeetingFormState extends State<MeetingForm> {
           formTitle: VMeetingFormTitle,
           formSubtitle: VMeetingFormSubtitle,
           myFormWidget: Form(
+            key: formkey,
             child: Column(
               children: [
                 FormTextBox(
+                  validator: (value) {
+                    if (value == null) {
+                      return "Title is Empty";
+                    }
+                  },
                   hintText: "Title",
                   prefixIcon: const Icon(Icons.title),
                   title: "Title",
@@ -60,12 +59,16 @@ class _MeetingFormState extends State<MeetingForm> {
                 Row(
                   children: [
                     Expanded(
-                      child: FormTextBox(
-                        hintText: "12 April 2023",
-                        prefixIcon: const Icon(Icons.date_range),
-                        title: "Date",
-                        controller: date,
-                      ),
+                      child: DatePickerDialog(
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2050)),
+                      // child: FormTextBox(
+                      //   hintText: "12 April 2023",
+                      //   prefixIcon: const Icon(Icons.date_range),
+                      //   title: "Date",
+                      //   controller: date,
+                      // ),
                     ),
                     const SizedBox(width: 25),
                     Expanded(
@@ -129,8 +132,15 @@ class _MeetingFormState extends State<MeetingForm> {
                   buttonBackgroundColor: Colors.green,
                   buttonTextColor: Colors.white,
                   buttonHeight: 50,
-                  onPressed: () {
+                  onPressed: () async {
                     AddMeetings().dataToSave();
+                    // bool validated = formkey.currentState!.validate();
+                    // final data =
+                    //     Map<String, dynamic>.from(formkey.currentState!.value);
+                    // data["date"] =
+                    //     (data["date"] as DateTime).millisecondsSinceEpoch;
+                    // print(data);
+                    // await eventDBS.create(data);
                     clearController();
                     Get.to(() => const HomePage());
                   },
@@ -152,5 +162,16 @@ class _MeetingFormState extends State<MeetingForm> {
         ),
       ),
     );
+  }
+
+  void clearController() {
+    cfname.dispose();
+    claname.dispose();
+    name.dispose();
+    time.dispose();
+    date.dispose();
+    title.dispose();
+    salesPerson.dispose();
+    desc.dispose();
   }
 }

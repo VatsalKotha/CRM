@@ -17,7 +17,9 @@ class ReportPage extends StatelessWidget {
           children: const [
             TabBar(
               tabs: [
-                // Tab(text: "Feedback",),
+                Tab(
+                  text: "Feedback",
+                ),
                 Tab(
                   text: "Meeting",
                 ),
