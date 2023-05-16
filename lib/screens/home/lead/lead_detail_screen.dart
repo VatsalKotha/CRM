@@ -1,34 +1,37 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/action_event.dart';
+import 'package:crm/screens/auth/database/fetch_leads.dart';
 import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LeadDetailScreen extends StatefulWidget {
-  const LeadDetailScreen(
-      {Key? key,
-        required this.leadName,
-        required this.leadId,
-        required this.leadSalesPersonName,
-        required this.leadStatus,
-        required this.leadClosingDate,
-        required this.leadCompanyName,
-        required this.leadClientName,
-        required this.leadClientPhnNo1,
-        required this.leadPriority,
-        this.leadEmailAddress,
-        this.leadAddress,
-        this.leadClientPhnNo2,
-        this.leadWebsite,
-        this.leadDescription,
-        required this.leadCreatedBy,
-        required this.leadModifiedBy,
-        required this.leadDateCreated})
-      : super(key: key);
+  // final int index;
+  const LeadDetailScreen({
+    Key? key,
+    required this.leadName,
+    // required this.leadId,
+    required this.leadSalesPersonName,
+    required this.leadStatus,
+    required this.leadClosingDate,
+    required this.leadCompanyName,
+    required this.leadClientName,
+    required this.leadClientPhnNo1,
+    required this.leadPriority,
+    this.leadEmailAddress,
+    this.leadAddress,
+    this.leadClientPhnNo2,
+    this.leadWebsite,
+    this.leadDescription,
+    required this.leadCreatedBy,
+    required this.leadModifiedBy,
+    required this.leadDateCreated,
+  }) : super(key: key);
 
   final String leadName;
-  final String leadId;
+  // final String leadId;
   final String leadSalesPersonName;
   final String leadStatus;
   final String leadClosingDate;
@@ -50,6 +53,31 @@ class LeadDetailScreen extends StatefulWidget {
 }
 
 class _LeadDetailScreenState extends State<LeadDetailScreen> {
+  late final Stream<DocumentSnapshot> _documnetSnapshot;
+
+  List leadList = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final _documentSnapshot =
+        FirebaseFirestore.instance.collection("Lead").snapshots();
+
+    fetchDatabaseList();
+  }
+
+  fetchDatabaseList() async {
+    dynamic result = await FetchLeads().getLeadList();
+
+    if (result == null) {
+      print("Unable to retreive");
+    } else {
+      setState(() {
+        leadList = result;
+      });
+    }
+  }
 
   IconButton buildIconButton(
       {required IconData iconData, required VoidCallback onPressed}) {
@@ -78,7 +106,6 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     Color leadStatusColor;
     if (widget.leadStatus == "New") {
       leadStatusColor = const Color(0xFF92D5F8);
@@ -111,8 +138,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                       style: const TextStyle(
                           fontSize: 30, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 2.0),
-                  Text(widget.leadId,
-                      style: const TextStyle(fontSize: 13.5)),
+                  // Text(widget.leadId, style: const TextStyle(fontSize: 13.5)),
                   const SizedBox(height: 5.0),
                   Text(widget.leadSalesPersonName,
                       style: const TextStyle(
@@ -299,7 +325,6 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                 ],
               ),
               const SizedBox(height: 25.0),
-
             ],
           ),
         ),

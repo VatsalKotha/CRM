@@ -41,6 +41,7 @@ class _LeadPageState extends State<LeadPage> {
       body: ListView.builder(
           itemCount: leadList.length,
           itemBuilder: (context, index) {
+
             return LeadCardWidget(
                 leadName: leadList[index]["Lead Name"],
                 leadClosingDate: leadList[index]["Closing Date"],

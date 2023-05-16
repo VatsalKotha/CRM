@@ -46,40 +46,35 @@ class _MeetingFormState extends State<MeetingForm> {
             child: Column(
               children: [
                 FormTextBox(
-                  validator: (value) {
-                    if (value == null) {
-                      return "Title is Empty";
-                    }
-                  },
                   hintText: "Title",
                   prefixIcon: const Icon(Icons.title),
                   title: "Title",
                   controller: title,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: DatePickerDialog(
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(2050)),
-                      // child: FormTextBox(
-                      //   hintText: "12 April 2023",
-                      //   prefixIcon: const Icon(Icons.date_range),
-                      //   title: "Date",
-                      //   controller: date,
-                      // ),
-                    ),
+                // Row(
+                //   children: [
+                //     Expanded(
+                //       child: FormTextBox(
+                //         hintText: "12 April 2023",
+                //         prefixIcon: const Icon(Icons.date_range),
+                //         title: "Date",
+                //         controller: date,
+                //       ),
+                //     ),
                     const SizedBox(width: 25),
-                    Expanded(
-                      child: FormTextBox(
-                        hintText: "10.00",
-                        prefixIcon: const Icon(Icons.timelapse_rounded),
-                        title: "Time",
-                        controller: time,
-                      ),
-                    ),
-                  ],
+                //     Expanded(
+                //       child: FormTextBox(
+                //         hintText: "10.00",
+                //         prefixIcon: const Icon(Icons.timelapse_rounded),
+                //         title: "Time",
+                //         controller: time,
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                ListTile(
+                        title: Text("Date(YYYY-MM-DD)"),
+                        // subtitle: Text("$[""]"),          
                 ),
                 Row(
                   children: [
