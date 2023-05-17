@@ -190,6 +190,12 @@ class _LoginFormState extends State<LoginForm> {
                     // checking validation if success then will navigate to HomePage()
                     // else will remain here at LoginScreen()
                     else {
+                      final User? user = auth.currentUser;
+                      if (user == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("User not Found")));
+                      }
+
                       // print("User not found");
                       // showDialog(
                       //     context: context,

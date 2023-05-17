@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../constants/image_string.dart';
 import '../../screens/auth/database/fetch_leads.dart';
 import '../../screens/home/lead/lead_detail_screen.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class LeadCardWidget extends StatefulWidget {
   LeadCardWidget(
@@ -16,7 +17,8 @@ class LeadCardWidget extends StatefulWidget {
       required this.leadPersonName,
       required this.leadPriorityInt,
       required this.leadStatus,
-      required this.phoneNumber});
+      required this.phoneNumber,
+      required this.salesPersonName});
 
   String? leadPriorityInt;
   String? leadName;
@@ -25,12 +27,16 @@ class LeadCardWidget extends StatefulWidget {
   String? leadPersonName;
   String? leadStatus;
   String? phoneNumber;
+  String? salesPersonName;
 
   @override
   State<LeadCardWidget> createState() => _LeadCardWidgetState();
 }
 
 class _LeadCardWidgetState extends State<LeadCardWidget> {
+  late String imageUrl;
+  final storage = FirebaseStorage.instance;
+
   final CollectionReference lead =
       FirebaseFirestore.instance.collection("Lead");
 
@@ -40,19 +46,18 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetchDatabaseList();
+    imageUrl = "";
+
+    getImageUrl();
   }
 
-  fetchDatabaseList() async {
-    dynamic result = await FetchLeads().getLeadList();
-
-    if (result == null) {
-      print("Unable to retreive");
-    } else {
-      setState(() {
-        leadList = result;
-      });
-    }
+  Future<void> getImageUrl() async {
+    final ref = storage.ref().child("${widget.salesPersonName}.png");
+    // final ref = storage.ref().child("jash.png");
+    final url = await ref.getDownloadURL();
+    setState(() {
+      imageUrl = url;
+    });
   }
 
   String? leadDescription;
@@ -84,34 +89,40 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
     return SizedBox(
         height: 140.0,
         child: GestureDetector(
-          onTap: () async {
-            final documentSnapshot = await FirebaseFirestore.instance
-                .collection("Lead")
-                .doc(
-                    "586xfTvhK1bmN4sqbQnD") // Replace "leadDocumentId" with the actual document ID
-                .get();
+          // onTap: () async {
+          //   final documentSnapshot =
+          //       await FirebaseFirestore.instance.collection("Lead").doc().get();
 
-            if (documentSnapshot.exists) {
-              final data = documentSnapshot.data();
-              if (data != null) {
-                setState(() {
-                  Get.to(() => LeadDetailScreen(
-                        leadName: data["Lead Name"],
-                        leadClientName: data["Client First Name"],
-                        leadClientPhnNo1: data["Phone Number"],
-                        leadClosingDate: data["Closing Date"],
-                        leadCompanyName: data["Company Name"],
-                        leadCreatedBy: data["Label"],
-                        leadDateCreated: data["Client Last Name"],
-                        leadModifiedBy: data["Start Date"],
-                        leadPriority: data["Priority"],
-                        leadSalesPersonName: data["Sales Person"],
-                        leadStatus: data["Status"],
-                      ));
-                });
-              }
-            }
-          },
+          //   // Stream<QuerySnapshot> snapshots = leadCollection.snapshots();
+
+          //   // snapshots.listen((QuerySnapshot snapshot) {
+          //   //   List<DocumentSnapshot> document = snapshot.docs;
+          //   //   for (DocumentSnapshot documentSnapshot in document) {
+          //   //     String documentId;
+          //   //   }
+          //   // });
+
+          //   if (documentSnapshot.exists) {
+          //     final data = documentSnapshot.data();
+          //     if (data != null) {
+          //       setState(() {
+          //         Get.to(() => LeadDetailScreen(
+          //               leadName: data["Lead Name"],
+          //               leadClientName: data["Client First Name"],
+          //               leadClientPhnNo1: data["Phone Number"],
+          //               leadClosingDate: data["Closing Date"],
+          //               leadCompanyName: data["Company Name"],
+          //               leadCreatedBy: data["Label"],
+          //               leadDateCreated: data["Client Last Name"],
+          //               leadModifiedBy: data["Start Date"],
+          //               leadPriority: data["Priority"],
+          //               leadSalesPersonName: data["Sales Person"],
+          //               leadStatus: data["Status"],
+          //             ));
+          //       });
+          //     }
+          //   }
+          // },
           child: Card(
             elevation: 3.0,
             margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
@@ -176,6 +187,13 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        Text(
+                          widget.salesPersonName!,
+                          style: const TextStyle(
+                            fontSize: 15.5,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -207,16 +225,19 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                     const SizedBox(height: 35.0),
 
                     // profile
+
                     Container(
                       width: 42.5,
                       height: 42.5,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.yellow,
                         image: DecorationImage(
-                            image: AssetImage(jLeadCardProfileImage)),
+                          image: NetworkImage(imageUrl),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
                 const SizedBox(width: 10.0),

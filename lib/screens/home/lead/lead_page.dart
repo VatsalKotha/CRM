@@ -41,7 +41,6 @@ class _LeadPageState extends State<LeadPage> {
       body: ListView.builder(
           itemCount: leadList.length,
           itemBuilder: (context, index) {
-
             return LeadCardWidget(
                 leadName: leadList[index]["Lead Name"],
                 leadClosingDate: leadList[index]["Closing Date"],
@@ -49,6 +48,7 @@ class _LeadPageState extends State<LeadPage> {
                 leadPersonName: leadList[index]["Client First Name"],
                 leadPriorityInt: leadList[index]["Priority"],
                 phoneNumber: leadList[index]["Phone Number"],
+                salesPersonName: leadList[index]["Sales Person"],
                 leadStatus: leadList[index]["Status"]);
           }),
       floatingActionButton: FloatingActionButton(

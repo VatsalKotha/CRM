@@ -61,7 +61,7 @@ class _MeetingFormState extends State<MeetingForm> {
                 //         controller: date,
                 //       ),
                 //     ),
-                    const SizedBox(width: 25),
+                const SizedBox(width: 25),
                 //     Expanded(
                 //       child: FormTextBox(
                 //         hintText: "10.00",
@@ -72,9 +72,9 @@ class _MeetingFormState extends State<MeetingForm> {
                 //     ),
                 //   ],
                 // ),
-                ListTile(
-                        title: Text("Date(YYYY-MM-DD)"),
-                        // subtitle: Text("$[""]"),          
+                const ListTile(
+                  title: Text("Date(YYYY-MM-DD)"),
+                  // subtitle: Text("$[""]"),
                 ),
                 Row(
                   children: [

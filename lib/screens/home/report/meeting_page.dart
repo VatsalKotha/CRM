@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crm/controllers/on_press_action.dart';
 import 'package:crm/screens/auth/database/event_firstore.dart';
 import 'package:flutter/material.dart';
@@ -12,20 +13,34 @@ class MeetingPage extends StatefulWidget {
 }
 
 class _MeetingPageState extends State<MeetingPage> {
-  late Map<DateTime, List<Event>> selectedEvents;
+  // late Map<DateTime, List<Event>> selectedEvents;
   CalendarFormat calendarFormat = CalendarFormat.month;
   DateTime? selectedDay;
   DateTime focusedDay = DateTime.now();
+  Map<DateTime, List<dynamic>> events = {};
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   void initState() {
-    selectedEvents = {};
     // TODO: implement initState
     super.initState();
+    loadEventsFromFirestore();
   }
 
-  List<Event> _getEventsfromDay(DateTime date) {
-    return selectedEvents[date] ?? [];
+  void loadEventsFromFirestore() async {
+    QuerySnapshot snapshot = await _firestore.collection("events").get();
+
+    setState(() {
+      events = {};
+      snapshot.docs.forEach((doc) {
+        DateTime date = (doc['date'] as Timestamp).toDate();
+        if (events[date] == null) {
+          events[date] = [];
+        }
+        events[date]!.add(doc['title']);
+      });
+    });
   }
 
   @override
@@ -46,7 +61,7 @@ class _MeetingPageState extends State<MeetingPage> {
                   color: const Color(0xFFB3E5FC),
                   borderRadius: BorderRadius.circular(8.0),
                 )),
-            eventLoader: _getEventsfromDay,
+            // eventLoader: _getEventsfromDay,
             // to style the calendar
             calendarStyle: const CalendarStyle(
               isTodayHighlighted: true,
