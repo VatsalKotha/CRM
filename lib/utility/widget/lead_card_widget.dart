@@ -1,6 +1,7 @@
 import 'dart:html';
-
+// import { getStorage, ref } from "firebase/storage";
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constants/image_string.dart';
@@ -34,13 +35,24 @@ class LeadCardWidget extends StatefulWidget {
 }
 
 class _LeadCardWidgetState extends State<LeadCardWidget> {
+  void onTap() {
+    if (kDebugMode) {
+      print("Card was pressed");
+    }
+  }
+
+  final FirebaseStorage storage = FirebaseStorage.instance;
+
   late String imageUrl;
-  final storage = FirebaseStorage.instance;
+  // final storage = FirebaseStorage.instance;
+  // late String imageUrl;
+
+  // final FirebaseStorage storage = FirebaseStorage.instance;
 
   final CollectionReference lead =
       FirebaseFirestore.instance.collection("Lead");
 
-  List leadList = [];
+  // String imagePath = "gs://crm-project-demo.appspot.com/jash.png";
 
   @override
   void initState() {
@@ -52,12 +64,20 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
   }
 
   Future<void> getImageUrl() async {
-    final ref = storage.ref().child("${widget.salesPersonName}.png");
+    final pathReference = storage.ref("images/jash.png");
+
+    // final ref = storage.ref(imagePath).child(imagePath);
     // final ref = storage.ref().child("jash.png");
-    final url = await ref.getDownloadURL();
-    setState(() {
-      imageUrl = url;
-    });
+    // imageUrl = await ref.getDownloadURL();
+    final gsReference =
+        storage.refFromURL("gs://crm-project-demo.appspot.com/jash.png");
+    final httpsRef = storage.refFromURL(
+        "https://firebasestorage.googleapis.com/v0/b/crm-project-demo.appspot.com/o/jash.png?alt=media&token=722660bd-a88b-41e4-8740-ad4bf873101b");
+
+    imageUrl = await pathReference.getDownloadURL();
+    // setState(() {
+    //   imageUrl = url;
+    // });
   }
 
   String? leadDescription;
@@ -229,13 +249,14 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                     Container(
                       width: 42.5,
                       height: 42.5,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.yellow,
                         image: DecorationImage(
-                          image: NetworkImage(imageUrl),
-                          fit: BoxFit.cover,
-                        ),
+                            image: AssetImage(vLeadCardProfileImage)
+                            // image: NetworkImage(imageUrl),
+                            // fit: BoxFit.cover,
+                            ),
                       ),
                     )
                   ],
