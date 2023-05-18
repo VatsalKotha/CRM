@@ -1,4 +1,5 @@
 import 'package:crm/constants/text_string.dart';
+import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:crm/utility/widget/form_widget.dart';
@@ -6,18 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import '../home_page.dart';
-import 'feedback_page.dart';
-import 'package:crm/screens/auth/database/AddFeedback.dart';
+import 'package:crm/screens/auth/database/AddDeals.dart';
 
-class FeedbackForm extends StatefulWidget {
-  const FeedbackForm({super.key});
+class DealForm extends StatefulWidget {
+  const DealForm({super.key});
 
   @override
-  State<FeedbackForm> createState() => _FeedbackFormState();
+  State<DealForm> createState() => _DealFormState();
 }
 
-class _FeedbackFormState extends State<FeedbackForm> {
+class _DealFormState extends State<DealForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +30,10 @@ class _FeedbackFormState extends State<FeedbackForm> {
             child: Column(
               children: [
                 FormTextBox(
-                  hintText: "Feedback Title",
+                  hintText: "Equipment",
                   prefixIcon: const Icon(Icons.people),
-                  title: "Title",
-                  controller: title,
+                  title: "Equipment",
+                  controller: equipment,
                 ),
                 Row(
                   children: [
@@ -42,17 +41,17 @@ class _FeedbackFormState extends State<FeedbackForm> {
                       child: FormTextBox(
                         hintText: "12 April 2023",
                         prefixIcon: const Icon(Icons.date_range),
-                        title: " Date",
-                        controller: date,
+                        title: " Closing Date",
+                        controller: closing,
                       ),
                     ),
                     const SizedBox(width: 25),
                     Expanded(
                       child: FormTextBox(
-                        hintText: "1/2/3/4/5",
+                        hintText: "1/2/3",
                         prefixIcon: const Icon(Icons.date_range),
-                        title: "Rating",
-                        controller: rating,
+                        title: "Priority",
+                        controller: priority,
                       ),
                     ),
                   ],
@@ -63,17 +62,17 @@ class _FeedbackFormState extends State<FeedbackForm> {
                       child: FormTextBox(
                         hintText: "John Doe",
                         prefixIcon: const Icon(Icons.people),
-                        title: "Name",
-                        controller: cname,
+                        title: "Client Name",
+                        controller: cfname,
                       ),
                     ),
                     const SizedBox(width: 25),
                     Expanded(
                       child: FormTextBox(
-                        hintText: "abcd@gmail.com",
+                        hintText: "Last Name",
                         prefixIcon: const Icon(Icons.email),
-                        title: "Email",
-                        controller: cemail,
+                        title: "",
+                        controller: clname,
                       ),
                     ),
                   ],
@@ -102,10 +101,10 @@ class _FeedbackFormState extends State<FeedbackForm> {
                   ],
                 ),
                 FormTextBox(
-                  hintText: "Description",
+                  hintText: "Company Name",
                   prefixIcon: const Icon(Icons.people),
-                  title: "Description",
-                  controller: desc,
+                  title: "Company Name",
+                  controller: cname,
                 ),
                 const SizedBox(height: 40),
                 Button(
@@ -115,7 +114,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                   buttonTextColor: Colors.white,
                   buttonHeight: 50,
                   onPressed: () {
-                    AddFeedback().dataToSave();
+                    AddDeal().dataToSave();
                     // clearController();
                     Get.to(() => const HomePage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);

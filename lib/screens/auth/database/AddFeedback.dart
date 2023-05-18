@@ -11,7 +11,7 @@ final TextEditingController phoneNo = TextEditingController();
 final TextEditingController rating = TextEditingController();
 final TextEditingController title = TextEditingController();
 
-class AddLead {
+class AddFeedback {
   dataToSave() {
     Map<String, String> dataToSave = {
       'Client Name': cname.text,
