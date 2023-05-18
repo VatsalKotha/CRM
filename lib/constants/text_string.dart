@@ -14,6 +14,7 @@ const String jAppbarInstallmentPageTitle = "Installment Management";
 const String jAppbarDashboardPageTitle = "Dashboard";
 const String jAppbarProfilePageTitle = "Profile";
 const String jAppbarSettingPageTitle = "Setting";
+const String vAppbarFeedbackPageTitle = "Feedback ";
 
 // Title for admin page
 const String jAppbarContactPageTitle = "Contact Management";
