@@ -1,4 +1,3 @@
-import 'dart:html';
 // import { getStorage, ref } from "firebase/storage";
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -19,6 +18,7 @@ class LeadCardWidget extends StatefulWidget {
       required this.leadPriorityInt,
       required this.leadStatus,
       required this.phoneNumber,
+      this.onPressed,
       required this.salesPersonName});
 
   String? leadPriorityInt;
@@ -29,18 +29,13 @@ class LeadCardWidget extends StatefulWidget {
   String? leadStatus;
   String? phoneNumber;
   String? salesPersonName;
+  VoidCallback? onPressed;
 
   @override
   State<LeadCardWidget> createState() => _LeadCardWidgetState();
 }
 
 class _LeadCardWidgetState extends State<LeadCardWidget> {
-  void onTap() {
-    if (kDebugMode) {
-      print("Card was pressed");
-    }
-  }
-
   final FirebaseStorage storage = FirebaseStorage.instance;
 
   late String imageUrl;
@@ -105,44 +100,16 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
     } else {
       leadStatusColor = Colors.purple;
     }
+    void onTap() {
+      if (kDebugMode) {
+        print(" Card was pressed");
+      }
+    }
 
     return SizedBox(
         height: 140.0,
         child: GestureDetector(
-          // onTap: () async {
-          //   final documentSnapshot =
-          //       await FirebaseFirestore.instance.collection("Lead").doc().get();
-
-          //   // Stream<QuerySnapshot> snapshots = leadCollection.snapshots();
-
-          //   // snapshots.listen((QuerySnapshot snapshot) {
-          //   //   List<DocumentSnapshot> document = snapshot.docs;
-          //   //   for (DocumentSnapshot documentSnapshot in document) {
-          //   //     String documentId;
-          //   //   }
-          //   // });
-
-          //   if (documentSnapshot.exists) {
-          //     final data = documentSnapshot.data();
-          //     if (data != null) {
-          //       setState(() {
-          //         Get.to(() => LeadDetailScreen(
-          //               leadName: data["Lead Name"],
-          //               leadClientName: data["Client First Name"],
-          //               leadClientPhnNo1: data["Phone Number"],
-          //               leadClosingDate: data["Closing Date"],
-          //               leadCompanyName: data["Company Name"],
-          //               leadCreatedBy: data["Label"],
-          //               leadDateCreated: data["Client Last Name"],
-          //               leadModifiedBy: data["Start Date"],
-          //               leadPriority: data["Priority"],
-          //               leadSalesPersonName: data["Sales Person"],
-          //               leadStatus: data["Status"],
-          //             ));
-          //       });
-          //     }
-          //   }
-          // },
+          onTap: onPressed ?? onTap,
           child: Card(
             elevation: 3.0,
             margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
