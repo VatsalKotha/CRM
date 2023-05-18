@@ -1,11 +1,8 @@
-// import { getStorage, ref } from "firebase/storage";
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../constants/image_string.dart';
-import '../../screens/auth/database/fetch_leads.dart';
-import '../../screens/home/lead/lead_detail_screen.dart';
+import '../../../constants/image_string.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class LeadCardWidget extends StatefulWidget {
@@ -18,64 +15,34 @@ class LeadCardWidget extends StatefulWidget {
       required this.leadPriorityInt,
       required this.leadStatus,
       required this.phoneNumber,
+      required this.salesPersonName,
       this.onPressed,
-      required this.salesPersonName});
+      this.leadDescription});
 
-  String? leadPriorityInt;
-  String? leadName;
-  String? leadClosingDate;
-  String? leadCompanyName;
-  String? leadPersonName;
-  String? leadStatus;
-  String? phoneNumber;
-  String? salesPersonName;
-  VoidCallback? onPressed;
+  final String? leadPriorityInt;
+  final String? leadName;
+  final String? leadClosingDate;
+  final String? leadCompanyName;
+  final String? leadPersonName;
+  final String? leadStatus;
+  final String? phoneNumber;
+  final String? salesPersonName;
+  final String? leadDescription;
+  final VoidCallback? onPressed;
 
   @override
   State<LeadCardWidget> createState() => _LeadCardWidgetState();
 }
 
 class _LeadCardWidgetState extends State<LeadCardWidget> {
-  final FirebaseStorage storage = FirebaseStorage.instance;
-
-  late String imageUrl;
-  // final storage = FirebaseStorage.instance;
-  // late String imageUrl;
-
-  // final FirebaseStorage storage = FirebaseStorage.instance;
+  void onTap() {
+    if (kDebugMode) {
+      print("Card Widget was pressed");
+    }
+  }
 
   final CollectionReference lead =
       FirebaseFirestore.instance.collection("Lead");
-
-  // String imagePath = "gs://crm-project-demo.appspot.com/jash.png";
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    imageUrl = "";
-
-    getImageUrl();
-  }
-
-  Future<void> getImageUrl() async {
-    final pathReference = storage.ref("images/jash.png");
-
-    // final ref = storage.ref(imagePath).child(imagePath);
-    // final ref = storage.ref().child("jash.png");
-    // imageUrl = await ref.getDownloadURL();
-    final gsReference =
-        storage.refFromURL("gs://crm-project-demo.appspot.com/jash.png");
-    final httpsRef = storage.refFromURL(
-        "https://firebasestorage.googleapis.com/v0/b/crm-project-demo.appspot.com/o/jash.png?alt=media&token=722660bd-a88b-41e4-8740-ad4bf873101b");
-
-    imageUrl = await pathReference.getDownloadURL();
-    // setState(() {
-    //   imageUrl = url;
-    // });
-  }
-
-  String? leadDescription;
 
   @override
   Widget build(BuildContext context) {
@@ -100,16 +67,14 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
     } else {
       leadStatusColor = Colors.purple;
     }
-    void onTap() {
-      if (kDebugMode) {
-        print(" Card was pressed");
-      }
-    }
 
     return SizedBox(
         height: 140.0,
         child: GestureDetector(
-          onTap: onPressed ?? onTap,
+          onTap: widget.onPressed ?? onTap,
+
+          // onTap: onPressed ?? onTap
+
           child: Card(
             elevation: 3.0,
             margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),

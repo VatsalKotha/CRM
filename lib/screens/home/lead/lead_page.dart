@@ -1,9 +1,11 @@
-import 'package:crm/constants/text_string.dart';
-import 'package:crm/controllers/on_press_action.dart';
-import 'package:crm/screens/auth/database/fetch_leads.dart';
+import 'package:crm/screens/home/lead/lead_detail_screen.dart';
 import 'package:crm/utility/widget/appbar.dart';
-import 'package:crm/utility/widget/lead_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../constants/text_string.dart';
+import '../../../controllers/on_press_action.dart';
+import '../../../utility/widget/lead_card_widget.dart';
+import '../../auth/database/fetch_leads.dart';
 
 class LeadPage extends StatefulWidget {
   const LeadPage({Key? key}) : super(key: key);
@@ -12,12 +14,11 @@ class LeadPage extends StatefulWidget {
   State<LeadPage> createState() => _LeadPageState();
 }
 
-List leadList = [];
+List<Map<String, dynamic>> leadList = [];
 
 class _LeadPageState extends State<LeadPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchDatabaseList();
   }
@@ -26,10 +27,11 @@ class _LeadPageState extends State<LeadPage> {
     dynamic result = await FetchLeads().getLeadList();
 
     if (result == null) {
-      print("Unable to retreive");
+      print("Unable to retrieve");
     } else {
       setState(() {
-        leadList = result;
+        leadList = (result as List<dynamic>).cast<Map<String, dynamic>>();
+        // leadList = result;
       });
     }
   }
@@ -42,6 +44,24 @@ class _LeadPageState extends State<LeadPage> {
           itemCount: leadList.length,
           itemBuilder: (context, index) {
             return LeadCardWidget(
+                onPressed: () {
+                  final selectedLead = leadList[index];
+                  setState(() {
+                    Get.to(() => LeadDetailScreen(
+                          leadName: selectedLead["Lead Name"],
+                          leadClientName: selectedLead["Client First Name"],
+                          leadClientPhnNo1: selectedLead["Phone Number"],
+                          leadClosingDate: selectedLead["Closing Date"],
+                          leadCompanyName: selectedLead["Company Name"],
+                          leadCreatedBy: selectedLead["Label"],
+                          leadDateCreated: selectedLead["Client Last Name"],
+                          leadModifiedBy: selectedLead["Start Date"],
+                          leadPriority: selectedLead["Priority"],
+                          leadSalesPersonName: selectedLead["Sales Person"],
+                          leadStatus: selectedLead["Status"],
+                        ));
+                  });
+                },
                 leadName: leadList[index]["Lead Name"],
                 leadClosingDate: leadList[index]["Closing Date"],
                 leadCompanyName: leadList[index]["Company Name"],
