@@ -3,15 +3,16 @@ import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_dropdown.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utility/widget/form_widget.dart';
 import '../../../utility/widget/radio_button_widget.dart';
 
 enum LeadPriority {
-  high,
-  medium,
-  low,
-  normal,
+  High,
+  Medium,
+  Low,
+  Normal,
 }
 
 class LeadForm extends StatefulWidget {
@@ -22,7 +23,7 @@ class LeadForm extends StatefulWidget {
 }
 
 class _LeadFormState extends State<LeadForm> {
-  LeadPriority _selectedOption = LeadPriority.high;
+  LeadPriority _selectedOption = LeadPriority.High;
 
   final TextEditingController myController1 = TextEditingController();
   final TextEditingController myController2 = TextEditingController();
@@ -39,6 +40,7 @@ class _LeadFormState extends State<LeadForm> {
           myFormWidget: Form(
             child: Column(
               children: [
+                // lead name
                 FormTextBox(
                   hintText: "Product Launch",
                   prefixIcon: const Icon(Icons.people),
@@ -46,28 +48,34 @@ class _LeadFormState extends State<LeadForm> {
                   controller: myController1,
                 ),
 
-                Row(
-                  children: const [
-                    Expanded(
-                      child: FormTextBox(
-                        hintText: "12 April 2023",
-                        prefixIcon: Icon(Icons.date_range),
-                        title: "Start Date",
-                        controller: null,
+                // status
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Status",
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                        color: Colors.grey[700],
                       ),
                     ),
-                    SizedBox(width: 25),
-                    Expanded(
-                      child: FormTextBox(
-                        hintText: "12 April 2023",
-                        prefixIcon: Icon(Icons.date_range),
-                        title: "End Date",
-                        controller: null,
-                      ),
+                    RadioButtonWidget(
+                      options: LeadPriority.values,
+                      groupValue: _selectedOption,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedOption = (value as LeadPriority?)!;
+                        });
+                      },
+                      textBuilder: (option) => option.toString().split('.')[1],
+                      valueBuilder: (option) => option.toString(),
                     ),
+                    const SizedBox(height: 20),
                   ],
                 ),
 
+                // closing date and priority
                 Row(
                   children: const [
                     Expanded(
@@ -88,17 +96,27 @@ class _LeadFormState extends State<LeadForm> {
                   ],
                 ),
 
-                RadioButtonWidget(
-                  options: LeadPriority.values,
-                  groupValue: _selectedOption,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedOption = (value as LeadPriority?)!;
-                    });
-                  },
-                  textBuilder: (option) => option.toString().split('.')[1],
-                  valueBuilder: (option) => option.toString(),
+                // Client name
+                Row(
+                  children: const [
+                    Expanded(
+                      child: FormTextBox(
+                        hintText: "First Name",
+                        title: "Client Name",
+                        controller: null,
+                      ),
+                    ),
+                    SizedBox(width: 25),
+                    Expanded(
+                      child: FormTextBox(
+                        hintText: "Last Name",
+                        controller: null,
+                      ),
+                    ),
+                  ],
                 ),
+
+
 
                 const SizedBox(height: 40),
 

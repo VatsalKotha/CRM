@@ -13,7 +13,7 @@ class LeadPage extends StatelessWidget {
     return Scaffold(
       appBar: const AppBarWidget(title: jAppbarLeadPageTitle),
       body: ListView(
-        children: [
+        children: const [
           LeadCardWidget(
               leadName: "Product Enquiry",
               leadClosingDate: "12 April 2023",

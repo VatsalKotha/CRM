@@ -3,7 +3,7 @@
 
 import 'package:crm/routes/routes.dart';
 import 'package:crm/screens/auth/login/loginScreen.dart';
-import 'package:crm/screens/setting/setting_page.dart';
+import 'package:crm/screens/home/lead/lead_form.dart';
 import 'package:crm/utility/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
 
       initialRoute: Routes.getLoginScreenRoute(),
 
-       home: LoginScreen(),
-      // home: SettingPage(),
+       // home: LoginScreen(),
+      home: LeadForm(),
     );
   }
 }

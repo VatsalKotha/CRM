@@ -1,29 +1,36 @@
-import 'package:crm/screens/home/lead/lead_detail_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import '../../constants/image_string.dart';
 
 
 class LeadCardWidget extends StatelessWidget {
-  LeadCardWidget({
+  const LeadCardWidget({
     super.key,
     required this.leadName,
+    required this.leadStatus,
     required this.leadClosingDate,
+    required this.leadPriority,
     required this.leadCompanyName,
     required this.leadPersonName,
-    required this.leadDescription,
-    required this.leadPriority,
-    required this.leadStatus,
+    this.leadDescription,
+    this.onPressed,
   });
 
-  String leadPriority;
-  String leadName;
-  String leadClosingDate;
-  String leadCompanyName;
-  String leadPersonName;
-  String leadStatus;
-  String? leadDescription;
+  final String leadPriority;
+  final String leadName;
+  final String leadClosingDate;
+  final String leadCompanyName;
+  final String leadPersonName;
+  final String leadStatus;
+  final String? leadDescription;
+  final VoidCallback? onPressed;
+
+  void onTap() {
+    if (kDebugMode) {
+      print("Card Widget was pressed");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,20 +59,7 @@ class LeadCardWidget extends StatelessWidget {
     return SizedBox(
       height: 140.0,
       child: GestureDetector(
-        onTap: () => Get.to(() => const LeadDetailScreen(
-          leadName: "New Equipment",
-          leadClientName: "John Shah",
-          leadClientPhnNo1: "9876543210",
-          leadClosingDate: "5 May 2023",
-          leadCompanyName: "Dell Pvt. LTD",
-          leadCreatedBy: "Jash Parmar",
-          leadDateCreated: "26 April 2023",
-          leadId: "MEL230001",
-          leadModifiedBy: "Vatsal Kotha",
-          leadPriority: "Medium",
-          leadSalesPersonName: "Vatsal Kotha",
-          leadStatus: "Lost",
-        )),
+        onTap: onPressed ?? onTap,
         child: Card(
           elevation: 3.0,
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),

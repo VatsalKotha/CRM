@@ -5,7 +5,7 @@ class FormTextBox extends StatefulWidget {
   const FormTextBox({
     Key? key,
     required this.hintText,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.title,
     this.controller,
     this.validator,
@@ -13,7 +13,7 @@ class FormTextBox extends StatefulWidget {
 
   final String? title;
   final String hintText;
-  final Icon prefixIcon;
+  final Icon? prefixIcon;
   final TextEditingController? controller;
   final FormFieldValidator? validator;
 
