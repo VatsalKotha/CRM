@@ -1,11 +1,13 @@
-
+import 'package:crm/screens/auth/database/database_helper.dart';
 import 'package:crm/screens/home/report/meeting_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constants/image_string.dart';
 
 class MeetingCardWidget extends StatefulWidget {
-  const MeetingCardWidget({Key? key}) : super(key: key);
+  const MeetingCardWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MeetingCardWidget> createState() => _MeetingCardWidgetState();
@@ -22,19 +24,17 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6.0,vertical: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 10.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Icon(Icons.calendar_month_outlined),
               const SizedBox(width: 8.0),
-
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-
                     // Meeting Type
                     Text(
                       "Meeting Type",
