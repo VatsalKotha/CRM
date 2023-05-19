@@ -1,3 +1,5 @@
+import 'package:crm/screens/admin/deals/deal_form.dart';
+import 'package:crm/screens/admin/employee/employee_form.dart';
 import 'package:crm/screens/home/report/feedback_form.dart';
 import 'package:crm/screens/home/report/meeting_form.dart';
 import 'package:flutter/material.dart';
@@ -23,5 +25,13 @@ class OnPressAction {
 
   static void goToFeedBackForm() {
     Get.to(() => const FeedbackForm());
+  }
+
+  static void gotTODealForm() {
+    Get.to(() => const DealForm());
+  }
+
+  static void goToEmployeeForm() {
+    Get.to(() => const EmployeeForm());
   }
 }
