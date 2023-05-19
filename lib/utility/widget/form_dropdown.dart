@@ -3,12 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FormDropdown extends StatefulWidget {
   const FormDropdown({Key? key,
-    this.prefixIcon = const Icon(Icons.flag),
+    this.title,
+    this.prefixIcon,
     this.optionValues = const ["Option 1", "Option 2", "Option 3"],
-    this.title
   }) : super(key: key);
 
-  final Icon prefixIcon;
+  final Icon? prefixIcon;
   final List<String> optionValues;
   final String? title;
 

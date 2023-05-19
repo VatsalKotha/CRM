@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../constants/image_string.dart';
 
 
-class LeadCardWidget extends StatelessWidget {
+class LeadCardWidget extends StatefulWidget {
   const LeadCardWidget({
     super.key,
     required this.leadName,
@@ -26,6 +26,11 @@ class LeadCardWidget extends StatelessWidget {
   final String? leadDescription;
   final VoidCallback? onPressed;
 
+  @override
+  State<LeadCardWidget> createState() => _LeadCardWidgetState();
+}
+
+class _LeadCardWidgetState extends State<LeadCardWidget> {
   void onTap() {
     if (kDebugMode) {
       print("Card Widget was pressed");
@@ -36,21 +41,21 @@ class LeadCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Color leadPriorityColor, leadStatusColor;
 
-    if (leadPriority == "High") {
+    if (widget.leadPriority == "High") {
       leadPriorityColor = Colors.redAccent;
-    } else if (leadPriority == "Medium") {
+    } else if (widget.leadPriority == "Medium") {
       leadPriorityColor = Colors.orange;
-    } else if (leadPriority == "Low") {
+    } else if (widget.leadPriority == "Low") {
       leadPriorityColor = Colors.yellow;
     } else {
       leadPriorityColor = Colors.grey;
     }
 
-    if (leadStatus == "New") {
+    if (widget.leadStatus == "New") {
       leadStatusColor = Colors.blueAccent;
-    } else if (leadStatus == "Won") {
+    } else if (widget.leadStatus == "Won") {
       leadStatusColor = Colors.green;
-    } else if (leadStatus == "Lost") {
+    } else if (widget.leadStatus == "Lost") {
       leadStatusColor = Colors.red;
     } else {
       leadStatusColor = Colors.purple;
@@ -59,7 +64,7 @@ class LeadCardWidget extends StatelessWidget {
     return SizedBox(
       height: 140.0,
       child: GestureDetector(
-        onTap: onPressed ?? onTap,
+        onTap: widget.onPressed ?? onTap,
         child: Card(
           elevation: 3.0,
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
@@ -83,7 +88,7 @@ class LeadCardWidget extends StatelessWidget {
                       const SizedBox(height: 5.0),
                       // Lead title
                       Text(
-                        leadName,
+                        widget.leadName,
                         style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -93,7 +98,7 @@ class LeadCardWidget extends StatelessWidget {
 
                       // closing date
                       Text(
-                        "Closing date : $leadClosingDate",
+                        "Closing date : ${widget.leadClosingDate}",
                         style: const TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.normal,
@@ -102,7 +107,7 @@ class LeadCardWidget extends StatelessWidget {
 
                       // Company Name
                       Text(
-                        leadCompanyName,
+                        widget.leadCompanyName,
                         style: const TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.normal,
@@ -111,7 +116,7 @@ class LeadCardWidget extends StatelessWidget {
 
                       // Person Name
                       Text(
-                        leadPersonName,
+                        widget.leadPersonName,
                         style: const TextStyle(
                           fontSize: 15.5,
                           fontWeight: FontWeight.w600,
@@ -121,7 +126,7 @@ class LeadCardWidget extends StatelessWidget {
                       // Description
                       const SizedBox(height: 2.0),
                       Text(
-                        leadDescription!,
+                        widget.leadDescription!,
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -152,7 +157,7 @@ class LeadCardWidget extends StatelessWidget {
                       color: leadStatusColor,
                     ),
                     child: Text(
-                      leadStatus,
+                      widget.leadStatus,
                       style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
