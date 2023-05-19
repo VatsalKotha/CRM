@@ -1,4 +1,5 @@
 import 'package:crm/constants/text_string.dart';
+import 'package:crm/controllers/on_press_action.dart';
 import 'package:flutter/material.dart';
 import '../../../../utility/widget/appbar.dart';
 
@@ -17,7 +18,7 @@ class ContactPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () => OnPressAction.goToContactForm(),
       ),
     );
   }

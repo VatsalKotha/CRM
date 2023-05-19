@@ -35,6 +35,27 @@ class LeadCardWidget extends StatefulWidget {
 }
 
 class _LeadCardWidgetState extends State<LeadCardWidget> {
+  late String? imageUrl = "";
+
+  @override
+  void initState() {
+    super.initState();
+    retrieveImage();
+  }
+
+  Future<void> retrieveImage() async {
+    Reference storageRef = FirebaseStorage.instance
+        .ref()
+        .child('gs://crm-project-demo.appspot.com/Vatsal.jpg');
+    try {
+      imageUrl = await storageRef.getDownloadURL();
+    } catch (error) {
+      print("Error retrieving image URL: $error");
+      imageUrl = ""; // Set imageUrl to empty if an error occurs
+    }
+    setState(() {});
+  }
+
   void onTap() {
     if (kDebugMode) {
       print("Card Widget was pressed");
@@ -178,19 +199,33 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
 
                     // profile
 
+                    // Container(
+                    //   width: 42.5,
+                    //   height: 42.5,
+                    //   decoration: BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     color: Colors.yellow,
+                    //     image: DecorationImage(
+                    //       // image: AssetImage(vLeadCardProfileImage)
+                    //       image: NetworkImage(imageUrl),
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
+                    // )
                     Container(
                       width: 42.5,
                       height: 42.5,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.yellow,
-                        image: DecorationImage(
-                            image: AssetImage(vLeadCardProfileImage)
-                            // image: NetworkImage(imageUrl),
-                            // fit: BoxFit.cover,
-                            ),
+                        image: imageUrl != null
+                            ? DecorationImage(
+                                image: NetworkImage(imageUrl!),
+                                fit: BoxFit.cover,
+                              )
+                            : null, // Set image to null when imageUrl is null
                       ),
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(width: 10.0),

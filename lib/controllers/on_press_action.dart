@@ -1,3 +1,4 @@
+import 'package:crm/screens/admin/contacts/contact_form.dart';
 import 'package:crm/screens/admin/deals/deal_form.dart';
 import 'package:crm/screens/admin/employee/employee_form.dart';
 import 'package:crm/screens/home/report/feedback_form.dart';
@@ -33,5 +34,9 @@ class OnPressAction {
 
   static void goToEmployeeForm() {
     Get.to(() => const EmployeeForm());
+  }
+
+  static void goToContactForm() {
+    Get.to(() => const ContactForm());
   }
 }
