@@ -39,7 +39,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidget(title: vAppbarFeedbackPageTitle),
       body: ListView.builder(
           itemCount: feedbackList.length,
           itemBuilder: (context, index) {
