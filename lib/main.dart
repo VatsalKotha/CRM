@@ -2,6 +2,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:crm/routes/routes.dart';
+import 'package:crm/screens/admin/admin_page.dart';
+import 'package:crm/screens/admin/contacts/contact_page.dart';
 import 'package:crm/screens/auth/login/loginScreen.dart';
 import 'package:crm/screens/home/lead/lead_form.dart';
 import 'package:crm/utility/theme/theme.dart';
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.getLoginScreenRoute(),
 
        // home: LoginScreen(),
-      home: LeadForm(),
+      home: ContactPage(),
     );
   }
 }

@@ -1,4 +1,6 @@
+
 import 'package:crm/constants/text_string.dart';
+import 'package:crm/controllers/validator.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_dropdown.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
@@ -24,6 +26,9 @@ class LeadForm extends StatefulWidget {
 }
 
 class _LeadFormState extends State<LeadForm> {
+
+  GlobalKey<FormState> leadFormKey = GlobalKey<FormState>();
+
   LeadPriority _selectedOption = LeadPriority.High;
 
   final TextEditingController myController1 = TextEditingController();
@@ -39,6 +44,7 @@ class _LeadFormState extends State<LeadForm> {
           formTitle: jLeadFormTitle, // setting tittle
           formSubtitle: jLeadFormSubtitle, // setting sub text [below title]
           myFormWidget: Form(
+            key: leadFormKey,
             child: Column(
               children: [
                 // lead name
@@ -155,7 +161,7 @@ class _LeadFormState extends State<LeadForm> {
                   prefixIcon: Icon(Icons.apartment),
                 ),
 
-                // show more button optional fields
+                // show more button  & optional fields
                 FormTextBoxVisibility(
                   formTextBoxWidgets: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -5,6 +5,7 @@ import 'package:crm/screens/home/home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/validator.dart';
 import '../forgot_password/forgot_password_mail_screen.dart';
 import '../forgot_password/forgot_password_option_widget.dart';
 import '../forgot_password/forgot_password_sms_screen.dart';
@@ -53,6 +54,7 @@ class _LoginFormState extends State<LoginForm> {
                   return null;
                 },
               ),
+
 
               SizedBox(height: 20),
 

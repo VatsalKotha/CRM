@@ -18,6 +18,7 @@
 
 // Title for admin page
  const String jAppbarContactPageTitle = "Contact Management";
+ const String jAppbarContactDetailScreenTitle = "Contact Details";
  const String jAppbarDealPageTitle = "Deal Management";
  const String jAppbarEmployeePageTitle = "Employee Management";
  const String jAppbarAdminDashboardPageTitle = "Admin Dashboard";

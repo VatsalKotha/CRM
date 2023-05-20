@@ -1,4 +1,5 @@
 
+import 'package:crm/screens/admin/contacts/contact_detail_screen.dart';
 import 'package:get/get.dart';
 import '../screens/home/lead/lead_form.dart';
 
@@ -18,6 +19,11 @@ class OnPressAction {
   // navigates from LeadPage() to LeadForm()
   static void goToLeadForm() {
     Get.to(() => const LeadForm());
+  }
+
+  // navigates from LeadPage() to LeadForm()
+  static void goToContactDetailScreen() {
+    Get.to(() => const ContactDetailScreen());
   }
 
 }

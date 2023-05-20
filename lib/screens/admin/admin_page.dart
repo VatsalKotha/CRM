@@ -86,7 +86,7 @@ class _AdminPageState extends State<AdminPage> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.person),
+                leading: const Icon(Icons.settings),
                 title: const Text('Setting'),
                 onTap: () {
                   setState(() {
