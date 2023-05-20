@@ -21,7 +21,7 @@ class OnPressAction {
 
   // navigates from LeadPage() to LeadForm()
   static void goToLeadForm() {
-    Get.to(() => const LeadForm());
+    Get.to(() => LeadForm());
   }
 
   static void goToFeedBackForm() {

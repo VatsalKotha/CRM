@@ -6,8 +6,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crm/screens/auth/database/AddLead.dart';
 import '../../../utility/widget/form_widget.dart';
+import 'package:crm/screens/auth/database/AddLead.dart';
 // import '../../../utility/widget/radio_button_widget.dart';
 // import 'lead_page.dart';
+
+class LeadFormData {
+  String leadName = '';
+  String leadStatus = '';
+  String leadStartDate = '';
+  String leadClosing = '';
+  String clientFirstName = '';
+  String clientLastName = '';
+  String leadLabel = '';
+  String leadPhoneNo = '';
+  String associatedSalesPerson = '';
+  String companyName = '';
+  String leadPriority = '';
+}
+
+// Instantiate the LeadFormData class
 
 enum LeadPriority {
   high,
@@ -17,16 +34,21 @@ enum LeadPriority {
 }
 
 class LeadForm extends StatefulWidget {
-  const LeadForm({Key? key}) : super(key: key);
+  const LeadForm({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<LeadForm> createState() => _LeadFormState();
 }
 
 class _LeadFormState extends State<LeadForm> {
-  // LeadPriority _selectedOption = LeadPriority.high;
+  @override
 
+  // LeadPriority _selectedOption = LeadPriority.high;
+  @override
   void clearController() {
+    super.dispose();
     cname.dispose();
     cfname.dispose();
     claname.dispose();
@@ -109,6 +131,7 @@ class _LeadFormState extends State<LeadForm> {
                 Row(
                   children: [
                     Expanded(
+                      flex: 1,
                       child: FormTextBox(
                         hintText: "Label",
                         prefixIcon: const Icon(Icons.label),
@@ -118,6 +141,7 @@ class _LeadFormState extends State<LeadForm> {
                     ),
                     const SizedBox(width: 25),
                     Expanded(
+                      flex: 3,
                       child: FormTextBox(
                         hintText: "Phone Number",
                         prefixIcon: const Icon(Icons.phone),
