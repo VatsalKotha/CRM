@@ -34,17 +34,16 @@ enum LeadPriority {
 }
 
 class LeadForm extends StatefulWidget {
-  const LeadForm({
-    Key? key,
-  }) : super(key: key);
+  final LeadFormData? leadFormData;
+  final bool isEditMode;
+  const LeadForm({Key? key, this.leadFormData, this.isEditMode = false})
+      : super(key: key);
 
   @override
   State<LeadForm> createState() => _LeadFormState();
 }
 
 class _LeadFormState extends State<LeadForm> {
-  @override
-
   // LeadPriority _selectedOption = LeadPriority.high;
   @override
   void clearController() {
@@ -60,6 +59,25 @@ class _LeadFormState extends State<LeadForm> {
     phoneNo.dispose();
     salesPerson.dispose();
     priority.dispose();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.isEditMode && widget.leadFormData != null) {
+      cname.text = widget.leadFormData!.companyName;
+      cfname.text = widget.leadFormData!.clientFirstName;
+      claname.text = widget.leadFormData!.clientLastName;
+      name.text = widget.leadFormData!.leadName;
+      status.text = widget.leadFormData!.leadStatus;
+      startDate.text = widget.leadFormData!.leadStartDate;
+      closing.text = widget.leadFormData!.leadClosing;
+      label.text = widget.leadFormData!.leadLabel;
+      phoneNo.text = widget.leadFormData!.leadPhoneNo;
+      salesPerson.text = widget.leadFormData!.associatedSalesPerson;
+      priority.text = widget.leadFormData!.leadPriority;
+    }
   }
 
   @override

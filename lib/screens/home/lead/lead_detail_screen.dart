@@ -6,6 +6,7 @@ import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:crm/screens/home/lead/lead_page.dart';
 
 class LeadDetailScreen extends StatefulWidget {
   // final int index;
@@ -184,7 +185,19 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                   ),
                   buildIconButton(
                     iconData: Icons.edit_note_outlined,
-                    onPressed: ActionEvent.editEventHandler,
+                    onPressed: () => ActionEvent.editEventHandler(
+                      leadName: widget.leadName,
+                      leadStatus: widget.leadStatus,
+                      leadDateCreated: widget.leadDateCreated,
+                      leadClosingDate: widget.leadClosingDate,
+                      leadClientName: widget.leadClientName,
+                      leadClientPhnNo1: widget.leadClientPhnNo1,
+                      leadSalesPersonName: widget.leadSalesPersonName,
+                      leadCompanyName: widget.leadCompanyName,
+                      leadPriority: widget.leadPriority,
+                    ),
+
+                    // onPressed: ActionEvent.editEventHandler,
                   ),
                   buildIconButton(
                     iconData: Icons.delete_outline,
