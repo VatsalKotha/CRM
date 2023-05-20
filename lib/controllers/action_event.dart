@@ -44,26 +44,26 @@ class ActionEvent {
   //         isEditMode: true,
   //       ));
   // }
-  static void editEventHandler({
-    required String leadName,
-    required String leadStatus,
-    required String leadDateCreated,
-    required String leadClosingDate,
-    required String leadClientName,
-    required String leadClientPhnNo1,
-    required String leadSalesPersonName,
-    required String leadCompanyName,
-    required String leadPriority,
-  }) {
+  static void editEventHandler(
+      {required String leadName,
+      required String leadStatus,
+      required String leadDateCreated,
+      required String leadClosingDate,
+      required String leadClientName,
+      required String leadClientPhnNo1,
+      required String leadSalesPersonName,
+      required String leadCompanyName,
+      required String leadPriority,
+      required String leadLastName,
+      required String leadLabel}) {
     final leadFormData = LeadFormData();
     leadFormData.leadName = leadName;
     leadFormData.leadStatus = leadStatus;
     leadFormData.leadStartDate = leadDateCreated;
     leadFormData.leadClosing = leadClosingDate;
     leadFormData.clientFirstName = leadClientName;
-    leadFormData.clientLastName =
-        ""; // Add the corresponding field from your form
-    leadFormData.leadLabel = ""; // Add the corresponding field from your form
+    leadFormData.clientLastName = leadLastName;
+    leadFormData.leadLabel = leadLabel;
     leadFormData.leadPhoneNo = leadClientPhnNo1;
     leadFormData.associatedSalesPerson = leadSalesPersonName;
     leadFormData.companyName = leadCompanyName;

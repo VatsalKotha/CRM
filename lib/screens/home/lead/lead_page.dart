@@ -90,11 +90,13 @@ class _LeadPageState extends State<LeadPage> {
                     Get.to(() => LeadDetailScreen(
                           leadName: selectedLead["Lead Name"],
                           leadClientName: selectedLead["Client First Name"],
+                          leadClientLastName: selectedLead["Client Last Name"],
                           leadClientPhnNo1: selectedLead["Phone Number"],
                           leadClosingDate: selectedLead["Closing Date"],
                           leadCompanyName: selectedLead["Company Name"],
                           leadEmailAddress: selectedLead["Email"],
                           leadAddress: selectedLead["Address"],
+                          leadLabel: selectedLead["Label"],
                           leadDescription: selectedLead["Description"],
                           leadCreatedBy: selectedLead["Sales Person"],
                           leadDateCreated: selectedLead["Start Date"],

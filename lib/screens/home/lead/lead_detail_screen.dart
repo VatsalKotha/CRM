@@ -6,30 +6,32 @@ import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:crm/screens/home/lead/lead_page.dart';
+import 'package:crm/screens/home/lead/lead_form.dart';
 
 class LeadDetailScreen extends StatefulWidget {
   // final int index;
-  const LeadDetailScreen({
-    Key? key,
-    required this.leadName,
-    // required this.leadId,
-    required this.leadSalesPersonName,
-    required this.leadStatus,
-    required this.leadClosingDate,
-    required this.leadCompanyName,
-    required this.leadClientName,
-    required this.leadClientPhnNo1,
-    required this.leadPriority,
-    this.leadEmailAddress,
-    this.leadAddress,
-    this.leadClientPhnNo2,
-    this.leadWebsite,
-    this.leadDescription,
-    required this.leadCreatedBy,
-    required this.leadModifiedBy,
-    required this.leadDateCreated,
-  }) : super(key: key);
+  const LeadDetailScreen(
+      {Key? key,
+      required this.leadName,
+      // required this.leadId,
+      required this.leadSalesPersonName,
+      required this.leadStatus,
+      required this.leadClosingDate,
+      required this.leadCompanyName,
+      required this.leadClientName,
+      required this.leadClientPhnNo1,
+      required this.leadPriority,
+      this.leadEmailAddress,
+      this.leadAddress,
+      this.leadClientPhnNo2,
+      this.leadWebsite,
+      this.leadDescription,
+      required this.leadCreatedBy,
+      required this.leadModifiedBy,
+      required this.leadDateCreated,
+      required this.leadClientLastName,
+      required this.leadLabel})
+      : super(key: key);
 
   final String leadName;
   // final String leadId;
@@ -48,6 +50,8 @@ class LeadDetailScreen extends StatefulWidget {
   final String leadCreatedBy;
   final String leadModifiedBy;
   final String leadDateCreated;
+  final String leadClientLastName;
+  final String leadLabel;
 
   @override
   State<LeadDetailScreen> createState() => _LeadDetailScreenState();
@@ -186,16 +190,17 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                   buildIconButton(
                     iconData: Icons.edit_note_outlined,
                     onPressed: () => ActionEvent.editEventHandler(
-                      leadName: widget.leadName,
-                      leadStatus: widget.leadStatus,
-                      leadDateCreated: widget.leadDateCreated,
-                      leadClosingDate: widget.leadClosingDate,
-                      leadClientName: widget.leadClientName,
-                      leadClientPhnNo1: widget.leadClientPhnNo1,
-                      leadSalesPersonName: widget.leadSalesPersonName,
-                      leadCompanyName: widget.leadCompanyName,
-                      leadPriority: widget.leadPriority,
-                    ),
+                        leadName: widget.leadName,
+                        leadStatus: widget.leadStatus,
+                        leadDateCreated: widget.leadDateCreated,
+                        leadClosingDate: widget.leadClosingDate,
+                        leadClientName: widget.leadClientName,
+                        leadClientPhnNo1: widget.leadClientPhnNo1,
+                        leadSalesPersonName: widget.leadSalesPersonName,
+                        leadCompanyName: widget.leadCompanyName,
+                        leadPriority: widget.leadPriority,
+                        leadLabel: widget.leadLabel,
+                        leadLastName: widget.leadClientLastName),
 
                     // onPressed: ActionEvent.editEventHandler,
                   ),
