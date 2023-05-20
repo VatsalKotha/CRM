@@ -11,13 +11,6 @@ import 'package:crm/screens/auth/database/AddMeetings.dart';
 import 'package:crm/screens/home/report/meeting_page.dart';
 import 'package:intl/intl.dart';
 
-enum LeadPriority {
-  high,
-  medium,
-  low,
-  normal,
-}
-
 class MeetingForm extends StatefulWidget {
   const MeetingForm({Key? key}) : super(key: key);
 
@@ -51,6 +44,16 @@ class _MeetingFormState extends State<MeetingForm> {
                   title: "Title",
                   controller: title,
                 ),
+                const ListTile(
+                  title: Text("Date(YYYY-MM-DD)"),
+                  // subtitle: Text("$[""]"),
+                ),
+                FormTextBox(
+                  hintText: "YYYY-MM-DD",
+                  prefixIcon: const Icon(Icons.title),
+                  title: "Date",
+                  controller: date,
+                ),
                 // Row(
                 //   children: [
                 //     Expanded(
@@ -72,10 +75,7 @@ class _MeetingFormState extends State<MeetingForm> {
                 //     ),
                 //   ],
                 // ),
-                const ListTile(
-                  title: Text("Date(YYYY-MM-DD)"),
-                  // subtitle: Text("$[""]"),
-                ),
+
                 Row(
                   children: [
                     Expanded(

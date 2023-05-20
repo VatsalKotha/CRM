@@ -4,8 +4,19 @@ import 'package:get/get.dart';
 import '../../constants/image_string.dart';
 
 class MeetingCardWidget extends StatefulWidget {
+  final String title;
+  final String clientFirstName;
+  final String clientLastName;
+  final String salesPerson;
+  final String description;
+
   const MeetingCardWidget({
     Key? key,
+    required this.title,
+    required this.clientFirstName,
+    required this.clientLastName,
+    required this.salesPerson,
+    required this.description,
   }) : super(key: key);
 
   @override
