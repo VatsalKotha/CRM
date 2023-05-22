@@ -1,11 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class LeadCardWidget extends StatefulWidget {
-  LeadCardWidget({
+  const LeadCardWidget({
     Key? key,
     required this.leadName,
     required this.leadClosingDate,
@@ -35,35 +33,37 @@ class LeadCardWidget extends StatefulWidget {
 }
 
 class _LeadCardWidgetState extends State<LeadCardWidget> {
-  late String imageUrl = "";
+  late String imageUrl;
 
   @override
   void initState() {
     super.initState();
+    imageUrl = "";
     retrieveImage();
   }
 
   Future<void> retrieveImage() async {
-    final salespersonImages = {
-      'Jash Parmar': 'gs://crm-project-demo.appspot.com/jash.png',
-      'Vatsal Kotha': 'gs://crm-project-demo.appspot.com/Vatsal.jpg',
+    final images = {
+      'Vatsal Kotha': 'Vatsal.jpg',
+      'Jash Parmar' : 'jash.png'
       // Add more salesperson-image mappings as needed
     };
 
     final salespersonName = widget.salesPersonName ?? '';
 
-    imageUrl = salespersonImages.containsKey(salespersonName)
-        ? salespersonImages[salespersonName]!
+    imageUrl = images.containsKey(salespersonName)
+        ? images[salespersonName]!
         : '';
 
     if (imageUrl.isNotEmpty) {
-      // Retrieve the image URL from Firebase Storage based on the stored URL or path
       try {
-        imageUrl =
-            await FirebaseStorage.instance.ref(imageUrl).getDownloadURL();
+        imageUrl = await FirebaseStorage.instance
+            .ref()
+            .child(imageUrl)
+            .getDownloadURL();
       } catch (error) {
         print("Error retrieving image URL: $error");
-        imageUrl = ""; // Set imageUrl to empty if an error occurs
+        imageUrl = "";
       }
     }
 
@@ -202,9 +202,9 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                       color: Colors.yellow,
                       image: imageUrl.isNotEmpty
                           ? DecorationImage(
-                              image: NetworkImage(imageUrl),
-                              fit: BoxFit.cover,
-                            )
+                        image: NetworkImage(imageUrl),
+                        fit: BoxFit.cover,
+                      )
                           : null,
                     ),
                   ),

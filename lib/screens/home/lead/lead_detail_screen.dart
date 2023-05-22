@@ -6,7 +6,6 @@ import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:crm/screens/home/lead/lead_form.dart';
 
 class LeadDetailScreen extends StatefulWidget {
   // final int index;

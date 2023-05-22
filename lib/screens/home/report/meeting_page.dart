@@ -1,3 +1,4 @@
+import 'package:crm/screens/auth/database/fetch_meetings.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -13,12 +14,14 @@ class MeetingPage extends StatefulWidget {
 }
 
 class _MeetingPageState extends State<MeetingPage> {
+  List<Map<String, dynamic>> meetingList = [];
+
   late CalendarFormat _calendarFormat;
   late DateTime _selectedDay;
   late DateTime _focusedDay;
   late DateTime _firstDay;
   late DateTime _lastDay;
-  late Stream<List<DocumentSnapshot>> _meetingsStream;
+  late Stream<List<Map<String, dynamic>>> _meetingsStream;
 
   @override
   void initState() {
@@ -28,15 +31,40 @@ class _MeetingPageState extends State<MeetingPage> {
     _focusedDay = DateTime.now();
     _firstDay = DateTime(2010);
     _lastDay = DateTime(2050);
-    _meetingsStream = _getMeetingsStream();
+    // _meetingsStream = _getMeetingsStream(_selectedDay);
+    fetchDatabaseList();
   }
 
-  Stream<List<DocumentSnapshot>> _getMeetingsStream() {
-    return FirebaseFirestore.instance
-        .collection('Meetings')
-        .where('Date', isEqualTo: _selectedDay)
-        .snapshots()
-        .map((QuerySnapshot querySnapshot) => querySnapshot.docs);
+  fetchDatabaseList() async {
+    List<Map<String, dynamic>> result = await FetchMeetings().getMeetings();
+
+    // ignore: unnecessary_null_comparison
+    if (result == null) {
+      print("Unable to retrieve");
+    } else {
+      setState(() {
+        meetingList = result;
+        // filteredLeadList = List.from(leadList);
+      });
+    }
+  }
+
+  // Stream<List<Map<String, dynamic>>> _getMeetingsStream(DateTime selectedDay) {
+  //   return FirebaseFirestore.instance
+  //       .collection('Meetings')
+  //       .where('Date', isEqualTo: Timestamp.fromDate(selectedDay))
+  //       .snapshots()
+  //       .map((QuerySnapshot querySnapshot) => querySnapshot.docs
+  //           .map((doc) => doc.data() as Map<String, dynamic>)
+  //           .toList());
+  // }
+
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    setState(() {
+      _selectedDay = selectedDay;
+      _focusedDay = focusedDay;
+      // _meetingsStream = _getMeetingsStream(selectedDay);
+    });
   }
 
   @override
@@ -60,51 +88,25 @@ class _MeetingPageState extends State<MeetingPage> {
                 _focusedDay = focusedDay;
               });
             },
-            onDaySelected: (selectedDay, focusedDay) {
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay;
-                _meetingsStream = _getMeetingsStream();
-              });
-            },
+            onDaySelected: _onDaySelected,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
             'Meetings for ${DateFormat('yyyy-MM-dd').format(_selectedDay)}',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Expanded(
-            child: StreamBuilder<List<DocumentSnapshot>>(
-              stream: _meetingsStream,
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
-                if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                }
-
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-
-                final meetings = snapshot.data;
-                if (meetings == null || meetings.isEmpty) {
-                  return Center(child: Text('No meetings found.'));
-                }
-
-                return ListView(
-                  children: meetings.map((DocumentSnapshot document) {
-                    Map<String, dynamic> data =
-                        document.data() as Map<String, dynamic>;
-
-                    return MeetingCardWidget(
-                      title: data['Title'],
-                      clientFirstName: data['Client First Name'],
-                      clientLastName: data['Client Last Name'],
-                      salesPerson: data['Sales Person'],
-                      description: data['Description'],
-                    );
-                  }).toList(),
+            child: ListView.builder(
+              itemCount: meetingList.length,
+              itemBuilder: (context, index) {
+                final data = meetingList[index];
+                return MeetingCardWidget(
+                  title: data['Title'],
+                  clientFirstName: data['Client First Name'],
+                  clientLastName: data['Client Last Name'],
+                  salesPerson: data['Sales Person'],
+                  description: data['Description'],
                 );
               },
             ),
@@ -115,10 +117,10 @@ class _MeetingPageState extends State<MeetingPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MeetingForm()),
+            MaterialPageRoute(builder: (context) => const MeetingForm()),
           );
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

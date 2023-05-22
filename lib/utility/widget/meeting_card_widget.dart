@@ -1,9 +1,9 @@
-import 'package:crm/screens/home/report/meeting_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constants/image_string.dart';
+import 'package:crm/screens/home/report/meeting_detail_screen.dart';
 
-class MeetingCardWidget extends StatefulWidget {
+class MeetingCardWidget extends StatelessWidget {
   final String title;
   final String clientFirstName;
   final String clientLastName;
@@ -19,11 +19,6 @@ class MeetingCardWidget extends StatefulWidget {
     required this.description,
   }) : super(key: key);
 
-  @override
-  State<MeetingCardWidget> createState() => _MeetingCardWidgetState();
-}
-
-class _MeetingCardWidgetState extends State<MeetingCardWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -45,7 +40,6 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    // Meeting Type
                     Text(
                       "Meeting Type",
                       style: TextStyle(
@@ -53,8 +47,6 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-
-                    // Lead title
                     Text(
                       "Meeting Title",
                       style: TextStyle(
@@ -64,10 +56,6 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                       ),
                     ),
                     SizedBox(height: 3.0),
-
-                    // closing date
-
-                    // Company Name
                     Text(
                       "Company Name",
                       style: TextStyle(
@@ -75,8 +63,6 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-
-                    // Person Name
                     Text(
                       "10:00 to 11:30",
                       style: TextStyle(
@@ -84,8 +70,6 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-
-                    // Description
                     SizedBox(height: 2.0),
                     Text(
                       "This is the sample This is the sample This is the sample This is the sample This is the sample ",
@@ -105,9 +89,7 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  // sized box for
                   const SizedBox(height: 65.0),
-                  // profile icon
                   Container(
                     width: 30.5,
                     height: 30.5,
@@ -115,7 +97,8 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                       shape: BoxShape.circle,
                       color: Colors.yellow,
                       image: DecorationImage(
-                          image: AssetImage(jLeadCardProfileImage)),
+                        image: AssetImage(jLeadCardProfileImage),
+                      ),
                     ),
                   ),
                 ],

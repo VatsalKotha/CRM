@@ -136,7 +136,6 @@ class _MeetingFormState extends State<MeetingForm> {
                     //     (data["date"] as DateTime).millisecondsSinceEpoch;
                     // print(data);
                     // await eventDBS.create(data);
-                    clearController();
                     Get.to(() => const HomePage());
                   },
                   buttonTextSize: 20,
@@ -157,16 +156,5 @@ class _MeetingFormState extends State<MeetingForm> {
         ),
       ),
     );
-  }
-
-  void clearController() {
-    cfname.dispose();
-    claname.dispose();
-    name.dispose();
-    time.dispose();
-    date.dispose();
-    title.dispose();
-    salesPerson.dispose();
-    desc.dispose();
   }
 }
