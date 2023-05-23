@@ -2,10 +2,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:crm/routes/routes.dart';
-import 'package:crm/screens/admin/admin_page.dart';
 import 'package:crm/screens/admin/contacts/contact_page.dart';
-import 'package:crm/screens/auth/login/loginScreen.dart';
-import 'package:crm/screens/home/lead/lead_form.dart';
 import 'package:crm/utility/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
