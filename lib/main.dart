@@ -1,10 +1,6 @@
 import 'package:crm/routes/routes.dart';
 import 'package:crm/screens/auth/login/loginScreen.dart';
 import 'package:crm/screens/home/home_page.dart';
-import 'package:crm/screens/home/lead/lead_form.dart';
-import 'package:crm/screens/home/lead/lead_page.dart';
-import 'package:crm/screens/home/report/meeting_page.dart';
-import 'package:crm/screens/home/report/report_page.dart';
 import 'package:crm/utility/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -37,9 +33,6 @@ class _MyAppState extends State<MyApp> {
     auth.authStateChanges().listen(checkifLogin);
   }
 
-  // Use async/await instead of listen() to simplify the code
-  // and avoid calling setState() on an unmounted widget.
-  // Also, initialize the value of isLogin to false.
   void checkifLogin(User? user) async {
     if (user != null && mounted) {
       setState(() {
@@ -68,8 +61,6 @@ class _MyAppState extends State<MyApp> {
         }
       })(),
 
-      // Use a ternary operator to conditionally display the login or home screen.
-      // home: isLogin ? const HomePage() : const LoginScreen(),
       home: isLogin ? const HomePage() : const LoginScreen(),
     );
   }

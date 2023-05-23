@@ -54,3 +54,4 @@ const String jLeadFormSubtitle = "Great! Let's add new leads";
 
 const String VMeetingFormTitle = "Add Meeting";
 const String VMeetingFormSubtitle = "Great! Let's add new meetings";
+const String jAppbarContactDetailScreenTitle = "Contact Details";

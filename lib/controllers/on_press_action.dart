@@ -5,6 +5,7 @@ import 'package:crm/screens/home/report/feedback_form.dart';
 import 'package:crm/screens/home/report/meeting_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../screens/admin/contacts/contact_detail_screen.dart';
 import '../screens/home/lead/lead_form.dart';
 
 class OnPressAction {
@@ -38,5 +39,9 @@ class OnPressAction {
 
   static void goToContactForm() {
     Get.to(() => const ContactForm());
+  }
+
+  static void goToContactDetailScreen() {
+    Get.to(() => const ContactDetailScreen());
   }
 }

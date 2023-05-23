@@ -88,6 +88,7 @@ class _LeadPageState extends State<LeadPage> {
                   onPressed: () {
                     final selectedLead = filteredLeadList[index];
                     Get.to(() => LeadDetailScreen(
+                      leadId: selectedLead["leadId"],
                           leadName: selectedLead["Lead Name"],
                           leadClientName: selectedLead["Client First Name"],
                           leadClientLastName: selectedLead["Client Last Name"],

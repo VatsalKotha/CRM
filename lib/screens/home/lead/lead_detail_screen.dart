@@ -29,10 +29,12 @@ class LeadDetailScreen extends StatefulWidget {
       required this.leadModifiedBy,
       required this.leadDateCreated,
       required this.leadClientLastName,
+        required this.leadId,
       required this.leadLabel})
       : super(key: key);
 
   final String leadName;
+  final String leadId;
   // final String leadId;
   final String leadSalesPersonName;
   final String leadStatus;
@@ -83,6 +85,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
     }
   }
 
+
   IconButton buildIconButton(
       {required IconData iconData, required VoidCallback onPressed}) {
     return IconButton(
@@ -110,6 +113,8 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String leadId = widget.leadId;
+
     Color leadStatusColor;
     if (widget.leadStatus == "New") {
       leadStatusColor = const Color(0xFF92D5F8);
@@ -205,7 +210,9 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                   ),
                   buildIconButton(
                     iconData: Icons.delete_outline,
-                    onPressed: ActionEvent.deleteEventHandler,
+                    onPressed: () {
+                      ActionEvent.deleteEventHandler(leadId);
+                    },
                   ),
                 ],
               ),
