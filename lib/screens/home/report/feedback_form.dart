@@ -25,8 +25,8 @@ class _FeedbackFormState extends State<FeedbackForm> {
         margin: const EdgeInsets.only(
             left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
         child: FormWidget(
-          formTitle: jLeadFormTitle,
-          formSubtitle: jLeadFormSubtitle,
+          formTitle: vFeedbackTitle,
+          formSubtitle: vFeedbackFormTitle,
           myFormWidget: Form(
             child: Column(
               children: [

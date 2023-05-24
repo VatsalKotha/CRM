@@ -52,6 +52,9 @@ const String jOtpScreenText = "We sent your code to registered\nphone number";
 const String jLeadFormTitle = "Add Lead";
 const String jLeadFormSubtitle = "Great! Let's add new leads";
 
+const String vFeedbackTitle = "Add Feedback";
+const String vFeedbackFormTitle = "Great! Let's add new Feedbacks";
+
 const String VMeetingFormTitle = "Add Meeting";
 const String VMeetingFormSubtitle = "Great! Let's add new meetings";
 const String jAppbarContactDetailScreenTitle = "Contact Details";
