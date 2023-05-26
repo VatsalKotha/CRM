@@ -177,7 +177,6 @@ class _LeadFormState extends State<LeadForm> {
                   buttonHeight: 50,
                   onPressed: () {
                     AddLead().dataToSave();
-                    clearController();
                     Get.to(() => const HomePage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },

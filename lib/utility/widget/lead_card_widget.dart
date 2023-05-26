@@ -1,19 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../constants/image_string.dart';
+import '';
 
 class LeadCardWidget extends StatefulWidget {
-  const LeadCardWidget({
-    super.key,
-    required this.leadName,
-    required this.leadStatus,
-    required this.leadClosingDate,
-    required this.leadPriority,
-    required this.leadCompanyName,
-    required this.leadPersonName,
-    this.leadDescription,
-    this.onPressed,
-  });
+  const LeadCardWidget(
+      {super.key,
+      required this.leadName,
+      required this.leadStatus,
+      required this.leadClosingDate,
+      required this.leadPriority,
+      required this.leadCompanyName,
+      required this.leadPersonName,
+      this.leadDescription,
+      this.onPressed,
+      this.salesPersonName});
 
   final String leadPriority;
   final String leadName;
@@ -23,6 +24,7 @@ class LeadCardWidget extends StatefulWidget {
   final String leadStatus;
   final String? leadDescription;
   final VoidCallback? onPressed;
+  final String? salesPersonName;
 
   @override
   State<LeadCardWidget> createState() => _LeadCardWidgetState();

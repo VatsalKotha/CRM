@@ -30,6 +30,8 @@ class LeadDetailScreen extends StatefulWidget {
       : super(key: key);
 
   final String leadName;
+  final String leadClientLastName;
+  final String leadLabel;
   // final String leadId;
   final String leadSalesPersonName;
   final String leadStatus;
@@ -111,7 +113,6 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                       style: const TextStyle(
                           fontSize: 30, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 2.0),
-                  Text(widget.leadId, style: const TextStyle(fontSize: 13.5)),
                   const SizedBox(height: 5.0),
                   Text(widget.leadSalesPersonName,
                       style: const TextStyle(
