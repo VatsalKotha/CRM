@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'package:crm/constants/text_string.dart';
+import 'package:crm/screens/admin/admin_page.dart';
+import 'package:crm/screens/auth/database/Authentication.dart';
 import 'package:crm/screens/home/home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +21,10 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   var email_idText = TextEditingController();
   var passText = TextEditingController();
   bool jObscureText = true;
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +48,13 @@ class _LoginFormState extends State<LoginForm> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return jEmailRequired;
-                  } else if (!RegExp(r'^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                  } else if (!RegExp(r'^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
                     return jLoginScreenEmailFieldValidatorText;
                   }
                   return null;
                 },
               ),
-
 
               SizedBox(height: 20),
 
@@ -185,8 +185,7 @@ class _LoginFormState extends State<LoginForm> {
                         ..showSnackBar(snackBar);
 
                       Get.off(() => HomePage());
-                    }
-                    else{
+                    } else {
                       // your code when credentials are valid but not found in database
                       // delete line this and write your code :)
                     }

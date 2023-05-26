@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../constants/text_string.dart';
@@ -14,13 +13,13 @@ class MeetingDetailScreen extends StatefulWidget {
 class _MeetingDetailScreenState extends State<MeetingDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: AppBarWidget(
           title: jAppbarMeetingDetailScreenTitle,
           actions: [],
           centerTitle: false,
           automaticallyImplyLeading: true),
-      body: Center(
+      body: const Center(
         child: Text("Meeting Detail View"),
       ),
     );

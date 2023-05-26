@@ -1,10 +1,8 @@
-
 import 'package:crm/screens/admin/contacts/contact_detail_screen.dart';
 import 'package:get/get.dart';
 import '../screens/home/lead/lead_form.dart';
 
 class OnPressAction {
-
   /*
      -->> Methods for navigate user from various page to various form <<--
   on press function for floating action button of the "MeetingPage(), LeadPage()"
@@ -13,7 +11,7 @@ class OnPressAction {
 
   // navigates from MeetingPage() to MeetingForm()
   static void goToMeetingFrom() {
-    Get.to(() => const LeadForm());
+    Get.to(() => const MeetingForm());
   }
 
   // navigates from LeadPage() to LeadForm()
@@ -21,9 +19,23 @@ class OnPressAction {
     Get.to(() => const LeadForm());
   }
 
-  // navigates from LeadPage() to LeadForm()
+  static void goToFeedBackForm() {
+    Get.to(() => const FeedbackForm());
+  }
+
+  static void gotTODealForm() {
+    Get.to(() => const DealForm());
+  }
+
+  static void goToEmployeeForm() {
+    Get.to(() => const EmployeeForm());
+  }
+
+  static void goToContactForm() {
+    Get.to(() => const ContactForm());
+  }
+
   static void goToContactDetailScreen() {
     Get.to(() => const ContactDetailScreen());
   }
-
 }

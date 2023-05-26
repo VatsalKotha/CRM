@@ -1,15 +1,34 @@
-
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/validator.dart';
+import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_dropdown.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:crm/utility/widget/form_text_box_visibility.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utility/widget/form_widget.dart';
+import 'package:crm/screens/auth/database/AddLead.dart';
 import '../../../utility/widget/radio_button_widget.dart';
+import 'lead_page.dart';
+
+class LeadFormData {
+  String leadName = '';
+  String leadStatus = '';
+  String leadStartDate = '';
+  String leadClosing = '';
+  String clientFirstName = '';
+  String clientLastName = '';
+  String leadLabel = '';
+  String leadPhoneNo = '';
+  String associatedSalesPerson = '';
+  String companyName = '';
+  String leadPriority = '';
+}
+
+// Instantiate the LeadFormData class
 
 enum LeadPriority {
   High,
@@ -26,7 +45,6 @@ class LeadForm extends StatefulWidget {
 }
 
 class _LeadFormState extends State<LeadForm> {
-
   GlobalKey<FormState> leadFormKey = GlobalKey<FormState>();
 
   LeadPriority _selectedOption = LeadPriority.High;
@@ -41,226 +59,131 @@ class _LeadFormState extends State<LeadForm> {
         margin: const EdgeInsets.only(
             left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
         child: FormWidget(
-          formTitle: jLeadFormTitle, // setting tittle
-          formSubtitle: jLeadFormSubtitle, // setting sub text [below title]
+          formTitle: jLeadFormTitle,
+          formSubtitle: jLeadFormSubtitle,
           myFormWidget: Form(
-            key: leadFormKey,
             child: Column(
               children: [
-                // lead name
                 FormTextBox(
-                  hintText: "Product Launch",
+                  hintText: "Lead Name",
                   prefixIcon: const Icon(Icons.people),
                   title: "Lead Name",
-                  controller: myController1,
+                  controller: name,
                 ),
-
-                // status
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Status",
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                        color: Colors.grey[700],
-                      ),
-                    ),
-                    RadioButtonWidget(
-                      options: LeadPriority.values,
-                      groupValue: _selectedOption,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedOption = (value as LeadPriority?)!;
-                        });
-                      },
-                      textBuilder: (option) => option.toString().split('.')[1],
-                      valueBuilder: (option) => option.toString(),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                FormTextBox(
+                  hintText: "New / Won/ Qualified",
+                  prefixIcon: const Icon(Icons.people),
+                  title: "Status",
+                  controller: status,
                 ),
-
-                // closing date and priority
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
                       child: FormTextBox(
                         hintText: "12 April 2023",
-                        prefixIcon: Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.date_range),
                         title: "Start Date",
-                        controller: null,
+                        controller: startDate,
                       ),
                     ),
-                    SizedBox(width: 25),
+                    const SizedBox(width: 25),
                     Expanded(
-                      child: FormDropdown(
-                        prefixIcon: Icon(Icons.flag),
-                        title: "Priority",
-                        optionValues: ["Normal","High","Medium","Low"],
+                      child: FormTextBox(
+                        hintText: "12 April 2023",
+                        prefixIcon: const Icon(Icons.date_range),
+                        title: "End Date",
+                        controller: closing,
                       ),
                     ),
                   ],
                 ),
-
-                // Client name
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
                       child: FormTextBox(
                         hintText: "First Name",
+                        prefixIcon: const Icon(Icons.date_range),
                         title: "Client Name",
-                        controller: null,
+                        controller: cfname,
                       ),
                     ),
-                    SizedBox(width: 25),
+                    const SizedBox(width: 25),
                     Expanded(
                       child: FormTextBox(
-                        hintText: "Last Name",
-                        controller: null,
+                        hintText: "",
+                        prefixIcon: const Icon(Icons.date_range),
+                        title: "Last Name",
+                        controller: claname,
                       ),
                     ),
                   ],
                 ),
-
-                // Phone number
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
-                      flex: 2,
-                      child: FormDropdown(
+                      child: FormTextBox(
+                        hintText: "Label",
+                        prefixIcon: const Icon(Icons.label),
                         title: "Label",
-                        optionValues: ["Own","Work","Home","Main","Other"],
+                        controller: label,
                       ),
                     ),
-                    SizedBox(width: 25),
+                    const SizedBox(width: 25),
                     Expanded(
-                      flex: 3,
                       child: FormTextBox(
                         hintText: "Phone Number",
+                        prefixIcon: const Icon(Icons.phone),
                         title: "Phone Number",
-                        prefixIcon: Icon(Icons.phone),
-                        controller: null,
+                        controller: phoneNo,
                       ),
                     ),
                   ],
                 ),
-
-                // Associated Sale's Person
-                const FormDropdown(
-                  title: "Sale's Person",
-                  prefixIcon: Icon(Icons.person),
-                  optionValues: ["Jash Parnar","Vatsal Kotha", "Unnati Patel"],
+                FormTextBox(
+                  hintText: "John Doe",
+                  prefixIcon: const Icon(Icons.people),
+                  title: "Assoicated Sales Person",
+                  controller: salesPerson,
                 ),
-
-                // Company Name
-                const FormTextBox(
+                FormTextBox(
+                  hintText: "Abc Company",
+                  prefixIcon: const Icon(Icons.people),
                   title: "Company Name",
-                  hintText: "ABC Company",
-                  prefixIcon: Icon(Icons.apartment),
+                  controller: cname,
                 ),
-
-                // show more button  & optional fields
-                FormTextBoxVisibility(
-                  formTextBoxWidgets: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // email address
-                      const FormTextBox(
-                        title: "E-Mail Address",
-                        hintText: "example@xyz.com",
-                        prefixIcon: Icon(Icons.alternate_email),
-                        optionalTextField: true,
-                      ),
-
-                      // Secondary client name
-                      Row(
-                        children: const [
-                          Expanded(
-                            child: FormTextBox(
-                              hintText: "First Name",
-                              title: "Client Name 2",
-                              controller: null,
-                            ),
-                          ),
-                          SizedBox(width: 25),
-                          Expanded(
-                            child: FormTextBox(
-                              hintText: "Last Name",
-                              optionalTextField: true,
-                              controller: null,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      // phone number
-                      Row(
-                        children: const [
-                          Expanded(
-                            flex: 2,
-                            child: FormDropdown(
-                              title: "Label",
-                              optionValues: ["Own","Work","Home","Main","Other"],
-                            ),
-                          ),
-                          SizedBox(width: 25),
-                          Expanded(
-                            flex: 3,
-                            child: FormTextBox(
-                              hintText: "Phone Number",
-                              title: "Phone Number",
-                              prefixIcon: Icon(Icons.phone),
-                              optionalTextField: true,
-                              controller: null,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      // address
-                      const FormTextBox(
-                        title: "Company Address",
-                        hintText: "Location",
-                        prefixIcon: Icon(Icons.location_on),
-                        optionalTextField: true,
-                      ),
-
-                      // company website
-                      const FormTextBox(
-                        title: "Website",
-                        hintText: "URL",
-                        prefixIcon: Icon(Icons.link),
-                        optionalTextField: true,
-                      ),
-
-                      // description
-                      const FormTextBox(
-                        title: "Description",
-                        hintText: "Lead is about..",
-                        prefixIcon: Icon(Icons.notes),
-                        optionalTextField: true,
-                      ),
-                    ],
-                  ),
+                FormTextBox(
+                  hintText: "Priority",
+                  prefixIcon: const Icon(Icons.priority_high),
+                  title: "Priority",
+                  controller: priority,
                 ),
-
+                // RadioButtonWidget(
+                //   options: LeadPriority.values,
+                //   groupValue: _selectedOption,
+                //   onChanged: (value) {
+                //     setState(() {
+                //       _selectedOption = (value as LeadPriority?)!;
+                //     });
+                //   },
+                //   textBuilder: (option) => option.toString().split('.')[1],
+                //   valueBuilder: (option) => option.toString(),
+                // ),
                 const SizedBox(height: 40),
-
-                // save button
-                const Button(
+                Button(
                   marginHorizontal: 30,
                   buttonText: "Save",
                   buttonBackgroundColor: Colors.green,
                   buttonTextColor: Colors.white,
                   buttonHeight: 50,
-                  onPressed: null,
+                  onPressed: () {
+                    AddLead().dataToSave();
+                    clearController();
+                    Get.to(() => const HomePage());
+                    // Navigator.push(context, const LeadPage() as Route<Object?>);
+                  },
                   buttonTextSize: 20,
                 ),
                 const SizedBox(height: 20),
-
-                // cancel button
                 const Button(
                   marginHorizontal: 30,
                   buttonText: "Cancel",

@@ -1,8 +1,6 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../constants/image_string.dart';
-
 
 class LeadCardWidget extends StatefulWidget {
   const LeadCardWidget({
@@ -31,6 +29,42 @@ class LeadCardWidget extends StatefulWidget {
 }
 
 class _LeadCardWidgetState extends State<LeadCardWidget> {
+  late String imageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    imageUrl = "";
+    retrieveImage();
+  }
+
+  Future<void> retrieveImage() async {
+    final images = {
+      'Vatsal Kotha': 'Vatsal.jpg',
+      'Jash Parmar': 'jash.png'
+      // Add more salesperson-image mappings as needed
+    };
+
+    final salespersonName = widget.salesPersonName ?? '';
+
+    imageUrl =
+        images.containsKey(salespersonName) ? images[salespersonName]! : '';
+
+    if (imageUrl.isNotEmpty) {
+      try {
+        imageUrl = await FirebaseStorage.instance
+            .ref()
+            .child(imageUrl)
+            .getDownloadURL();
+      } catch (error) {
+        print("Error retrieving image URL: $error");
+        imageUrl = "";
+      }
+    }
+
+    setState(() {});
+  }
+
   void onTap() {
     if (kDebugMode) {
       print("Card Widget was pressed");
@@ -70,7 +104,6 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
           child: Row(
             children: [
-
               // Lead priority
               Container(
                 color: leadPriorityColor,
@@ -173,8 +206,12 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.yellow,
-                      image: DecorationImage(
-                          image: AssetImage(jLeadCardProfileImage)),
+                      image: imageUrl.isNotEmpty
+                          ? DecorationImage(
+                              image: NetworkImage(imageUrl),
+                              fit: BoxFit.cover,
+                            )
+                          : null,
                     ),
                   ),
                 ],
