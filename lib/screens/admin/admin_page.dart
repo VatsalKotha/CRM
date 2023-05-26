@@ -1,5 +1,3 @@
-
-
 import 'package:crm/screens/admin/contacts/contact_page.dart';
 import 'package:crm/screens/admin/deals/deal_page.dart';
 import 'package:crm/screens/admin/employee/employee_page.dart';
@@ -7,7 +5,6 @@ import 'package:crm/screens/home/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import '../setting/setting_page.dart';
 import 'dashboard/admin_dashboard.dart';
-
 
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);
@@ -17,7 +14,6 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
-
   int currentIndex = 0;
   List pages = [
     const ContactPage(),
@@ -26,14 +22,12 @@ class _AdminPageState extends State<AdminPage> {
     const EmployeePage(),
     const ProfilePage(),
     const SettingPage()
-
   ];
 
   void onTap(int index) {
     if (index > 2) {
       _showModalBottomSheet();
-    }
-    else {
+    } else {
       setState(() {
         currentIndex = index;
       });
@@ -63,10 +57,13 @@ class _AdminPageState extends State<AdminPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const SizedBox(height: 25.0,),
+              const SizedBox(
+                height: 25.0,
+              ),
               const Text("More Modules"),
-              const SizedBox(height: 35.0,),
-
+              const SizedBox(
+                height: 35.0,
+              ),
               ListTile(
                 leading: const Icon(Icons.dashboard),
                 title: const Text('Employee'),
@@ -86,7 +83,7 @@ class _AdminPageState extends State<AdminPage> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.settings),
+                leading: const Icon(Icons.person),
                 title: const Text('Setting'),
                 onTap: () {
                   setState(() {
@@ -130,7 +127,6 @@ class _AdminPageState extends State<AdminPage> {
           BottomNavigationBarItem(
             label: "More",
             icon: Icon(Icons.more_horiz),
-
           ),
         ],
       ),

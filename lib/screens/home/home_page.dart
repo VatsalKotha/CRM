@@ -1,5 +1,3 @@
-
-
 import 'package:crm/screens/home/dashboard/dashboard_page.dart';
 import 'package:crm/screens/home/installment/installment_page.dart';
 import 'package:crm/screens/home/lead/lead_page.dart';
@@ -9,7 +7,6 @@ import 'package:crm/screens/setting/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -18,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   int currentIndex = 0;
   List pages = [
     const ReportPage(),
@@ -32,8 +28,7 @@ class _HomePageState extends State<HomePage> {
   void onTap(int index) {
     if (index > 2) {
       _showModalBottomSheet();
-    }
-    else {
+    } else {
       setState(() {
         currentIndex = index;
       });
@@ -63,10 +58,13 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const SizedBox(height: 25.0,),
+              const SizedBox(
+                height: 25.0,
+              ),
               const Text("More Modules"),
-              const SizedBox(height: 35.0,),
-
+              const SizedBox(
+                height: 35.0,
+              ),
               ListTile(
                 leading: const Icon(Icons.dashboard),
                 title: const Text('Dashboard'),
@@ -127,14 +125,9 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             label: "More",
             icon: Icon(Icons.more_horiz),
-
           ),
         ],
       ),
     );
   }
-
 }
-
-
-
