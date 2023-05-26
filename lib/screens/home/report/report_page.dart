@@ -12,7 +12,7 @@ class ReportPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: const AppBarWidget(title: jAppbarReportPageTitle),
+        appBar: AppBarWidget(title: jAppbarReportPageTitle),
         body: Column(
           children: const [
             TabBar(

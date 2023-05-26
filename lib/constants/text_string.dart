@@ -5,8 +5,8 @@ const String jPasswordRequired = "Password is required";
 const String jPhoneNumberRequired = "Phone number is required";
 
 // AppBar Titles
-const String jAppbarReportPageTitle = "Report";
-const String jAppbarMeetingDetailScreenTitle = "Meeting Details";
+String jAppbarReportPageTitle = "Report";
+String jAppbarMeetingDetailScreenTitle = "Meeting Details";
 const String jAppbarFeedbackDetailScreenTitle = "Feedback Details";
 const String jAppbarLeadPageTitle = "Lead Management";
 const String jAppbarLeadDetailScreenTitle = "Lead Details";

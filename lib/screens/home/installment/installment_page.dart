@@ -1,4 +1,3 @@
-
 import 'package:crm/constants/text_string.dart';
 import 'package:flutter/material.dart';
 
@@ -10,19 +9,17 @@ class InstallmentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidget(title: jAppbarInstallmentPageTitle),
+      appBar: AppBarWidget(title: jAppbarInstallmentPageTitle),
       body: const Center(
-        child:
-        Text("Installment"),
+        child: Text("Installment"),
       ),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: const Icon(Icons.add),
-        onPressed: () {  },
+        onPressed: () {},
       ),
     );
   }
 }
-
