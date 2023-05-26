@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -27,13 +28,12 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       actionsIconTheme: const IconThemeData(color: Colors.grey),
       elevation: elevation,
       automaticallyImplyLeading: automaticallyImplyLeading,
-      actions: actions ??
-          <Widget>[
-            const Padding(
-              padding: EdgeInsets.only(right: 10.0),
-              child: Icon(Icons.search),
-            ),
-          ],
+      actions: actions ?? <Widget>[
+        const Padding(
+          padding: EdgeInsets.only(right: 10.0),
+          child: Icon(Icons.search),
+        ),
+      ],
     );
   }
 

@@ -1,14 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/action_event.dart';
-import 'package:crm/screens/auth/database/fetch_leads.dart';
 import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LeadDetailScreen extends StatefulWidget {
-  // final int index;
   const LeadDetailScreen(
       {Key? key,
       required this.leadName,
@@ -49,40 +46,12 @@ class LeadDetailScreen extends StatefulWidget {
   final String leadCreatedBy;
   final String leadModifiedBy;
   final String leadDateCreated;
-  final String leadClientLastName;
-  final String leadLabel;
 
   @override
   State<LeadDetailScreen> createState() => _LeadDetailScreenState();
 }
 
 class _LeadDetailScreenState extends State<LeadDetailScreen> {
-  late final Stream<DocumentSnapshot> _documnetSnapshot;
-
-  List leadList = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    final _documentSnapshot =
-        FirebaseFirestore.instance.collection("Lead").snapshots();
-
-    fetchDatabaseList();
-  }
-
-  fetchDatabaseList() async {
-    dynamic result = await FetchLeads().getLeadList();
-
-    if (result == null) {
-      print("Unable to retreive");
-    } else {
-      setState(() {
-        leadList = result;
-      });
-    }
-  }
-
   IconButton buildIconButton(
       {required IconData iconData, required VoidCallback onPressed}) {
     return IconButton(
@@ -142,7 +111,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                       style: const TextStyle(
                           fontSize: 30, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 2.0),
-                  // Text(widget.leadId, style: const TextStyle(fontSize: 13.5)),
+                  Text(widget.leadId, style: const TextStyle(fontSize: 13.5)),
                   const SizedBox(height: 5.0),
                   Text(widget.leadSalesPersonName,
                       style: const TextStyle(
@@ -188,20 +157,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                   ),
                   buildIconButton(
                     iconData: Icons.edit_note_outlined,
-                    onPressed: () => ActionEvent.editEventHandler(
-                        leadName: widget.leadName,
-                        leadStatus: widget.leadStatus,
-                        leadDateCreated: widget.leadDateCreated,
-                        leadClosingDate: widget.leadClosingDate,
-                        leadClientName: widget.leadClientName,
-                        leadClientPhnNo1: widget.leadClientPhnNo1,
-                        leadSalesPersonName: widget.leadSalesPersonName,
-                        leadCompanyName: widget.leadCompanyName,
-                        leadPriority: widget.leadPriority,
-                        leadLabel: widget.leadLabel,
-                        leadLastName: widget.leadClientLastName),
-
-                    // onPressed: ActionEvent.editEventHandler,
+                    onPressed: ActionEvent.editEventHandler,
                   ),
                   buildIconButton(
                     iconData: Icons.delete_outline,

@@ -1,9 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:crm/screens/home/lead/lead_form.dart';
-import 'package:get/get.dart';
-import 'package:crm/screens/home/lead/lead_detail_screen.dart';
-import 'package:crm/screens/home/lead/lead_page.dart';
 
 class ActionEvent {
   static VoidCallback? phoneEventHandler() {
@@ -20,60 +15,11 @@ class ActionEvent {
     return null;
   }
 
-  // static VoidCallback? editEventHandler() {
-  //   if (kDebugMode) {
-  //     print("Action Event : Edit action button was pressed");
-  //   }
-  //   return null;
-  // }
-  // static void editEventHandler() {
-  //   final leadFormData = LeadFormData();
-  //   leadFormData.leadName = lead.leadName;
-  //   leadFormData.leadStatus = widget.leadStatus;
-  //   leadFormData.leadStartDate = widget.leadDateCreated;
-  //   leadFormData.leadClosing = widget.leadClosingDate;
-  //   leadFormData.clientFirstName = widget.leadClientName;
-  //   leadFormData.clientLastName = ""; // Add the corresponding field from your form
-  //   leadFormData.leadLabel = ""; // Add the corresponding field from your form
-  //   leadFormData.leadPhoneNo = widget.leadClientPhnNo1;
-  //   leadFormData.associatedSalesPerson = widget.leadSalesPersonName;
-  //   leadFormData.companyName = widget.leadCompanyName;
-  //   leadFormData.leadPriority = widget.leadPriority;
-
-  //   Get.to(() => LeadForm(
-  //         leadFormData: leadFormData,
-  //         isEditMode: true,
-  //       ));
-  // }
-  static void editEventHandler(
-      {required String leadName,
-      required String leadStatus,
-      required String leadDateCreated,
-      required String leadClosingDate,
-      required String leadClientName,
-      required String leadClientPhnNo1,
-      required String leadSalesPersonName,
-      required String leadCompanyName,
-      required String leadPriority,
-      required String leadLastName,
-      required String leadLabel}) {
-    final leadFormData = LeadFormData();
-    leadFormData.leadName = leadName;
-    leadFormData.leadStatus = leadStatus;
-    leadFormData.leadStartDate = leadDateCreated;
-    leadFormData.leadClosing = leadClosingDate;
-    leadFormData.clientFirstName = leadClientName;
-    leadFormData.clientLastName = leadLastName;
-    leadFormData.leadLabel = leadLabel;
-    leadFormData.leadPhoneNo = leadClientPhnNo1;
-    leadFormData.associatedSalesPerson = leadSalesPersonName;
-    leadFormData.companyName = leadCompanyName;
-    leadFormData.leadPriority = leadPriority;
-
-    Get.to(() => LeadForm(
-          leadFormData: leadFormData,
-          isEditMode: true,
-        ));
+  static VoidCallback? editEventHandler() {
+    if (kDebugMode) {
+      print("Action Event : Edit action button was pressed");
+    }
+    return null;
   }
 
   // static VoidCallback? deleteEventHandler() {

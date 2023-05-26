@@ -38,51 +38,19 @@ enum LeadPriority {
 }
 
 class LeadForm extends StatefulWidget {
-  final LeadFormData? leadFormData;
-  final bool isEditMode;
-  const LeadForm({Key? key, this.leadFormData, this.isEditMode = false})
-      : super(key: key);
+  const LeadForm({Key? key}) : super(key: key);
 
   @override
   State<LeadForm> createState() => _LeadFormState();
 }
 
 class _LeadFormState extends State<LeadForm> {
-  // LeadPriority _selectedOption = LeadPriority.high;
-  @override
-  void clearController() {
-    super.dispose();
-    cname.dispose();
-    cfname.dispose();
-    claname.dispose();
-    name.dispose();
-    status.dispose();
-    startDate.dispose();
-    closing.dispose();
-    label.dispose();
-    phoneNo.dispose();
-    salesPerson.dispose();
-    priority.dispose();
-  }
+  GlobalKey<FormState> leadFormKey = GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    if (widget.isEditMode && widget.leadFormData != null) {
-      cname.text = widget.leadFormData!.companyName;
-      cfname.text = widget.leadFormData!.clientFirstName;
-      claname.text = widget.leadFormData!.clientLastName;
-      name.text = widget.leadFormData!.leadName;
-      status.text = widget.leadFormData!.leadStatus;
-      startDate.text = widget.leadFormData!.leadStartDate;
-      closing.text = widget.leadFormData!.leadClosing;
-      label.text = widget.leadFormData!.leadLabel;
-      phoneNo.text = widget.leadFormData!.leadPhoneNo;
-      salesPerson.text = widget.leadFormData!.associatedSalesPerson;
-      priority.text = widget.leadFormData!.leadPriority;
-    }
-  }
+  LeadPriority _selectedOption = LeadPriority.High;
+
+  final TextEditingController myController1 = TextEditingController();
+  final TextEditingController myController2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

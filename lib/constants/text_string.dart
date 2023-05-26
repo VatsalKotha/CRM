@@ -18,6 +18,7 @@ const String vAppbarFeedbackPageTitle = "Feedback ";
 
 // Title for admin page
 const String jAppbarContactPageTitle = "Contact Management";
+const String jAppbarContactDetailScreenTitle = "Contact Details";
 const String jAppbarDealPageTitle = "Deal Management";
 const String jAppbarEmployeePageTitle = "Employee Management";
 const String jAppbarAdminDashboardPageTitle = "Admin Dashboard";
@@ -51,10 +52,3 @@ const String jOtpScreenText = "We sent your code to registered\nphone number";
 // Lead Form Text
 const String jLeadFormTitle = "Add Lead";
 const String jLeadFormSubtitle = "Great! Let's add new leads";
-
-const String vFeedbackTitle = "Add Feedback";
-const String vFeedbackFormTitle = "Great! Let's add new Feedbacks";
-
-const String VMeetingFormTitle = "Add Meeting";
-const String VMeetingFormSubtitle = "Great! Let's add new meetings";
-const String jAppbarContactDetailScreenTitle = "Contact Details";
