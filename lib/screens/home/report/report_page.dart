@@ -1,3 +1,4 @@
+
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/screens/home/report/feedback_page.dart';
 import 'package:crm/screens/home/report/meeting_page.dart';
@@ -17,12 +18,8 @@ class ReportPage extends StatelessWidget {
           children: const [
             TabBar(
               tabs: [
-                Tab(
-                  text: "Feedback",
-                ),
-                Tab(
-                  text: "Meeting",
-                ),
+                Tab(text: "Feedback",),
+                Tab(text: "Meeting",),
               ],
             ),
             Expanded(
@@ -32,6 +29,7 @@ class ReportPage extends StatelessWidget {
 
                 // Meeting Tab
                 MeetingPage(),
+
               ]),
             )
           ],
@@ -40,3 +38,4 @@ class ReportPage extends StatelessWidget {
     );
   }
 }
+

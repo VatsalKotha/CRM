@@ -1,3 +1,4 @@
+
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/validator.dart';
 import 'package:crm/utility/widget/button.dart';
@@ -8,25 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utility/widget/form_widget.dart';
-import 'package:crm/screens/auth/database/AddLead.dart';
-// import '../../../utility/widget/radio_button_widget.dart';
-// import 'lead_page.dart';
-
-class LeadFormData {
-  String leadName = '';
-  String leadStatus = '';
-  String leadStartDate = '';
-  String leadClosing = '';
-  String clientFirstName = '';
-  String clientLastName = '';
-  String leadLabel = '';
-  String leadPhoneNo = '';
-  String associatedSalesPerson = '';
-  String companyName = '';
-  String leadPriority = '';
-}
-
-// Instantiate the LeadFormData class
+import '../../../utility/widget/radio_button_widget.dart';
 
 enum LeadPriority {
   High,
@@ -36,51 +19,20 @@ enum LeadPriority {
 }
 
 class LeadForm extends StatefulWidget {
-  final LeadFormData? leadFormData;
-  final bool isEditMode;
-  const LeadForm({Key? key, this.leadFormData, this.isEditMode = false})
-      : super(key: key);
+  const LeadForm({Key? key}) : super(key: key);
 
   @override
   State<LeadForm> createState() => _LeadFormState();
 }
 
 class _LeadFormState extends State<LeadForm> {
-  // LeadPriority _selectedOption = LeadPriority.high;
-  @override
-  void clearController() {
-    super.dispose();
-    cname.dispose();
-    cfname.dispose();
-    claname.dispose();
-    name.dispose();
-    status.dispose();
-    startDate.dispose();
-    closing.dispose();
-    label.dispose();
-    phoneNo.dispose();
-    salesPerson.dispose();
-    priority.dispose();
-  }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    if (widget.isEditMode && widget.leadFormData != null) {
-      cname.text = widget.leadFormData!.companyName;
-      cfname.text = widget.leadFormData!.clientFirstName;
-      claname.text = widget.leadFormData!.clientLastName;
-      name.text = widget.leadFormData!.leadName;
-      status.text = widget.leadFormData!.leadStatus;
-      startDate.text = widget.leadFormData!.leadStartDate;
-      closing.text = widget.leadFormData!.leadClosing;
-      label.text = widget.leadFormData!.leadLabel;
-      phoneNo.text = widget.leadFormData!.leadPhoneNo;
-      salesPerson.text = widget.leadFormData!.associatedSalesPerson;
-      priority.text = widget.leadFormData!.leadPriority;
-    }
-  }
+  GlobalKey<FormState> leadFormKey = GlobalKey<FormState>();
+
+  LeadPriority _selectedOption = LeadPriority.High;
+
+  final TextEditingController myController1 = TextEditingController();
+  final TextEditingController myController2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +98,7 @@ class _LeadFormState extends State<LeadForm> {
                       child: FormDropdown(
                         prefixIcon: Icon(Icons.flag),
                         title: "Priority",
-                        optionValues: ["Normal", "High", "Medium", "Low"],
+                        optionValues: ["Normal","High","Medium","Low"],
                       ),
                     ),
                   ],
@@ -176,17 +128,14 @@ class _LeadFormState extends State<LeadForm> {
                 Row(
                   children: const [
                     Expanded(
-                      flex: 1,
-                      child: FormTextBox(
-                        hintText: "Label",
-                        prefixIcon: const Icon(Icons.label),
+                      flex: 2,
+                      child: FormDropdown(
                         title: "Label",
-                        optionValues: ["Own", "Work", "Home", "Main", "Other"],
+                        optionValues: ["Own","Work","Home","Main","Other"],
                       ),
                     ),
                     SizedBox(width: 25),
                     Expanded(
-                      flex: 3,
                       flex: 3,
                       child: FormTextBox(
                         hintText: "Phone Number",
@@ -202,7 +151,7 @@ class _LeadFormState extends State<LeadForm> {
                 const FormDropdown(
                   title: "Sale's Person",
                   prefixIcon: Icon(Icons.person),
-                  optionValues: ["Jash Parnar", "Vatsal Kotha", "Unnati Patel"],
+                  optionValues: ["Jash Parnar","Vatsal Kotha", "Unnati Patel"],
                 ),
 
                 // Company Name
@@ -253,13 +202,7 @@ class _LeadFormState extends State<LeadForm> {
                             flex: 2,
                             child: FormDropdown(
                               title: "Label",
-                              optionValues: [
-                                "Own",
-                                "Work",
-                                "Home",
-                                "Main",
-                                "Other"
-                              ],
+                              optionValues: ["Own","Work","Home","Main","Other"],
                             ),
                           ),
                           SizedBox(width: 25),
