@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FormDropdown extends StatefulWidget {
-  const FormDropdown({Key? key,
-    this.prefixIcon = const Icon(Icons.flag),
-    this.optionValues = const ["Option 1", "Option 2", "Option 3"],
-    this.title
-  }) : super(key: key);
+  const FormDropdown(
+      {Key? key,
+      this.prefixIcon = const Icon(Icons.flag),
+      this.optionValues = const ["Option 1", "Option 2", "Option 3"],
+      this.title})
+      : super(key: key);
 
   final Icon prefixIcon;
   final List<String> optionValues;
@@ -39,7 +40,9 @@ class _FormDropdownState extends State<FormDropdown> {
 
         // the text box
         DropdownButtonFormField(
-          items: widget.optionValues.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+          items: widget.optionValues
+              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .toList(),
           onChanged: (newSelectedValue) {
             setState(() {
               selectedValue = newSelectedValue!;

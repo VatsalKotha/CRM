@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class RadioButtonWidget extends StatelessWidget {
@@ -16,8 +17,7 @@ class RadioButtonWidget extends StatelessWidget {
     this.valueBuilder = defaultValueBuilder,
   }) : super(key: key);
 
-  static String defaultTextBuilder(Enum option) =>
-      option.toString().split('.')[1];
+  static String defaultTextBuilder(Enum option) => option.toString().split('.')[1];
   static String defaultValueBuilder(Enum option) => option.toString();
 
   @override
@@ -26,16 +26,16 @@ class RadioButtonWidget extends StatelessWidget {
       children: options
           .map(
             (option) => Row(
-              children: [
-                Radio<Enum>(
-                  value: option,
-                  groupValue: groupValue,
-                  onChanged: onChanged,
-                ),
-                Text(textBuilder(option)),
-              ],
+          children: [
+            Radio<Enum>(
+              value: option,
+              groupValue: groupValue,
+              onChanged: onChanged,
             ),
-          )
+            Text(textBuilder(option)),
+          ],
+        ),
+      )
           .toList(),
     );
   }

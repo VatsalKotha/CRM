@@ -228,15 +228,14 @@
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/screens/admin/admin_page.dart';
 import 'package:crm/screens/home/home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/validator.dart';
 import '../forgot_password/forgot_password_mail_screen.dart';
 import '../forgot_password/forgot_password_option_widget.dart';
 import '../forgot_password/forgot_password_sms_screen.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:crm/screens/auth/database/Authentication.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -250,8 +249,6 @@ class _LoginFormState extends State<LoginForm> {
   var email_idText = TextEditingController();
   var passText = TextEditingController();
   bool jObscureText = true;
-
-  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {

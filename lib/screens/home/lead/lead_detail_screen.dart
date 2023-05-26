@@ -29,7 +29,7 @@ class LeadDetailScreen extends StatefulWidget {
       required this.leadModifiedBy,
       required this.leadDateCreated,
       required this.leadClientLastName,
-        required this.leadId,
+      required this.leadId,
       required this.leadLabel})
       : super(key: key);
 
@@ -84,7 +84,6 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
       });
     }
   }
-
 
   IconButton buildIconButton(
       {required IconData iconData, required VoidCallback onPressed}) {

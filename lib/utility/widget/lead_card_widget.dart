@@ -91,9 +91,12 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
     }
 
     if (widget.leadStatus == "New") {
+    if (widget.leadStatus == "New") {
       leadStatusColor = Colors.blueAccent;
     } else if (widget.leadStatus == "Won") {
+    } else if (widget.leadStatus == "Won") {
       leadStatusColor = Colors.green;
+    } else if (widget.leadStatus == "Lost") {
     } else if (widget.leadStatus == "Lost") {
       leadStatusColor = Colors.red;
     } else {

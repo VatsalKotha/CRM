@@ -17,7 +17,7 @@ class OnPressAction {
 
   // navigates from MeetingPage() to MeetingForm()
   static void goToMeetingFrom() {
-    Get.to(() => const MeetingForm());
+    Get.to(() => const LeadForm());
   }
 
   // navigates from LeadPage() to LeadForm()
@@ -41,6 +41,11 @@ class OnPressAction {
     Get.to(() => const ContactForm());
   }
 
+  static void goToContactDetailScreen() {
+    Get.to(() => const ContactDetailScreen());
+  }
+
+  // navigates from LeadPage() to LeadForm()
   static void goToContactDetailScreen() {
     Get.to(() => const ContactDetailScreen());
   }

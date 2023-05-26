@@ -3,7 +3,9 @@ import 'package:crm/screens/home/installment/installment_page.dart';
 import 'package:crm/screens/home/lead/lead_page.dart';
 import 'package:crm/screens/home/profile/profile_page.dart';
 import 'package:crm/screens/home/report/report_page.dart';
+import 'package:crm/screens/setting/setting_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class _HomePageState extends State<HomePage> {
     const InstallmentPage(),
     const DashboardPage(),
     const ProfilePage(),
+    const SettingPage(),
   ];
 
   void onTap(int index) {
@@ -75,11 +78,17 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.person),
                 title: const Text('Profile'),
                 onTap: () {
-                  setState(() {
-                    currentIndex = 4;
-                  });
+                  Get.to(() => const ProfilePage());
                 },
               ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Setting'),
+                onTap: () {
+                  Get.to(() => const SettingPage());
+                },
+              ),
+
             ],
           ),
         );
@@ -97,8 +106,8 @@ class _HomePageState extends State<HomePage> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.deepOrange[50],
         onTap: onTap,
-        selectedItemColor: Colors.black,
-        // unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.black54,
+        unselectedItemColor: Colors.black54,
         showUnselectedLabels: true,
         items: const [
           BottomNavigationBarItem(

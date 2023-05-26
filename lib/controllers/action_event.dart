@@ -85,17 +85,17 @@ class ActionEvent {
 
   static Future<void> deleteEventHandler(String leadId) async {
     if (kDebugMode) {
-      print("Action Event: Delete action button was pressed for leadId: $leadId");
+      print(
+          "Action Event: Delete action button was pressed for leadId: $leadId");
     }
     try {
       await FirebaseFirestore.instance.collection("Lead").doc(leadId).delete();
-      Get.offAll(() => LeadPage()); // Navigate back to the lead page after deletion
+      Get.offAll(
+          () => LeadPage()); // Navigate back to the lead page after deletion
     } catch (e) {
       print("Error deleting lead: $e");
       // Show an error message to the user if deletion fails
       Get.snackbar("Error", "Failed to delete the lead. Please try again.");
     }
   }
-
 }
-

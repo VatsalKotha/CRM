@@ -4,6 +4,8 @@ import 'package:crm/utility/widget/meeting_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../../utility/widget/meeting_card_widget.dart';
+
 class MeetingPage extends StatefulWidget {
   const MeetingPage({Key? key}) : super(key: key);
 

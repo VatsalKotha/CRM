@@ -1,4 +1,3 @@
-
 import 'package:crm/screens/home/lead/lead_detail_screen.dart';
 import 'package:crm/utility/widget/appbar.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import '../../../controllers/on_press_action.dart';
 import '../../../utility/widget/lead_card_widget.dart';
 import '../../auth/database/fetch_leads.dart';
 
-class LeadPage extends StatefulWidget {
+class LeadPage extends StatelessWidget {
   const LeadPage({Key? key}) : super(key: key);
 
   @override
@@ -90,7 +89,7 @@ class _LeadPageState extends State<LeadPage> {
                   onPressed: () {
                     final selectedLead = filteredLeadList[index];
                     Get.to(() => LeadDetailScreen(
-                      leadId: selectedLead["leadId"],
+                          leadId: selectedLead["leadId"],
                           leadName: selectedLead["Lead Name"],
                           leadClientName: selectedLead["Client First Name"],
                           leadClientLastName: selectedLead["Client Last Name"],

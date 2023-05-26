@@ -16,9 +16,10 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(30.0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            // section 1 - Login Header (image and title)
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // section 1 - Login Header (image and title)
             Image(image: AssetImage(jLoginScreenImage)),
             Text(
               "Login",
@@ -26,10 +27,10 @@ class LoginScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 40,
                 color: Colors.blue[900],
-              ),
+                ),
             ),
 
-            // section 2 - Login Form (email id, password text field, forgot password and login button)
+             // section 2 - Login Form (email id, password text field, forgot password and login button)
             LoginForm()
           ]),
         ),
@@ -37,3 +38,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
