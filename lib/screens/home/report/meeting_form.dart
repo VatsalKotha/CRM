@@ -76,6 +76,12 @@ class _MeetingFormState extends State<MeetingForm> {
                   title: Text("Date(YYYY-MM-DD)"),
                   // subtitle: Text("$[""]"),
                 ),
+                FormTextBox(
+                  hintText: "YYYY-MM-DD",
+                  prefixIcon: const Icon(Icons.title),
+                  title: "Date",
+                  controller: date,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -109,17 +115,7 @@ class _MeetingFormState extends State<MeetingForm> {
                   title: "Description",
                   controller: desc,
                 ),
-                // RadioButtonWidget(
-                //   options: LeadPriority.values,
-                //   groupValue: _selectedOption,
-                //   onChanged: (value) {
-                //     setState(() {
-                //       _selectedOption = (value as LeadPriority?)!;
-                //     });
-                //   },
-                //   textBuilder: (option) => option.toString().split('.')[1],
-                //   valueBuilder: (option) => option.toString(),
-                // ),
+
                 const SizedBox(height: 40),
                 Button(
                   marginHorizontal: 30,
@@ -129,13 +125,6 @@ class _MeetingFormState extends State<MeetingForm> {
                   buttonHeight: 50,
                   onPressed: () async {
                     AddMeetings().dataToSave();
-                    // bool validated = formkey.currentState!.validate();
-                    // final data =
-                    //     Map<String, dynamic>.from(formkey.currentState!.value);
-                    // data["date"] =
-                    //     (data["date"] as DateTime).millisecondsSinceEpoch;
-                    // print(data);
-                    // await eventDBS.create(data);
                     clearController();
                     Get.to(() => const HomePage());
                   },

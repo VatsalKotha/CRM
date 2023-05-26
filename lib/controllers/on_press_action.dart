@@ -17,12 +17,12 @@ class OnPressAction {
 
   // navigates from MeetingPage() to MeetingForm()
   static void goToMeetingFrom() {
-    Get.to(() => const LeadForm());
+    Get.to(() => const MeetingForm());
   }
 
   // navigates from LeadPage() to LeadForm()
   static void goToLeadForm() {
-    Get.to(() => LeadForm());
+    Get.to(() => const LeadForm());
   }
 
   static void goToFeedBackForm() {
