@@ -7,7 +7,7 @@ import '../../../controllers/on_press_action.dart';
 import '../../../utility/widget/lead_card_widget.dart';
 import '../../auth/database/fetch_leads.dart';
 
-class LeadPage extends StatelessWidget {
+class LeadPage extends StatefulWidget {
   const LeadPage({Key? key}) : super(key: key);
 
   @override
@@ -76,7 +76,6 @@ class _LeadPageState extends State<LeadPage> {
               ),
             ),
           ),
-          // sorting button
           ElevatedButton(
             onPressed: sortLeads,
             child: Text(isAscending ? 'Sort A-Z' : 'Sort Z-A'),
@@ -89,23 +88,19 @@ class _LeadPageState extends State<LeadPage> {
                   onPressed: () {
                     final selectedLead = filteredLeadList[index];
                     Get.to(() => LeadDetailScreen(
-                          leadId: selectedLead["leadId"],
                           leadName: selectedLead["Lead Name"],
                           leadClientName: selectedLead["Client First Name"],
-                          leadClientLastName: selectedLead["Client Last Name"],
                           leadClientPhnNo1: selectedLead["Phone Number"],
                           leadClosingDate: selectedLead["Closing Date"],
                           leadCompanyName: selectedLead["Company Name"],
-                          leadEmailAddress: selectedLead["Email"],
-                          leadAddress: selectedLead["Address"],
-                          leadLabel: selectedLead["Label"],
-                          leadDescription: selectedLead["Description"],
-                          leadCreatedBy: selectedLead["Sales Person"],
-                          leadDateCreated: selectedLead["Start Date"],
+                          leadCreatedBy: selectedLead["Label"],
+                          leadDateCreated: selectedLead["Client Last Name"],
                           leadModifiedBy: selectedLead["Start Date"],
                           leadPriority: selectedLead["Priority"],
                           leadSalesPersonName: selectedLead["Sales Person"],
                           leadStatus: selectedLead["Status"],
+                          leadClientLastName: selectedLead["Client Last Name"],
+                          leadLabel: selectedLead["Label"],
                         ));
                   },
                   leadName: filteredLeadList[index]["Lead Name"],

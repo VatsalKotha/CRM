@@ -28,7 +28,7 @@ class SettingPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFEFEFEF),
-      appBar: const AppBarWidget(
+      appBar: AppBarWidget(
           title: jAppbarSettingPageTitle,
           centerTitle: false,
           automaticallyImplyLeading: true,

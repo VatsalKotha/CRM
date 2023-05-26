@@ -7,7 +7,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final double elevation;
   final List<Widget>? actions;
   final bool automaticallyImplyLeading;
-  final bool automaticallyImplyLeading;
 
   const AppBarWidget({
     Key? key,
@@ -16,7 +15,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = const Color(0xFFFAFAFA),
     this.elevation = 1.0,
     this.actions,
-    this.automaticallyImplyLeading = false,
     this.automaticallyImplyLeading = false,
   }) : super(key: key);
 

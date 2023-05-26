@@ -45,15 +45,14 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
   Future<void> retrieveImage() async {
     final images = {
       'Vatsal Kotha': 'Vatsal.jpg',
-      'Jash Parmar' : 'jash.png'
+      'Jash Parmar': 'jash.png'
       // Add more salesperson-image mappings as needed
     };
 
     final salespersonName = widget.salesPersonName ?? '';
 
-    imageUrl = images.containsKey(salespersonName)
-        ? images[salespersonName]!
-        : '';
+    imageUrl =
+        images.containsKey(salespersonName) ? images[salespersonName]! : '';
 
     if (imageUrl.isNotEmpty) {
       try {
@@ -91,12 +90,9 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
     }
 
     if (widget.leadStatus == "New") {
-    if (widget.leadStatus == "New") {
       leadStatusColor = Colors.blueAccent;
     } else if (widget.leadStatus == "Won") {
-    } else if (widget.leadStatus == "Won") {
       leadStatusColor = Colors.green;
-    } else if (widget.leadStatus == "Lost") {
     } else if (widget.leadStatus == "Lost") {
       leadStatusColor = Colors.red;
     } else {
@@ -205,9 +201,9 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                       color: Colors.yellow,
                       image: imageUrl.isNotEmpty
                           ? DecorationImage(
-                        image: NetworkImage(imageUrl),
-                        fit: BoxFit.cover,
-                      )
+                              image: NetworkImage(imageUrl),
+                              fit: BoxFit.cover,
+                            )
                           : null,
                     ),
                   ),

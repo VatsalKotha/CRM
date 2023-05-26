@@ -44,9 +44,4 @@ class OnPressAction {
   static void goToContactDetailScreen() {
     Get.to(() => const ContactDetailScreen());
   }
-
-  // navigates from LeadPage() to LeadForm()
-  static void goToContactDetailScreen() {
-    Get.to(() => const ContactDetailScreen());
-  }
 }
