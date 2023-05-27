@@ -1,15 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/controllers/action_event.dart';
+import 'package:crm/screens/auth/database/fetch_leads.dart';
 import 'package:crm/utility/widget/appbar.dart';
 import 'package:crm/utility/widget/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LeadDetailScreen extends StatefulWidget {
+// final int index;
   const LeadDetailScreen(
       {Key? key,
       required this.leadName,
-      // required this.leadId,
       required this.leadSalesPersonName,
       required this.leadStatus,
       required this.leadClosingDate,
@@ -28,11 +30,7 @@ class LeadDetailScreen extends StatefulWidget {
       required this.leadClientLastName,
       required this.leadLabel})
       : super(key: key);
-
   final String leadName;
-  final String leadClientLastName;
-  final String leadLabel;
-  // final String leadId;
   final String leadSalesPersonName;
   final String leadStatus;
   final String leadClosingDate;
@@ -48,12 +46,35 @@ class LeadDetailScreen extends StatefulWidget {
   final String leadCreatedBy;
   final String leadModifiedBy;
   final String leadDateCreated;
-
+  final String leadClientLastName;
+  final String leadLabel;
   @override
   State<LeadDetailScreen> createState() => _LeadDetailScreenState();
 }
 
 class _LeadDetailScreenState extends State<LeadDetailScreen> {
+  late final Stream<DocumentSnapshot> _documnetSnapshot;
+  List leadList = [];
+  @override
+  void initState() {
+// TODO: implement initState
+    super.initState();
+    final _documentSnapshot =
+        FirebaseFirestore.instance.collection("Lead").snapshots();
+    fetchDatabaseList();
+  }
+
+  fetchDatabaseList() async {
+    dynamic result = await FetchLeads().getLeadList();
+    if (result == null) {
+      print("Unable to retreive");
+    } else {
+      setState(() {
+        leadList = result;
+      });
+    }
+  }
+
   IconButton buildIconButton(
       {required IconData iconData, required VoidCallback onPressed}) {
     return IconButton(
@@ -91,7 +112,6 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
     } else {
       leadStatusColor = const Color(0xFFCE4CC8);
     }
-
     return Scaffold(
       appBar: const AppBarWidget(
           title: jAppbarLeadDetailScreenTitle,
@@ -105,7 +125,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // lead detail header
+// lead detail header
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -113,13 +133,14 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                       style: const TextStyle(
                           fontSize: 30, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 2.0),
+// Text(widget.leadId, style: const TextStyle(fontSize: 13.5)),
                   const SizedBox(height: 5.0),
                   Text(widget.leadSalesPersonName,
                       style: const TextStyle(
                         fontSize: 18,
                       )),
                   const SizedBox(height: 5.0),
-                  // status
+// status
                   Container(
                     padding: const EdgeInsets.only(
                         left: 12.0, right: 12.0, top: 1.0, bottom: 1.0),
@@ -143,8 +164,7 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                 ],
               ),
               const SizedBox(height: 25.0),
-
-              // lead action buttons
+// lead action buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -158,24 +178,33 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                   ),
                   buildIconButton(
                     iconData: Icons.edit_note_outlined,
-                    onPressed: ActionEvent.editEventHandler,
+                    onPressed: () => ActionEvent.editEventHandler(
+                        leadName: widget.leadName,
+                        leadStatus: widget.leadStatus,
+                        leadDateCreated: widget.leadDateCreated,
+                        leadClosingDate: widget.leadClosingDate,
+                        leadClientName: widget.leadClientName,
+                        leadClientPhnNo1: widget.leadClientPhnNo1,
+                        leadSalesPersonName: widget.leadSalesPersonName,
+                        leadCompanyName: widget.leadCompanyName,
+                        leadPriority: widget.leadPriority,
+                        leadLabel: widget.leadLabel,
+                        leadLastName: widget.leadClientLastName),
+// onPressed: ActionEvent.editEventHandler,
                   ),
                   buildIconButton(
                     iconData: Icons.delete_outline,
                     onPressed: () {
-                      ActionEvent.deleteEventHandler();
+                      ActionEvent.deleteEventHandler;
                     },
                   ),
                 ],
               ),
               const SizedBox(height: 5.0),
-
               const Divider(thickness: 2.0),
               const SizedBox(height: 25.0),
+// lead details - main & others
 
-              // lead details - main & others
-
-              // heading
               tableHeading(heading: 'Lead Details'),
               const SizedBox(height: 10.0),
               Table(
@@ -227,7 +256,6 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                 ],
               ),
               const SizedBox(height: 25.0),
-
               tableHeading(heading: 'Other Details'),
               const SizedBox(height: 10.0),
               Table(

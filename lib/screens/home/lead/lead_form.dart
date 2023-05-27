@@ -1,19 +1,16 @@
 import 'package:crm/constants/text_string.dart';
-import 'package:crm/controllers/validator.dart';
 import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/widget/button.dart';
-import 'package:crm/utility/widget/form_dropdown.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
-import 'package:crm/utility/widget/form_text_box_visibility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import 'package:crm/screens/auth/database/AddLead.dart';
 import '../../../utility/widget/form_widget.dart';
 import 'package:crm/screens/auth/database/AddLead.dart';
-import '../../../utility/widget/radio_button_widget.dart';
-import 'lead_page.dart';
 
+// import '../../../utility/widget/radio_button_widget.dart';
+// import 'lead_page.dart';
 class LeadFormData {
   String leadName = '';
   String leadStatus = '';
@@ -29,28 +26,59 @@ class LeadFormData {
 }
 
 // Instantiate the LeadFormData class
-
 enum LeadPriority {
-  High,
-  Medium,
-  Low,
-  Normal,
+  high,
+  medium,
+  low,
+  normal,
 }
 
 class LeadForm extends StatefulWidget {
-  const LeadForm({Key? key}) : super(key: key);
-
+  final LeadFormData? leadFormData;
+  final bool isEditMode;
+  const LeadForm({Key? key, this.leadFormData, this.isEditMode = false})
+      : super(key: key);
   @override
   State<LeadForm> createState() => _LeadFormState();
 }
 
 class _LeadFormState extends State<LeadForm> {
-  GlobalKey<FormState> leadFormKey = GlobalKey<FormState>();
+// LeadPriority _selectedOption = LeadPriority.high;
+  @override
+  void clearController() {
+    super.dispose();
+    cname.dispose();
+    cfname.dispose();
+    claname.dispose();
+    name.dispose();
 
-  LeadPriority _selectedOption = LeadPriority.High;
+    status.dispose();
+    startDate.dispose();
+    closing.dispose();
+    label.dispose();
+    phoneNo.dispose();
+    salesPerson.dispose();
+    priority.dispose();
+  }
 
-  final TextEditingController myController1 = TextEditingController();
-  final TextEditingController myController2 = TextEditingController();
+  @override
+  void initState() {
+// TODO: implement initState
+    super.initState();
+    if (widget.isEditMode && widget.leadFormData != null) {
+      cname.text = widget.leadFormData!.companyName;
+      cfname.text = widget.leadFormData!.clientFirstName;
+      claname.text = widget.leadFormData!.clientLastName;
+      name.text = widget.leadFormData!.leadName;
+      status.text = widget.leadFormData!.leadStatus;
+      startDate.text = widget.leadFormData!.leadStartDate;
+      closing.text = widget.leadFormData!.leadClosing;
+      label.text = widget.leadFormData!.leadLabel;
+      phoneNo.text = widget.leadFormData!.leadPhoneNo;
+      salesPerson.text = widget.leadFormData!.associatedSalesPerson;
+      priority.text = widget.leadFormData!.leadPriority;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +149,7 @@ class _LeadFormState extends State<LeadForm> {
                 Row(
                   children: [
                     Expanded(
+                      flex: 1,
                       child: FormTextBox(
                         hintText: "Label",
                         prefixIcon: const Icon(Icons.label),
@@ -130,6 +159,7 @@ class _LeadFormState extends State<LeadForm> {
                     ),
                     const SizedBox(width: 25),
                     Expanded(
+                      flex: 3,
                       child: FormTextBox(
                         hintText: "Phone Number",
                         prefixIcon: const Icon(Icons.phone),
@@ -157,17 +187,18 @@ class _LeadFormState extends State<LeadForm> {
                   title: "Priority",
                   controller: priority,
                 ),
-                // RadioButtonWidget(
-                //   options: LeadPriority.values,
-                //   groupValue: _selectedOption,
-                //   onChanged: (value) {
-                //     setState(() {
-                //       _selectedOption = (value as LeadPriority?)!;
-                //     });
-                //   },
-                //   textBuilder: (option) => option.toString().split('.')[1],
-                //   valueBuilder: (option) => option.toString(),
-                // ),
+// RadioButtonWidget(
+// options: LeadPriority.values,
+// groupValue: _selectedOption,
+// onChanged: (value) {
+// setState(() {
+// _selectedOption = (value as LeadPriority?)!;
+// });
+// },
+// textBuilder: (option) => option.toString().split('.')[1], 33
+
+// valueBuilder: (option) => option.toString(),
+// ),
                 const SizedBox(height: 40),
                 Button(
                   marginHorizontal: 30,
@@ -177,8 +208,9 @@ class _LeadFormState extends State<LeadForm> {
                   buttonHeight: 50,
                   onPressed: () {
                     AddLead().dataToSave();
+                    clearController();
                     Get.to(() => const HomePage());
-                    // Navigator.push(context, const LeadPage() as Route<Object?>);
+// Navigator.push(context, const LeadPage() as Route<Object?>);
                   },
                   buttonTextSize: 20,
                 ),

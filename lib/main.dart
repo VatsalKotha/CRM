@@ -2,12 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-
 import 'package:crm/routes/routes.dart';
 import 'package:crm/screens/auth/login/loginScreen.dart';
 import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/theme/theme.dart';
-
 import 'firebase_options.dart';
 
 void main() async {

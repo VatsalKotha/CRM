@@ -9,7 +9,6 @@ import '../../auth/database/fetch_leads.dart';
 
 class LeadPage extends StatefulWidget {
   const LeadPage({Key? key}) : super(key: key);
-
   @override
   State<LeadPage> createState() => _LeadPageState();
 }
@@ -19,7 +18,6 @@ List<Map<String, dynamic>> leadList = [];
 class _LeadPageState extends State<LeadPage> {
   List<Map<String, dynamic>> filteredLeadList = [];
   bool isAscending = true;
-
   @override
   void initState() {
     super.initState();
@@ -28,7 +26,6 @@ class _LeadPageState extends State<LeadPage> {
 
   fetchDatabaseList() async {
     dynamic result = await FetchLeads().getLeadList();
-
     if (result == null) {
       print("Unable to retrieve");
     } else {
@@ -76,6 +73,7 @@ class _LeadPageState extends State<LeadPage> {
               ),
             ),
           ),
+// sorting button
           ElevatedButton(
             onPressed: sortLeads,
             child: Text(isAscending ? 'Sort A-Z' : 'Sort Z-A'),
@@ -88,15 +86,18 @@ class _LeadPageState extends State<LeadPage> {
                   onPressed: () {
                     final selectedLead = filteredLeadList[index];
                     Get.to(() => LeadDetailScreen(
-                          leadClientLastName: selectedLead["Client Last Name"],
                           leadName: selectedLead["Lead Name"],
-                          leadLabel: selectedLead["Label"],
                           leadClientName: selectedLead["Client First Name"],
+                          leadClientLastName: selectedLead["Client Last Name"],
                           leadClientPhnNo1: selectedLead["Phone Number"],
                           leadClosingDate: selectedLead["Closing Date"],
                           leadCompanyName: selectedLead["Company Name"],
-                          leadCreatedBy: selectedLead["Label"],
-                          leadDateCreated: selectedLead["Client Last Name"],
+                          leadEmailAddress: selectedLead["Email"],
+                          leadAddress: selectedLead["Address"],
+                          leadLabel: selectedLead["Label"],
+                          leadDescription: selectedLead["Description"],
+                          leadCreatedBy: selectedLead["Sales Person"],
+                          leadDateCreated: selectedLead["Start Date"],
                           leadModifiedBy: selectedLead["Start Date"],
                           leadPriority: selectedLead["Priority"],
                           leadSalesPersonName: selectedLead["Sales Person"],
