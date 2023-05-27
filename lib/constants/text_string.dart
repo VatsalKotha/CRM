@@ -52,3 +52,6 @@ const String jOtpScreenText = "We sent your code to registered\nphone number";
 // Lead Form Text
 const String jLeadFormTitle = "Add Lead";
 const String jLeadFormSubtitle = "Great! Let's add new leads";
+
+const String vMeetingFormTitle = "Add Meeting";
+const String vMeetingFormSubtitle = "Great ! Let's add new Meeting";

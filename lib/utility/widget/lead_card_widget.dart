@@ -1,7 +1,7 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../constants/image_string.dart';
-import '';
 
 class LeadCardWidget extends StatefulWidget {
   const LeadCardWidget(
@@ -12,6 +12,7 @@ class LeadCardWidget extends StatefulWidget {
       required this.leadPriority,
       required this.leadCompanyName,
       required this.leadPersonName,
+      required this.phoneNumber,
       this.leadDescription,
       this.onPressed,
       this.salesPersonName});
@@ -25,6 +26,7 @@ class LeadCardWidget extends StatefulWidget {
   final String? leadDescription;
   final VoidCallback? onPressed;
   final String? salesPersonName;
+  final String? phoneNumber;
 
   @override
   State<LeadCardWidget> createState() => _LeadCardWidgetState();
@@ -205,7 +207,7 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                   Container(
                     width: 42.5,
                     height: 42.5,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.yellow,
                       image: imageUrl.isNotEmpty

@@ -1,10 +1,8 @@
 import 'package:crm/constants/text_string.dart';
-import 'package:crm/screens/auth/database/event_firstore.dart';
 import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import '../../../utility/widget/form_widget.dart';
 import 'package:crm/screens/auth/database/AddMeetings.dart';
@@ -26,7 +24,6 @@ class MeetingForm extends StatefulWidget {
 }
 
 class _MeetingFormState extends State<MeetingForm> {
-  final formkey = GlobalKey<FormBuilderState>();
   // final DateTime selectedDay;
   Map<String, List> selectedEvents = {};
 
@@ -39,10 +36,9 @@ class _MeetingFormState extends State<MeetingForm> {
         margin: const EdgeInsets.only(
             left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
         child: FormWidget(
-          formTitle: VMeetingFormTitle,
-          formSubtitle: VMeetingFormSubtitle,
+          formTitle: vMeetingFormTitle,
+          formSubtitle: vMeetingFormSubtitle,
           myFormWidget: Form(
-            key: formkey,
             child: Column(
               children: [
                 FormTextBox(
