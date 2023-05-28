@@ -1,40 +1,37 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../constants/image_string.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class LeadCardWidget extends StatefulWidget {
-  const LeadCardWidget(
-      {super.key,
-      required this.leadName,
-      required this.leadStatus,
-      required this.leadClosingDate,
-      required this.leadPriority,
-      required this.leadCompanyName,
-      required this.leadPersonName,
-      required this.phoneNumber,
-      this.leadDescription,
-      this.onPressed,
-      this.salesPersonName});
-
-  final String leadPriority;
-  final String leadName;
-  final String leadClosingDate;
-  final String leadCompanyName;
-  final String leadPersonName;
-  final String leadStatus;
+  const LeadCardWidget({
+    Key? key,
+    required this.leadName,
+    required this.leadClosingDate,
+    required this.leadCompanyName,
+    required this.leadPersonName,
+    required this.leadPriority,
+    required this.leadStatus,
+    required this.phoneNumber,
+    required this.salesPersonName,
+    this.onPressed,
+    this.leadDescription,
+  }) : super(key: key);
+  final String? leadPriority;
+  final String? leadName;
+  final String? leadClosingDate;
+  final String? leadCompanyName;
+  final String? leadPersonName;
+  final String? leadStatus;
+  final String? phoneNumber;
+  final String? salesPersonName;
   final String? leadDescription;
   final VoidCallback? onPressed;
-  final String? salesPersonName;
-  final String? phoneNumber;
-
   @override
   State<LeadCardWidget> createState() => _LeadCardWidgetState();
 }
 
 class _LeadCardWidgetState extends State<LeadCardWidget> {
   late String imageUrl;
-
   @override
   void initState() {
     super.initState();
@@ -46,14 +43,11 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
     final images = {
       'Vatsal Kotha': 'Vatsal.jpg',
       'Jash Parmar': 'jash.png'
-      // Add more salesperson-image mappings as needed
+// Add more salesperson-image mappings as needed
     };
-
     final salespersonName = widget.salesPersonName ?? '';
-
     imageUrl =
         images.containsKey(salespersonName) ? images[salespersonName]! : '';
-
     if (imageUrl.isNotEmpty) {
       try {
         imageUrl = await FirebaseStorage.instance
@@ -65,7 +59,6 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
         imageUrl = "";
       }
     }
-
     setState(() {});
   }
 
@@ -78,17 +71,15 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
   @override
   Widget build(BuildContext context) {
     Color leadPriorityColor, leadStatusColor;
-
-    if (widget.leadPriority == "High") {
+    if (widget.leadPriority == "3") {
       leadPriorityColor = Colors.redAccent;
-    } else if (widget.leadPriority == "Medium") {
+    } else if (widget.leadPriority == "2") {
       leadPriorityColor = Colors.orange;
-    } else if (widget.leadPriority == "Low") {
+    } else if (widget.leadPriority == "1") {
       leadPriorityColor = Colors.yellow;
     } else {
       leadPriorityColor = Colors.grey;
     }
-
     if (widget.leadStatus == "New") {
       leadStatusColor = Colors.blueAccent;
     } else if (widget.leadStatus == "Won") {
@@ -98,7 +89,6 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
     } else {
       leadStatusColor = Colors.purple;
     }
-
     return SizedBox(
       height: 140.0,
       child: GestureDetector(
@@ -108,13 +98,10 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
           child: Row(
             children: [
-              // Lead priority
               Container(
                 color: leadPriorityColor,
                 width: 6.0,
               ),
-
-              // Lead Details : lead name, closing date, company name, person name, description
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -123,17 +110,14 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 5.0),
-                      // Lead title
                       Text(
-                        widget.leadName,
+                        widget.leadName!,
                         style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(height: 3.0),
-
-                      // closing date
                       Text(
                         "Closing date : ${widget.leadClosingDate}",
                         style: const TextStyle(
@@ -141,69 +125,64 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-
-                      // Company Name
                       Text(
-                        widget.leadCompanyName,
+                        widget.leadCompanyName!,
                         style: const TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-
-                      // Person Name
                       Text(
-                        widget.leadPersonName,
+                        widget.leadPersonName!,
                         style: const TextStyle(
                           fontSize: 15.5,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-
-                      // Description
-                      const SizedBox(height: 2.0),
                       Text(
-                        widget.leadDescription!,
-                        textAlign: TextAlign.left,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                        widget.phoneNumber!,
                         style: const TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 15.5,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        widget.salesPersonName!,
+                        style: const TextStyle(
+                          fontSize: 15.5,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-
               const SizedBox(width: 18.0),
-
-              //Lead Status + Associated Sale's Person Profile
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  // status of lead
                   Container(
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(
-                        left: 8.0, right: 8.0, top: 5.0, bottom: 5.0),
+                      left: 8.0,
+                      right: 8.0,
+                      top: 5.0,
+                      bottom: 5.0,
+                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(3.0),
                       color: leadStatusColor,
                     ),
                     child: Text(
-                      widget.leadStatus,
+                      widget.leadStatus!,
                       style: const TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-
-                  // sized box for
                   const SizedBox(height: 35.0),
-
-                  // profile icon
                   Container(
                     width: 42.5,
                     height: 42.5,
@@ -220,7 +199,6 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                   ),
                 ],
               ),
-
               const SizedBox(width: 10.0),
             ],
           ),
