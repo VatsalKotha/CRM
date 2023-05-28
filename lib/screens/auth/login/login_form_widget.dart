@@ -35,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
 // email id
             TextFormField(
               controller: email_idText,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.email),
                 labelText: "Email id",
                 hintText: "Enter email address",
