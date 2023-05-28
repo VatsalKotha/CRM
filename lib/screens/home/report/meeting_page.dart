@@ -1,4 +1,3 @@
-
 import 'package:crm/controllers/on_press_action.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -24,7 +23,6 @@ class _MeetingPageState extends State<MeetingPage> {
         children: [
           Column(
             children: [
-
               // meeting calendar
               TableCalendar(
                 focusedDay: selectedDay,
@@ -38,12 +36,10 @@ class _MeetingPageState extends State<MeetingPage> {
                     formatButtonDecoration: BoxDecoration(
                       color: const Color(0xFFB3E5FC),
                       borderRadius: BorderRadius.circular(8.0),
-                    )
-                ),
+                    )),
 
                 // to style the calendar
                 calendarStyle: const CalendarStyle(
-
                   isTodayHighlighted: true,
                   // decoration for the current date
                   todayDecoration: BoxDecoration(
@@ -73,7 +69,8 @@ class _MeetingPageState extends State<MeetingPage> {
                     calendarFormat = inputFormat;
                   });
                 },
-                onDaySelected: (DateTime inputSelectedDay, DateTime inputFocusedDay) {
+                onDaySelected:
+                    (DateTime inputSelectedDay, DateTime inputFocusedDay) {
                   setState(() {
                     selectedDay = inputSelectedDay;
                     focusedDay = inputFocusedDay;
@@ -82,27 +79,26 @@ class _MeetingPageState extends State<MeetingPage> {
               ),
               const Divider(thickness: 3.0),
 
-
               // meeting cards
               Expanded(
                 child: SingleChildScrollView(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 8.0,right: 8.0,top: 0.0,bottom: 20.0),
-                    child: Column(
-                      children: const [
-                        MeetingCardWidget(),
-                        MeetingCardWidget(),
-                        MeetingCardWidget(),
-                        MeetingCardWidget(),
-                        MeetingCardWidget(),
-                        MeetingCardWidget(),
-                        MeetingCardWidget(),
-                        MeetingCardWidget(),
-                        MeetingCardWidget(),
-                      ],
-                    ),
-                  )
-                ),
+                    child: Container(
+                  margin: const EdgeInsets.only(
+                      left: 8.0, right: 8.0, top: 0.0, bottom: 20.0),
+                  child: Column(
+                    children: const [
+                      MeetingCardWidget(),
+                      MeetingCardWidget(),
+                      MeetingCardWidget(),
+                      MeetingCardWidget(),
+                      MeetingCardWidget(),
+                      MeetingCardWidget(),
+                      MeetingCardWidget(),
+                      MeetingCardWidget(),
+                      MeetingCardWidget(),
+                    ],
+                  ),
+                )),
               ),
             ],
           ),

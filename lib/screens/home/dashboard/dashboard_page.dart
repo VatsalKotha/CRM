@@ -1,4 +1,3 @@
-
 import 'package:crm/utility/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/text_string.dart';
@@ -16,4 +15,3 @@ class DashboardPage extends StatelessWidget {
     );
   }
 }
-
