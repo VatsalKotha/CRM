@@ -3,16 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constants/image_string.dart';
 
-class MeetingCardWidget extends StatefulWidget {
+class MeetingCardWidget extends StatelessWidget {
+  final String meetingType;
+  final String meetingTitle;
+  final String companyName;
+  final String timeRange;
+  final String description;
+
   const MeetingCardWidget({
     Key? key,
+    required this.meetingType,
+    required this.meetingTitle,
+    required this.companyName,
+    required this.timeRange,
+    required this.description,
   }) : super(key: key);
 
-  @override
-  State<MeetingCardWidget> createState() => _MeetingCardWidgetState();
-}
-
-class _MeetingCardWidgetState extends State<MeetingCardWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,55 +39,44 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    // Meeting Type
+                  children: [
                     Text(
-                      "Meeting Type",
-                      style: TextStyle(
+                      meetingType,
+                      style: const TextStyle(
                         fontSize: 15.0,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-
-                    // Lead title
                     Text(
-                      "Meeting Title",
-                      style: TextStyle(
+                      meetingTitle,
+                      style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFE47522),
                       ),
                     ),
-                    SizedBox(height: 3.0),
-
-                    // closing date
-
-                    // Company Name
+                    const SizedBox(height: 3.0),
                     Text(
-                      "Company Name",
-                      style: TextStyle(
+                      companyName,
+                      style: const TextStyle(
                         fontSize: 15.0,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-
-                    // Person Name
                     Text(
-                      "10:00 to 11:30",
-                      style: TextStyle(
+                      timeRange,
+                      style: const TextStyle(
                         fontSize: 15.5,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-
-                    // Description
-                    SizedBox(height: 2.0),
+                    const SizedBox(height: 2.0),
                     Text(
-                      "This is the sample This is the sample This is the sample This is the sample This is the sample ",
+                      description,
                       textAlign: TextAlign.left,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w400,
                       ),
@@ -94,9 +89,7 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  // sized box for
                   const SizedBox(height: 65.0),
-                  // profile icon
                   Container(
                     width: 30.5,
                     height: 30.5,
@@ -104,7 +97,8 @@ class _MeetingCardWidgetState extends State<MeetingCardWidget> {
                       shape: BoxShape.circle,
                       color: Colors.yellow,
                       image: DecorationImage(
-                          image: AssetImage(jLeadCardProfileImage)),
+                        image: AssetImage(jLeadCardProfileImage),
+                      ),
                     ),
                   ),
                 ],

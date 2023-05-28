@@ -158,8 +158,9 @@ class _LoginFormState extends State<LoginForm> {
                           "Entered E-Mail Id : $inputEmailId \n Entered Password : $inputPassword");
                     }
 // Perform admin login check
-                    if (inputEmailId == 'admin@gmail.com' &&
-                        inputPassword == 'admin') {
+                    if (inputEmailId == 'admin@gmail.com' ||
+                        inputEmailId == "admin123@gmail.com" &&
+                            inputPassword == 'admin') {
 // Admin login successful
                       print('Admin logged in successfully');
                       Get.off(() => const AdminPage());

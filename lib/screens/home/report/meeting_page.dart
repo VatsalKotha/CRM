@@ -1,4 +1,5 @@
 import 'package:crm/controllers/on_press_action.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -15,6 +16,7 @@ class _MeetingPageState extends State<MeetingPage> {
   CalendarFormat calendarFormat = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
+  List<Map<String, dynamic>> events = [];
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +33,15 @@ class _MeetingPageState extends State<MeetingPage> {
                 calendarFormat: calendarFormat,
                 startingDayOfWeek: StartingDayOfWeek.monday,
                 headerStyle: HeaderStyle(
-                    formatButtonVisible: true,
-                    formatButtonShowsNext: false,
-                    formatButtonDecoration: BoxDecoration(
-                      color: const Color(0xFFB3E5FC),
-                      borderRadius: BorderRadius.circular(8.0),
-                    )),
-
-                // to style the calendar
+                  formatButtonVisible: true,
+                  formatButtonShowsNext: false,
+                  formatButtonDecoration: BoxDecoration(
+                    color: const Color(0xFFB3E5FC),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
                 calendarStyle: const CalendarStyle(
                   isTodayHighlighted: true,
-                  // decoration for the current date
                   todayDecoration: BoxDecoration(
                     color: Color(0xFFFFB466),
                     shape: BoxShape.circle,
@@ -50,8 +50,6 @@ class _MeetingPageState extends State<MeetingPage> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
-
-                  // decoration for the selected date
                   selectedDecoration: BoxDecoration(
                     color: Color(0xFFE4EFFA),
                     shape: BoxShape.circle,
@@ -60,7 +58,6 @@ class _MeetingPageState extends State<MeetingPage> {
                     color: Colors.black,
                   ),
                 ),
-
                 selectedDayPredicate: (DateTime inputDate) {
                   return isSameDay(selectedDay, inputDate);
                 },
@@ -75,6 +72,9 @@ class _MeetingPageState extends State<MeetingPage> {
                     selectedDay = inputSelectedDay;
                     focusedDay = inputFocusedDay;
                   });
+
+                  // Fetch events for the selected day from Firebase Firestore
+                  _fetchEventsFromFirestore(inputSelectedDay);
                 },
               ),
               const Divider(thickness: 3.0),
@@ -82,23 +82,23 @@ class _MeetingPageState extends State<MeetingPage> {
               // meeting cards
               Expanded(
                 child: SingleChildScrollView(
-                    child: Container(
-                  margin: const EdgeInsets.only(
-                      left: 8.0, right: 8.0, top: 0.0, bottom: 20.0),
-                  child: Column(
-                    children: const [
-                      MeetingCardWidget(),
-                      MeetingCardWidget(),
-                      MeetingCardWidget(),
-                      MeetingCardWidget(),
-                      MeetingCardWidget(),
-                      MeetingCardWidget(),
-                      MeetingCardWidget(),
-                      MeetingCardWidget(),
-                      MeetingCardWidget(),
-                    ],
+                  child: Container(
+                    margin: const EdgeInsets.only(
+                        left: 8.0, right: 8.0, top: 0.0, bottom: 20.0),
+                    child: Column(
+                      children: [
+                        for (final event in events)
+                          MeetingCardWidget(
+                            meetingType: event['Client First Name'],
+                            meetingTitle: event['Title'],
+                            companyName: event['Company Name'],
+                            timeRange: event['Client Last Name'],
+                            description: event['Description'],
+                          ),
+                      ],
+                    ),
                   ),
-                )),
+                ),
               ),
             ],
           ),
@@ -112,5 +112,21 @@ class _MeetingPageState extends State<MeetingPage> {
         onPressed: () => OnPressAction.goToMeetingFrom(),
       ),
     );
+  }
+
+  void _fetchEventsFromFirestore(DateTime selectedDate) {
+    // Fetch events from Firebase Firestore for the selected date
+    // Replace this with your own logic to fetch events from Firestore
+    FirebaseFirestore.instance
+        .collection('Meetings')
+        .where('Date', isEqualTo: selectedDate)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      setState(() {
+        events = querySnapshot.docs
+            .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
+            .toList();
+      });
+    });
   }
 }
