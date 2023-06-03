@@ -1,6 +1,9 @@
+import 'package:crm/constants/text_string.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../../utility/widget/appbar.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -34,19 +37,25 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEFEFEF),
+      appBar: const AppBarWidget(
+        title: jAppbarDashboardPageTitle,
+        centerTitle: false,
+        automaticallyImplyLeading: true,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Total Leads: $totalLeads'),
-              Text('Won Leads: $wonLeads'),
-              Text('Lost Leads: $lostLeads'),
+              // Text('Total Leads: $totalLeads'),
+              // Text('Won Leads: $wonLeads'),
+              // Text('Lost Leads: $lostLeads'),
               const SizedBox(height: 20),
-              const Text('Leads Status Pie Chart:'),
+              const Text(' Pie Chart:'),
               SizedBox(
-                height: 200,
+                height: 300,
                 child: SfCircularChart(
                   series: <CircularSeries>[
                     PieSeries<PieChartModel, String>(
@@ -65,9 +74,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text('Leads Status Bar Graph:'),
+              const Text('Bar Graph:'),
               SizedBox(
-                height: 200,
+                height: 300,
                 child: SfCartesianChart(
                   primaryXAxis: CategoryAxis(),
                   series: <ChartSeries>[
@@ -83,9 +92,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text('Leads Count Line Graph:'),
+              const Text('Line Graph:'),
               SizedBox(
-                height: 200,
+                height: 300,
                 child: SfCartesianChart(
                   primaryXAxis: CategoryAxis(),
                   primaryYAxis: NumericAxis(),

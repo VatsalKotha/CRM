@@ -107,7 +107,7 @@ class SettingPage extends StatelessWidget {
 Future<void> _logout(BuildContext context) async {
   try {
     await FirebaseAuth.instance.signOut();
-    Get.to(() => const LoginScreen());
+    Get.off(() => const LoginScreen());
     // Navigate to login screen or any other screen after logout
     // Example:
     // Navigator.pushReplacementNamed(context, '/login');
