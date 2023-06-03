@@ -1,16 +1,13 @@
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/screens/home/home_page.dart';
+import 'package:crm/screens/home/lead/lead_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:crm/screens/auth/database/AddLead.dart';
 import '../../../utility/widget/form_widget.dart';
-import 'package:crm/screens/auth/database/AddLead.dart';
 
-// import '../../../utility/widget/radio_button_widget.dart';
-// import 'lead_page.dart';
 class LeadFormData {
   String leadName = '';
   String leadStatus = '';
@@ -43,24 +40,6 @@ class LeadForm extends StatefulWidget {
 }
 
 class _LeadFormState extends State<LeadForm> {
-// LeadPriority _selectedOption = LeadPriority.high;
-  @override
-  void clearController() {
-    super.dispose();
-    cname.dispose();
-    cfname.dispose();
-    claname.dispose();
-    name.dispose();
-
-    status.dispose();
-    startDate.dispose();
-    closing.dispose();
-    label.dispose();
-    phoneNo.dispose();
-    salesPerson.dispose();
-    priority.dispose();
-  }
-
   @override
   void initState() {
 // TODO: implement initState
@@ -187,18 +166,6 @@ class _LeadFormState extends State<LeadForm> {
                   title: "Priority",
                   controller: priority,
                 ),
-// RadioButtonWidget(
-// options: LeadPriority.values,
-// groupValue: _selectedOption,
-// onChanged: (value) {
-// setState(() {
-// _selectedOption = (value as LeadPriority?)!;
-// });
-// },
-// textBuilder: (option) => option.toString().split('.')[1], 33
-
-// valueBuilder: (option) => option.toString(),
-// ),
                 const SizedBox(height: 40),
                 Button(
                   marginHorizontal: 30,
@@ -208,8 +175,18 @@ class _LeadFormState extends State<LeadForm> {
                   buttonHeight: 50,
                   onPressed: () {
                     AddLead().dataToSave();
-                    clearController();
-                    Get.to(() => const HomePage());
+                    cname.clear();
+                    cfname.clear();
+                    claname.clear();
+                    name.clear();
+                    status.clear();
+                    startDate.clear();
+                    closing.clear();
+                    label.clear();
+                    phoneNo.clear();
+                    salesPerson.clear();
+                    priority.clear();
+                    Get.to(() => const LeadPage());
 // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },
                   buttonTextSize: 20,
