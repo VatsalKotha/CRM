@@ -9,32 +9,79 @@ import '../forgot_password/forgot_password_mail_screen.dart';
 import '../forgot_password/forgot_password_option_widget.dart';
 import '../forgot_password/forgot_password_sms_screen.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:crm/screens/auth/database/Authentication.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
+
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  var email_idText = TextEditingController();
-  var passText = TextEditingController();
-  bool jObscureText = true;
+  var emailIdText = TextEditingController();
+  var passwordText = TextEditingController();
+  bool obscureText = true;
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  Future<void> loginUser(String email, String password) async {
+    try {
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+      // Toast message
+      final snackBar = SnackBar(
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: "Welcome!",
+          message: "Login successful",
+          contentType: ContentType.success,
+        ),
+      );
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+      Get.off(() => const HomePage());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("User not found"),
+          ),
+        );
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Invalid email or password"),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("An error occurred"),
+        ),
+      );
+    }
+  }
+
+  bool isAdmin(String email) {
+    // Add your admin email check logic here
+    return email == 'admin@gmail.com' || email == 'admin123@gmail.com';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: loginFormKey,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-// email id
+            // Email id
             TextFormField(
-              controller: email_idText,
+              controller: emailIdText,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.email),
                 labelText: "Email id",
@@ -52,37 +99,38 @@ class _LoginFormState extends State<LoginForm> {
                 return null;
               },
             ),
-            SizedBox(height: 20),
-// password
+            const SizedBox(height: 20),
+
+            // Password
             TextFormField(
-              controller: passText,
+              controller: passwordText,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock),
+                prefixIcon: const Icon(Icons.lock),
                 labelText: "Password",
                 hintText: "Enter password",
                 suffixIcon: GestureDetector(
                   onTap: () {
                     setState(() {
-                      jObscureText = !jObscureText;
+                      obscureText = !obscureText;
                     });
                   },
-                  child: Icon(jObscureText
+                  child: Icon(obscureText
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined),
                 ),
               ),
-              obscureText: jObscureText,
+              obscureText: obscureText,
               obscuringCharacter: "*",
               validator: (value) {
                 if (value!.isEmpty) {
                   return jPasswordRequired;
-                } else {
-                  return null;
                 }
+                return null;
               },
             ),
-            SizedBox(height: 5.0),
-// forgot password
+            const SizedBox(height: 5.0),
+
+            // Forgot password
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
@@ -90,14 +138,14 @@ class _LoginFormState extends State<LoginForm> {
                   showModalBottomSheet(
                     context: context,
                     isDismissible: true,
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20),
                       ),
                     ),
                     builder: (context) => Container(
-                      padding: EdgeInsets.all(30.0),
+                      padding: const EdgeInsets.all(30.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -109,33 +157,34 @@ class _LoginFormState extends State<LoginForm> {
                             height: 30.0,
                           ),
 
-// Mail Verification
+                          // Mail Verification
                           ForgotPasswordOptionWidget(
                             btnIcon: Icons.email_outlined,
                             title: "E-Mail",
                             subtitle: jResetViaMail,
                             onTap: () {
-                              Get.to(() => ForgotPasswordMailScreen());
+                              Get.to(() => const ForgotPasswordMailScreen());
                             },
                           ),
-// SMS Verification
-                          SizedBox(
+                          const SizedBox(
                             height: 20.0,
                           ),
+
+                          // SMS Verification
                           ForgotPasswordOptionWidget(
                             btnIcon: Icons.sms_outlined,
                             title: "Phone",
                             subtitle: jResetViaSMS,
                             onTap: () {
-                              Get.to(() => ForgotPasswordSMSScreen());
+                              Get.to(() => const ForgotPasswordSMSScreen());
                             },
                           ),
                         ],
                       ),
                     ),
                   );
-                }, // On Pressed Function
-                child: Text(
+                },
+                child: const Text(
                   "Forgot Password ?",
                   style: TextStyle(
                     color: Colors.blue,
@@ -144,53 +193,27 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
             ),
-            SizedBox(height: 10.0),
-// login button
+            const SizedBox(height: 10.0),
+
+            // Login button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
                   if (loginFormKey.currentState!.validate()) {
-                    String inputEmailId = email_idText.text.toString();
-                    String inputPassword = passText.text;
+                    String inputEmailId = emailIdText.text.toString();
+                    String inputPassword = passwordText.text;
                     if (kDebugMode) {
                       print(
                           "Entered E-Mail Id : $inputEmailId \n Entered Password : $inputPassword");
                     }
-// Perform admin login check
-                    if (inputEmailId == 'admin@gmail.com' ||
-                        inputEmailId == "admin123@gmail.com" &&
-                            inputPassword == 'admin') {
-// Admin login successful
+
+                    if (isAdmin(inputEmailId) && inputPassword == 'admin') {
+                      // Admin login successful
                       print('Admin logged in successfully');
                       Get.off(() => const AdminPage());
                     } else {
-// Regular user login
-                      try {
-                        await Authenticate()
-                            .loginUser(inputEmailId, inputPassword);
-// toast message
-                        final snackBar = SnackBar(
-                          elevation: 0,
-                          behavior: SnackBarBehavior.floating,
-                          backgroundColor: Colors.transparent,
-                          content: AwesomeSnackbarContent(
-                            title: "Welcome!",
-                            message: "Login successful",
-                            contentType: ContentType.success,
-                          ),
-                        );
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                        Get.off(() => HomePage());
-                      } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("User not found"),
-                          ),
-                        );
-                      }
+                      await loginUser(inputEmailId, inputPassword);
                     }
                   }
                 },
