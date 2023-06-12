@@ -15,6 +15,8 @@ const String jAppbarDashboardPageTitle = "Dashboard";
 const String jAppbarProfilePageTitle = "Profile";
 const String jAppbarSettingPageTitle = "Setting";
 const String vAppbarFeedbackPageTitle = "Feedback ";
+const String vFeedFormTitle = "Add Feedback";
+const String vFeedFormSubTitle = "Great ! Let's add new Feedback";
 
 // Title for admin page
 const String jAppbarContactPageTitle = "Contact Management";
@@ -61,3 +63,6 @@ const String vEmpFormSubTitle = "Great ! Let's add new Employee";
 
 const String vConFormTitle = "Add Contacts";
 const String vConFormSuTitle = "Great ! Let's add new Contact";
+
+const String vDealFormTitle = "Add Deal";
+const String vDealFormSubTitle = "Great ! Lets' add new Deal";
