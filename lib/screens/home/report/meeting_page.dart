@@ -1,9 +1,9 @@
 import 'package:crm/controllers/on_press_action.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../utility/widget/meeting_card_widget.dart';
+import '../../auth/database/fetch_meetings.dart';
 
 class MeetingPage extends StatefulWidget {
   const MeetingPage({Key? key}) : super(key: key);
@@ -13,94 +13,115 @@ class MeetingPage extends StatefulWidget {
 }
 
 class _MeetingPageState extends State<MeetingPage> {
+  List<Map<String, dynamic>> meeting = [];
+  List<Map<String, dynamic>> filteredMeetingList = [];
   CalendarFormat calendarFormat = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
-  List<Map<String, dynamic>> events = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDatabaseList();
+  }
+
+  fetchDatabaseList() async {
+    dynamic result = await FetchMeeting().getLeadList();
+    if (result == null) {
+      print("Unable to retrieve");
+    } else {
+      setState(() {
+        meeting = (result as List<dynamic>).cast<Map<String, dynamic>>();
+        sortMeetings(selectedDay);
+      });
+    }
+  }
+
+  void sortMeetings(DateTime selectedDate) {
+    filteredMeetingList = meeting
+        .where((meeting) =>
+            isSameDay(DateTime.parse(meeting['Date']), selectedDate))
+        .toList();
+    filteredMeetingList.sort((a, b) => a['Date'].compareTo(b['Date']));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          Column(
-            children: [
-              // meeting calendar
-              TableCalendar(
-                focusedDay: selectedDay,
-                firstDay: DateTime(2010),
-                lastDay: DateTime(2050),
-                calendarFormat: calendarFormat,
-                startingDayOfWeek: StartingDayOfWeek.monday,
-                headerStyle: HeaderStyle(
-                  formatButtonVisible: true,
-                  formatButtonShowsNext: false,
-                  formatButtonDecoration: BoxDecoration(
-                    color: const Color(0xFFB3E5FC),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                calendarStyle: const CalendarStyle(
-                  isTodayHighlighted: true,
-                  todayDecoration: BoxDecoration(
-                    color: Color(0xFFFFB466),
-                    shape: BoxShape.circle,
-                  ),
-                  todayTextStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                  selectedDecoration: BoxDecoration(
-                    color: Color(0xFFE4EFFA),
-                    shape: BoxShape.circle,
-                  ),
-                  selectedTextStyle: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-                selectedDayPredicate: (DateTime inputDate) {
-                  return isSameDay(selectedDay, inputDate);
-                },
-                onFormatChanged: (CalendarFormat inputFormat) {
-                  setState(() {
-                    calendarFormat = inputFormat;
-                  });
-                },
-                onDaySelected:
-                    (DateTime inputSelectedDay, DateTime inputFocusedDay) {
-                  setState(() {
-                    selectedDay = inputSelectedDay;
-                    focusedDay = inputFocusedDay;
-                  });
-
-                  // Fetch events for the selected day from Firebase Firestore
-                  _fetchEventsFromFirestore(inputSelectedDay);
-                },
+          // meeting calendar
+          TableCalendar(
+            focusedDay: selectedDay,
+            firstDay: DateTime(2010),
+            lastDay: DateTime(2050),
+            calendarFormat: calendarFormat,
+            startingDayOfWeek: StartingDayOfWeek.monday,
+            headerStyle: HeaderStyle(
+              formatButtonVisible: true,
+              formatButtonShowsNext: false,
+              formatButtonDecoration: BoxDecoration(
+                color: const Color(0xFFB3E5FC),
+                borderRadius: BorderRadius.circular(8.0),
               ),
-              const Divider(thickness: 3.0),
+            ),
 
-              // meeting cards
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    margin: const EdgeInsets.only(
-                        left: 8.0, right: 8.0, top: 0.0, bottom: 20.0),
-                    child: Column(
-                      children: [
-                        for (final event in events)
-                          MeetingCardWidget(
-                            meetingType: event['Client First Name'],
-                            meetingTitle: event['Title'],
-                            companyName: event['Company Name'],
-                            timeRange: event['Client Last Name'],
-                            description: event['Description'],
-                          ),
-                      ],
-                    ),
-                  ),
-                ),
+            // to style the calendar
+            calendarStyle: const CalendarStyle(
+              isTodayHighlighted: true,
+              // decoration for the current date
+              todayDecoration: BoxDecoration(
+                color: Color(0xFFFFB466),
+                shape: BoxShape.circle,
               ),
-            ],
+              todayTextStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+
+              // decoration for the selected date
+              selectedDecoration: BoxDecoration(
+                color: Color(0xFFE4EFFA),
+                shape: BoxShape.circle,
+              ),
+              selectedTextStyle: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+
+            selectedDayPredicate: (DateTime inputDate) {
+              return isSameDay(selectedDay, inputDate);
+            },
+            onFormatChanged: (CalendarFormat inputFormat) {
+              setState(() {
+                calendarFormat = inputFormat;
+              });
+            },
+            onDaySelected:
+                (DateTime inputSelectedDay, DateTime inputFocusedDay) {
+              setState(() {
+                selectedDay = inputSelectedDay;
+                focusedDay = inputFocusedDay;
+                sortMeetings(selectedDay);
+              });
+            },
+          ),
+          const Divider(thickness: 3.0),
+
+          // meeting cards
+          Expanded(
+            child: ListView.builder(
+              itemCount: filteredMeetingList.length,
+              itemBuilder: (context, index) {
+                return MeetingCardWidget(
+                  meetingTitle: filteredMeetingList[index]["Title"],
+                  companyName: filteredMeetingList[index]["Company Name"],
+                  timeRange: filteredMeetingList[index]["Time"],
+                  description: filteredMeetingList[index]["Description"],
+                  salesPerson: filteredMeetingList[index]["Sales Person"],
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -112,21 +133,5 @@ class _MeetingPageState extends State<MeetingPage> {
         onPressed: () => OnPressAction.goToMeetingFrom(),
       ),
     );
-  }
-
-  void _fetchEventsFromFirestore(DateTime selectedDate) {
-    // Fetch events from Firebase Firestore for the selected date
-    // Replace this with your own logic to fetch events from Firestore
-    FirebaseFirestore.instance
-        .collection('Meetings')
-        .where('Date', isEqualTo: selectedDate)
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      setState(() {
-        events = querySnapshot.docs
-            .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
-            .toList();
-      });
-    });
   }
 }

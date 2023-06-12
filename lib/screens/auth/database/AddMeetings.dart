@@ -11,6 +11,7 @@ final TextEditingController label = TextEditingController();
 final TextEditingController name = TextEditingController();
 final TextEditingController date = TextEditingController();
 final TextEditingController desc = TextEditingController();
+final TextEditingController cname = TextEditingController();
 final TextEditingController salesPerson = TextEditingController();
 
 class AddMeetings {
@@ -22,6 +23,7 @@ class AddMeetings {
       "Date": date.text,
       "Time": time.text,
       "Sales Person": salesPerson.text,
+      "Company Name": cname.text,
       "Description": desc.text,
     };
     FirebaseFirestore.instance.collection("Meetings").add(dataToSave);

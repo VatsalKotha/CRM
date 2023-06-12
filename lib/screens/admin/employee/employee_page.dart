@@ -1,8 +1,6 @@
-
-
 import 'package:crm/constants/text_string.dart';
 import 'package:flutter/material.dart';
-
+import '../../../controllers/on_press_action.dart';
 import '../../../utility/widget/appbar.dart';
 
 class EmployeePage extends StatelessWidget {
@@ -13,17 +11,15 @@ class EmployeePage extends StatelessWidget {
     return Scaffold(
       appBar: const AppBarWidget(title: jAppbarInstallmentPageTitle),
       body: const Center(
-        child:
-        Text("Employee Management"),
+        child: Text("Employee Management"),
       ),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: const Icon(Icons.add),
-        onPressed: () {  },
+        onPressed: () => OnPressAction.gotTODealForm(),
       ),
     );
   }
 }
-

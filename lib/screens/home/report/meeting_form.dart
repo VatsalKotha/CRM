@@ -9,13 +9,6 @@ import 'package:crm/screens/auth/database/AddMeetings.dart';
 import 'package:crm/screens/home/report/meeting_page.dart';
 import 'package:intl/intl.dart';
 
-enum LeadPriority {
-  high,
-  medium,
-  low,
-  normal,
-}
-
 class MeetingForm extends StatefulWidget {
   const MeetingForm({Key? key}) : super(key: key);
 
@@ -24,6 +17,7 @@ class MeetingForm extends StatefulWidget {
 }
 
 class _MeetingFormState extends State<MeetingForm> {
+  final formkey = GlobalKey<FormFieldState>();
   // final DateTime selectedDay;
   Map<String, List> selectedEvents = {};
 
@@ -39,6 +33,7 @@ class _MeetingFormState extends State<MeetingForm> {
           formTitle: vMeetingFormTitle,
           formSubtitle: vMeetingFormSubtitle,
           myFormWidget: Form(
+            key: formkey,
             child: Column(
               children: [
                 FormTextBox(
@@ -47,27 +42,6 @@ class _MeetingFormState extends State<MeetingForm> {
                   title: "Title",
                   controller: title,
                 ),
-                // Row(
-                //   children: [
-                //     Expanded(
-                //       child: FormTextBox(
-                //         hintText: "12 April 2023",
-                //         prefixIcon: const Icon(Icons.date_range),
-                //         title: "Date",
-                //         controller: date,
-                //       ),
-                //     ),
-                const SizedBox(width: 25),
-                //     Expanded(
-                //       child: FormTextBox(
-                //         hintText: "10.00",
-                //         prefixIcon: const Icon(Icons.timelapse_rounded),
-                //         title: "Time",
-                //         controller: time,
-                //       ),
-                //     ),
-                //   ],
-                // ),
                 const ListTile(
                   title: Text("Date(YYYY-MM-DD)"),
                   // subtitle: Text("$[""]"),
@@ -77,6 +51,29 @@ class _MeetingFormState extends State<MeetingForm> {
                   prefixIcon: const Icon(Icons.title),
                   title: "Date",
                   controller: date,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: FormTextBox(
+                        hintText: "YYYY-MM-DD",
+                        prefixIcon: const Icon(Icons.date_range),
+                        title: "Date",
+                        controller: date,
+                      ),
+                    ),
+                    const SizedBox(width: 25),
+                    Expanded(
+                      flex: 3,
+                      child: FormTextBox(
+                        hintText: "10.00",
+                        prefixIcon: const Icon(Icons.timelapse_rounded),
+                        title: "Time",
+                        controller: time,
+                      ),
+                    ),
+                  ],
                 ),
                 Row(
                   children: [
@@ -100,6 +97,12 @@ class _MeetingFormState extends State<MeetingForm> {
                   ],
                 ),
                 FormTextBox(
+                  hintText: "ABC",
+                  prefixIcon: const Icon(Icons.people),
+                  title: "Company Name",
+                  controller: cname,
+                ),
+                FormTextBox(
                   hintText: "John Doe",
                   prefixIcon: const Icon(Icons.people),
                   title: "Assoicated Sales Person",
@@ -111,7 +114,6 @@ class _MeetingFormState extends State<MeetingForm> {
                   title: "Description",
                   controller: desc,
                 ),
-
                 const SizedBox(height: 40),
                 Button(
                   marginHorizontal: 30,
@@ -121,7 +123,6 @@ class _MeetingFormState extends State<MeetingForm> {
                   buttonHeight: 50,
                   onPressed: () async {
                     AddMeetings().dataToSave();
-                    clearController();
                     Get.to(() => const HomePage());
                   },
                   buttonTextSize: 20,
@@ -142,16 +143,5 @@ class _MeetingFormState extends State<MeetingForm> {
         ),
       ),
     );
-  }
-
-  void clearController() {
-    cfname.dispose();
-    claname.dispose();
-    name.dispose();
-    time.dispose();
-    date.dispose();
-    title.dispose();
-    salesPerson.dispose();
-    desc.dispose();
   }
 }

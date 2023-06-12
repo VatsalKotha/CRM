@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../constants/image_string.dart';
 
 class MeetingCardWidget extends StatelessWidget {
-  final String meetingType;
+  final String salesPerson;
   final String meetingTitle;
   final String companyName;
   final String timeRange;
@@ -12,7 +12,7 @@ class MeetingCardWidget extends StatelessWidget {
 
   const MeetingCardWidget({
     Key? key,
-    required this.meetingType,
+    required this.salesPerson,
     required this.meetingTitle,
     required this.companyName,
     required this.timeRange,
@@ -41,7 +41,7 @@ class MeetingCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      meetingType,
+                      salesPerson,
                       style: const TextStyle(
                         fontSize: 15.0,
                         fontWeight: FontWeight.normal,
@@ -88,20 +88,20 @@ class MeetingCardWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const SizedBox(height: 65.0),
-                  Container(
-                    width: 30.5,
-                    height: 30.5,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.yellow,
-                      image: DecorationImage(
-                        image: AssetImage(jLeadCardProfileImage),
-                      ),
-                    ),
-                  ),
-                ],
+                // children: [
+                //   const SizedBox(height: 65.0),
+                //   Container(
+                //     width: 30.5,
+                //     height: 30.5,
+                //     decoration: const BoxDecoration(
+                //       shape: BoxShape.circle,
+                //       color: Colors.yellow,
+                //       image: DecorationImage(
+                //         image: AssetImage(jLeadCardProfileImage),
+                //       ),
+                //     ),
+                //   ),
+                // ],
               ),
             ],
           ),
