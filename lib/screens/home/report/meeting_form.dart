@@ -18,10 +18,7 @@ class MeetingForm extends StatefulWidget {
 
 class _MeetingFormState extends State<MeetingForm> {
   final formkey = GlobalKey<FormFieldState>();
-  // final DateTime selectedDay;
   Map<String, List> selectedEvents = {};
-
-  // LeadPriority _selectedOption = LeadPriority.high;
 
   @override
   Widget build(BuildContext context) {
@@ -52,29 +49,13 @@ class _MeetingFormState extends State<MeetingForm> {
                   title: "Date",
                   controller: date,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: FormTextBox(
-                        hintText: "YYYY-MM-DD",
-                        prefixIcon: const Icon(Icons.date_range),
-                        title: "Date",
-                        controller: date,
-                      ),
-                    ),
-                    const SizedBox(width: 25),
-                    Expanded(
-                      flex: 3,
-                      child: FormTextBox(
-                        hintText: "10.00",
-                        prefixIcon: const Icon(Icons.timelapse_rounded),
-                        title: "Time",
-                        controller: time,
-                      ),
-                    ),
-                  ],
+                FormTextBox(
+                  hintText: "10.00 am",
+                  prefixIcon: const Icon(Icons.people),
+                  title: "Time",
+                  controller: time,
                 ),
+                const SizedBox(width: 25),
                 Row(
                   children: [
                     Expanded(
@@ -97,7 +78,7 @@ class _MeetingFormState extends State<MeetingForm> {
                   ],
                 ),
                 FormTextBox(
-                  hintText: "ABC",
+                  hintText: "ABC Company",
                   prefixIcon: const Icon(Icons.people),
                   title: "Company Name",
                   controller: cname,

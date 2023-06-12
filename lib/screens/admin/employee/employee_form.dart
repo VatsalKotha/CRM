@@ -23,8 +23,8 @@ class _EmployeeFormState extends State<EmployeeForm> {
         margin: const EdgeInsets.only(
             left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
         child: FormWidget(
-          formTitle: jLeadFormTitle,
-          formSubtitle: jLeadFormSubtitle,
+          formTitle: vEmpFomrTitle,
+          formSubtitle: vEmpFormSubTitle,
           myFormWidget: Form(
             child: Column(
               children: [
@@ -70,7 +70,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
                     const SizedBox(width: 25),
                     Expanded(
                       child: FormTextBox(
-                        hintText: "Name",
+                        hintText: "",
                         prefixIcon: const Icon(Icons.email),
                         title: "",
                         controller: lname,
@@ -104,8 +104,14 @@ class _EmployeeFormState extends State<EmployeeForm> {
                 FormTextBox(
                   hintText: "Department",
                   prefixIcon: const Icon(Icons.people),
-                  title: "Company Name",
+                  title: "Department",
                   controller: dept,
+                ),
+                FormTextBox(
+                  hintText: "0 - 7",
+                  prefixIcon: const Icon(Icons.people),
+                  title: "Color",
+                  controller: color,
                 ),
                 const SizedBox(height: 40),
                 Button(
@@ -116,6 +122,15 @@ class _EmployeeFormState extends State<EmployeeForm> {
                   buttonHeight: 50,
                   onPressed: () {
                     AddEmpoyee().dataToSave();
+                    jobTitle.clear();
+                    id.clear();
+                    email.clear();
+                    fname.clear();
+                    lname.clear();
+                    label.clear();
+                    color.clear();
+                    dept.clear();
+                    phoneNo.clear();
                     // clearController();
                     Get.to(() => const AdminPage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);

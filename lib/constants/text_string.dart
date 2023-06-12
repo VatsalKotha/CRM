@@ -55,3 +55,9 @@ const String jLeadFormSubtitle = "Great! Let's add new leads";
 
 const String vMeetingFormTitle = "Add Meeting";
 const String vMeetingFormSubtitle = "Great ! Let's add new Meeting";
+
+const String vEmpFomrTitle = "Add Employee";
+const String vEmpFormSubTitle = "Great ! Let's add new Employee";
+
+const String vConFormTitle = "Add Contacts";
+const String vConFormSuTitle = "Great ! Let's add new Contact";

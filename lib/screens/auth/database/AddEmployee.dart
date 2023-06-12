@@ -10,6 +10,7 @@ final TextEditingController phoneNo = TextEditingController();
 final TextEditingController label = TextEditingController();
 final TextEditingController dept = TextEditingController();
 final TextEditingController jobTitle = TextEditingController();
+final TextEditingController color = TextEditingController();
 
 class AddEmpoyee {
   dataToSave() {
@@ -21,7 +22,8 @@ class AddEmpoyee {
       "Label": label.text,
       "Department": dept.text,
       "Phone Number": phoneNo.text,
-      "Job Title": jobTitle.text
+      "Job Title": jobTitle.text,
+      "Color": color.text
     };
 
     FirebaseFirestore.instance.collection("Employee").add(dataToSave);

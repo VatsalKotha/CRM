@@ -1,16 +1,15 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import '../../controllers/on_press_action.dart';
 
 class ContactListTileWidget extends StatefulWidget {
-  const ContactListTileWidget({Key? key,
+  const ContactListTileWidget({
+    Key? key,
     required this.contactName,
     required this.contactPhnNo,
     required this.color0to7,
   }) : super(key: key);
-
 
   final String contactName;
   final String contactPhnNo;
@@ -21,7 +20,6 @@ class ContactListTileWidget extends StatefulWidget {
 }
 
 class _ContactListTileWidgetState extends State<ContactListTileWidget> {
-
   String getInitials(String name) {
     List<String> names = name.split(' ');
     String initials = '';
@@ -77,7 +75,7 @@ class _ContactListTileWidgetState extends State<ContactListTileWidget> {
           ),
           onTap: OnPressAction.goToContactDetailScreen,
         ),
-        const Divider(thickness: 1.0,indent: 15.2,endIndent: 15.2),
+        const Divider(thickness: 1.0, indent: 15.2, endIndent: 15.2),
       ],
     );
   }

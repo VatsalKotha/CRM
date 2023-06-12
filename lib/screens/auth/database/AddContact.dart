@@ -7,6 +7,7 @@ final TextEditingController email = TextEditingController();
 final TextEditingController cname = TextEditingController();
 final TextEditingController label = TextEditingController();
 final TextEditingController phoneNo = TextEditingController();
+final TextEditingController color = TextEditingController();
 
 class AddContact {
   dataToSave() {
@@ -15,7 +16,8 @@ class AddContact {
       'E-mail ': email.text,
       "Label": label.text,
       "Company Name": cname.text,
-      "Phone Number": phoneNo.text
+      "Phone Number": phoneNo.text,
+      "Color": color.text
     };
 
     FirebaseFirestore.instance.collection("Contacts").add(dataToSave);

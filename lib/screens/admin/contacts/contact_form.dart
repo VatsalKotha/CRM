@@ -24,8 +24,8 @@ class _ContactFormState extends State<ContactForm> {
         margin: const EdgeInsets.only(
             left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
         child: FormWidget(
-          formTitle: jLeadFormTitle,
-          formSubtitle: jLeadFormSubtitle,
+          formTitle: vConFormTitle,
+          formSubtitle: vConFormSuTitle,
           myFormWidget: Form(
             child: Column(
               children: [
@@ -64,6 +64,12 @@ class _ContactFormState extends State<ContactForm> {
                   title: "Company Name",
                   controller: cname,
                 ),
+                FormTextBox(
+                  hintText: "0 - 7",
+                  prefixIcon: const Icon(Icons.people),
+                  title: "Color",
+                  controller: color,
+                ),
                 const SizedBox(height: 40),
                 Button(
                   marginHorizontal: 30,
@@ -73,6 +79,12 @@ class _ContactFormState extends State<ContactForm> {
                   buttonHeight: 50,
                   onPressed: () {
                     AddContact().dataToSave();
+                    name.clear();
+                    cname.clear();
+                    email.clear();
+                    label.clear();
+                    phoneNo.clear();
+                    color.clear();
                     // clearController();
                     Get.to(() => const HomePage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);
