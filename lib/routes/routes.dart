@@ -3,8 +3,10 @@ import 'package:crm/screens/auth/forgot_password/forgot_password_mail_screen.dar
 import 'package:crm/screens/auth/login/loginScreen.dart';
 import 'package:crm/screens/home/dashboard/dashboard_page.dart';
 import 'package:crm/screens/home/home_page.dart';
+import 'package:crm/screens/home/lead/lead_detail_screen.dart';
 import 'package:crm/screens/home/lead/lead_form.dart';
 import 'package:crm/screens/home/profile/profile_page.dart';
+import 'package:crm/screens/home/report/meeting_detail_screen.dart';
 import 'package:get/get.dart';
 
 import '../screens/auth/forgot_password/forgot_password_sms_screen.dart';

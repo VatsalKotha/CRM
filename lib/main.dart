@@ -2,7 +2,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:crm/routes/routes.dart';
+import 'package:crm/screens/admin/admin_page.dart';
+import 'package:crm/screens/admin/contacts/contact_detail_screen.dart';
 import 'package:crm/screens/admin/contacts/contact_page.dart';
+import 'package:crm/screens/admin/deals/deal_page.dart';
+import 'package:crm/screens/home/home_page.dart';
+import 'package:crm/screens/home/lead/lead_detail_screen.dart';
+import 'package:crm/screens/home/profile/profile_page.dart';
+import 'package:crm/screens/home/report/meeting_detail_screen.dart';
 import 'package:crm/utility/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -26,8 +33,9 @@ class MyApp extends StatelessWidget {
 
       initialRoute: Routes.getLoginScreenRoute(),
 
-       // home: LoginScreen(),
-      home: ContactPage(),
+      //home: LoginScreen(),
+      home: ProfilePage(),
+
     );
   }
 }

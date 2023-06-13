@@ -7,17 +7,17 @@ class TableWidget extends StatefulWidget {
     required this.heading,
     required this.value,
     this.isBold = false,
-    this.isBoxVisible = false,
     this.valueColor,
     this.isUnderlined = false,
+    this.onPressed,
   });
 
   final String heading;
   final String value;
   final Color? valueColor;
   final bool isBold;
-  final bool isBoxVisible;
   final bool isUnderlined;
+  final VoidCallback? onPressed;
 
   @override
   State<TableWidget> createState() => _TableWidgetState();
@@ -45,13 +45,8 @@ class _TableWidgetState extends State<TableWidget> {
             TableCell(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 3.0),
-                child: Container(
-                  decoration: widget.isBoxVisible
-                      ? BoxDecoration(
-                          color: const Color(0xFFF5F5F5),
-                          borderRadius: BorderRadius.circular(4),
-                        )
-                      : null,
+                child: GestureDetector(
+                  onTap: widget.onPressed,
                   child: Text(
                     widget.value,
                     // overflow: TextOverflow.ellipsis,
@@ -65,7 +60,6 @@ class _TableWidgetState extends State<TableWidget> {
                       decorationStyle: TextDecorationStyle.solid,
                     ),
                   ),
-
                 ),
               ),
             ),

@@ -21,7 +21,12 @@ class OnPressAction {
     Get.to(() => const LeadForm());
   }
 
+  // navigates from FeedbackPage() to FeedbackForm()
+  // static void goToFeedbackForm() {
+  //   Get.to(() => const FeeForm());
+  // }
   // navigates from LeadPage() to LeadForm()
+
   static void goToContactDetailScreen() {
     Get.to(() => const ContactDetailScreen());
   }

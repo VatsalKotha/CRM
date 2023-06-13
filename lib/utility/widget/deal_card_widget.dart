@@ -4,33 +4,33 @@ import 'package:flutter/material.dart';
 import '../../constants/image_string.dart';
 
 
-class LeadCardWidget extends StatefulWidget {
-  const LeadCardWidget({
+class DealCardWidget extends StatefulWidget {
+  const DealCardWidget({
     super.key,
-    required this.leadName,
-    required this.leadStatus,
-    required this.leadClosingDate,
-    required this.leadPriority,
-    required this.leadCompanyName,
-    required this.leadPersonName,
-    this.leadDescription,
+    required this.dealName,
+    required this.dealStatus,
+    required this.dealClosingDate,
+    required this.dealPriority,
+    required this.dealCompanyName,
+    required this.dealPersonName,
+    this.orderDescription,
     this.onPressed,
   });
 
-  final String leadPriority;
-  final String leadName;
-  final String leadClosingDate;
-  final String leadCompanyName;
-  final String leadPersonName;
-  final String leadStatus;
-  final String? leadDescription;
+  final String dealPriority;
+  final String dealName;
+  final String dealClosingDate;
+  final String dealCompanyName;
+  final String dealPersonName;
+  final String dealStatus;
+  final String? orderDescription;
   final VoidCallback? onPressed;
 
   @override
-  State<LeadCardWidget> createState() => _LeadCardWidgetState();
+  State<DealCardWidget> createState() => _DealCardWidgetState();
 }
 
-class _LeadCardWidgetState extends State<LeadCardWidget> {
+class _DealCardWidgetState extends State<DealCardWidget> {
 
   void onTap() {
     if (kDebugMode) {
@@ -40,26 +40,26 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Color leadPriorityColor, leadStatusColor;
+    Color dealPriorityColor, dealStatusColor;
 
-    if (widget.leadPriority == "High") {
-      leadPriorityColor = Colors.redAccent;
-    } else if (widget.leadPriority == "Medium") {
-      leadPriorityColor = Colors.orange;
-    } else if (widget.leadPriority == "Low") {
-      leadPriorityColor = Colors.yellow;
+    if (widget.dealPriority == "High") {
+      dealPriorityColor = Colors.redAccent;
+    } else if (widget.dealPriority == "Medium") {
+      dealPriorityColor = Colors.orange;
+    } else if (widget.dealPriority == "Low") {
+      dealPriorityColor = Colors.yellow;
     } else {
-      leadPriorityColor = Colors.grey;
+      dealPriorityColor = Colors.grey;
     }
 
-    if (widget.leadStatus == "New") {
-      leadStatusColor = Colors.blueAccent;
-    } else if (widget.leadStatus == "Won") {
-      leadStatusColor = Colors.green;
-    } else if (widget.leadStatus == "Lost") {
-      leadStatusColor = Colors.red;
+    if (widget.dealStatus == "Working") {
+      dealStatusColor = Colors.blueAccent;
+    } else if (widget.dealStatus == "Completed") {
+      dealStatusColor = Colors.green;
+    } else if (widget.dealStatus == "Lost") {
+      dealStatusColor = Colors.red;
     } else {
-      leadStatusColor = Colors.purple;
+      dealStatusColor = Colors.purple;
     }
 
     return SizedBox(
@@ -72,13 +72,13 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
           child: Row(
             children: [
 
-              // Lead priority
+              // deal priority
               Container(
-                color: leadPriorityColor,
+                color: dealPriorityColor,
                 width: 6.0,
               ),
 
-              // Lead Details : lead name, closing date, company name, person name, description
+              // deal Details : deal name, closing date, company name, person name, description
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -87,9 +87,9 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 5.0),
-                      // Lead title
+                      // deal title
                       Text(
-                        widget.leadName,
+                        widget.dealName,
                         style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -99,7 +99,7 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
 
                       // closing date
                       Text(
-                        "Closing date : ${widget.leadClosingDate}",
+                        "Closing date : ${widget.dealClosingDate}",
                         style: const TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.normal,
@@ -108,7 +108,7 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
 
                       // Company Name
                       Text(
-                        widget.leadCompanyName,
+                        widget.dealCompanyName,
                         style: const TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.normal,
@@ -117,17 +117,17 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
 
                       // Person Name
                       Text(
-                        widget.leadPersonName,
+                        widget.dealPersonName,
                         style: const TextStyle(
                           fontSize: 15.5,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
 
-                      // Description
+                      // order description
                       const SizedBox(height: 2.0),
                       Text(
-                        widget.leadDescription!,
+                        widget.orderDescription ?? " ",
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -143,22 +143,22 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
 
               const SizedBox(width: 18.0),
 
-              //Lead Status + Associated Sale's Person Profile
+              //deal Status + Associated Sale's Person Profile
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  // status of lead
+                  // status of deal
                   Container(
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(
                         left: 8.0, right: 8.0, top: 5.0, bottom: 5.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(3.0),
-                      color: leadStatusColor,
+                      color: dealStatusColor,
                     ),
                     child: Text(
-                      widget.leadStatus,
+                      widget.dealStatus,
                       style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),

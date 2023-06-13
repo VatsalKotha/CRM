@@ -51,11 +51,13 @@ class LeadDetailScreen extends StatefulWidget {
 
 class _LeadDetailScreenState extends State<LeadDetailScreen> {
 
-  IconButton buildIconButton(
-      {required IconData iconData, required VoidCallback onPressed}) {
+  IconButton buildIconButton({
+    required IconData iconData,
+    required Future<void> Function() onPressed,
+  }) {
     return IconButton(
       iconSize: 40.0,
-      onPressed: onPressed,
+      onPressed: () => onPressed(),
       icon: Center(
         child: Icon(
           iconData,
@@ -150,20 +152,20 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                 children: [
                   buildIconButton(
                     iconData: Icons.local_phone_outlined,
-                    onPressed: ActionEvent.phoneEventHandler,
+                    onPressed: () => ActionEvent.phoneEventHandler(phnNumber: "9326434589"),
                   ),
                   buildIconButton(
                     iconData: Icons.email_outlined,
-                    onPressed: ActionEvent.emailEventHandler,
+                    onPressed: () => ActionEvent.emailEventHandler(toEmail: "daltonjd45@gmail.com"),
                   ),
-                  buildIconButton(
-                    iconData: Icons.edit_note_outlined,
-                    onPressed: ActionEvent.editEventHandler,
-                  ),
-                  buildIconButton(
-                    iconData: Icons.delete_outline,
-                    onPressed: ActionEvent.deleteEventHandler,
-                  ),
+                  // buildIconButton(
+                  //   iconData: Icons.edit_note_outlined,
+                  //   onPressed: ActionEvent.editEventHandler,
+                  // ),
+                  // buildIconButton(
+                  //   iconData: Icons.delete_outline,
+                  //   onPressed: ActionEvent.deleteEventHandler,
+                  // ),
                 ],
               ),
               const SizedBox(height: 5.0),

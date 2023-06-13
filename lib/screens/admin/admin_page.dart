@@ -90,7 +90,7 @@ class _AdminPageState extends State<AdminPage> {
                 title: const Text('Setting'),
                 onTap: () {
                   setState(() {
-                    currentIndex = 4;
+                    currentIndex = 5;
                   });
                 },
               ),

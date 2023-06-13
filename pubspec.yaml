@@ -41,6 +41,7 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   table_calendar: ^3.0.8
   quickalert: ^1.0.1
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:
