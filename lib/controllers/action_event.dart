@@ -4,20 +4,38 @@ import 'package:crm/screens/home/lead/lead_form.dart';
 import 'package:get/get.dart';
 import 'package:crm/screens/home/lead/lead_detail_screen.dart';
 import 'package:crm/screens/home/lead/lead_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ActionEvent {
-  static VoidCallback? phoneEventHandler() {
+  static Future phoneEventHandler({required String phnNumber}) async {
     if (kDebugMode) {
       print("Action Event : Phone action button was pressed");
     }
-    return null;
+
+    final Uri phone = Uri(
+      scheme: 'tel',
+      path: phnNumber,
+    );
+    if (await canLaunchUrl(phone)) {
+      await launchUrl(phone);
+    }
   }
 
-  static VoidCallback? emailEventHandler() {
+  static Future emailEventHandler({required String toEmail}) async {
     if (kDebugMode) {
-      print("Action Event : Email action button was pressed");
+      print("Action Event: Email action button was pressed");
     }
-    return null;
+
+    final Uri email = Uri(
+      scheme: 'mailto',
+      path: toEmail,
+      query:
+          'subject=${Uri.encodeComponent("")}&body=${Uri.encodeComponent("")}',
+    );
+
+    if (await canLaunchUrl(email)) {
+      await launchUrl(email);
+    }
   }
 
   static void editEventHandler(

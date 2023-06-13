@@ -37,7 +37,7 @@ class Routes {
         page: () => const ForgotPasswordSMSScreen()),
     GetPage(name: homePage, page: () => const HomePage()),
     GetPage(name: dashboardPage, page: () => const DashboardPage()),
-    GetPage(name: profiledPage, page: () => const ProfilePage()),
+    // GetPage(name: profiledPage, page: () => const ProfilePage()),
     GetPage(name: leadForm, page: () => const LeadForm()),
   ];
 }

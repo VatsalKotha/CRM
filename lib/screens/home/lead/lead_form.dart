@@ -161,10 +161,40 @@ class _LeadFormState extends State<LeadForm> {
                   controller: cname,
                 ),
                 FormTextBox(
-                  hintText: "Priority",
+                  hintText: "1 / 2 / 3",
                   prefixIcon: const Icon(Icons.priority_high),
                   title: "Priority",
                   controller: priority,
+                ),
+                FormTextBox(
+                  hintText: "abcd@gmail.com",
+                  prefixIcon: const Icon(Icons.email),
+                  title: "Email",
+                  controller: email,
+                ),
+                FormTextBox(
+                  hintText: "Company Address",
+                  prefixIcon: const Icon(Icons.map),
+                  title: "Address",
+                  controller: address,
+                ),
+                FormTextBox(
+                  hintText: "Phone Number",
+                  prefixIcon: const Icon(Icons.phone),
+                  title: "Phone Number",
+                  controller: phoneNo,
+                ),
+                FormTextBox(
+                  hintText: "Website",
+                  prefixIcon: const Icon(Icons.phone),
+                  title: "Client Website URL ",
+                  controller: web,
+                ),
+                FormTextBox(
+                  hintText: "Description",
+                  prefixIcon: const Icon(Icons.description),
+                  title: "Description",
+                  controller: desc,
                 ),
                 const SizedBox(height: 40),
                 Button(
@@ -186,6 +216,10 @@ class _LeadFormState extends State<LeadForm> {
                     phoneNo.clear();
                     salesPerson.clear();
                     priority.clear();
+                    email.clear();
+                    address.clear();
+                    web.clear();
+                    desc.clear();
                     Get.to(() => const LeadPage());
 // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },

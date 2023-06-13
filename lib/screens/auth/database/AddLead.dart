@@ -14,6 +14,10 @@ final TextEditingController phoneNo = TextEditingController();
 final TextEditingController salesPerson = TextEditingController();
 final TextEditingController priority = TextEditingController();
 final TextEditingController status = TextEditingController();
+final TextEditingController email = TextEditingController();
+final TextEditingController address = TextEditingController();
+final TextEditingController desc = TextEditingController();
+final TextEditingController web = TextEditingController();
 
 class AddLead {
   dataToSave() {
@@ -29,6 +33,10 @@ class AddLead {
       "Lead Name": name.text,
       "Priority": priority.text,
       "Status": status.text,
+      "Email": email.text,
+      "Address": address.text,
+      "Description": desc.text,
+      "Website": web.text
     };
 
     FirebaseFirestore.instance.collection("Lead").add(dataToSave);

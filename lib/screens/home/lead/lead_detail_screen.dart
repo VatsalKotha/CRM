@@ -170,11 +170,13 @@ class _LeadDetailScreenState extends State<LeadDetailScreen> {
                 children: [
                   buildIconButton(
                     iconData: Icons.local_phone_outlined,
-                    onPressed: ActionEvent.phoneEventHandler,
+                    onPressed: () =>
+                        ActionEvent.phoneEventHandler(phnNumber: "9326434589"),
                   ),
                   buildIconButton(
                     iconData: Icons.email_outlined,
-                    onPressed: ActionEvent.emailEventHandler,
+                    onPressed: () => ActionEvent.emailEventHandler(
+                        toEmail: "daltonjd45@gmail.com"),
                   ),
                   buildIconButton(
                     iconData: Icons.edit_note_outlined,

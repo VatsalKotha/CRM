@@ -1,5 +1,4 @@
-
-
+import 'package:crm/screens/auth/database/fetch_profile.dart';
 import 'package:crm/screens/home/dashboard/dashboard_page.dart';
 import 'package:crm/screens/home/installment/installment_page.dart';
 import 'package:crm/screens/home/lead/lead_page.dart';
@@ -8,16 +7,42 @@ import 'package:crm/screens/home/report/report_page.dart';
 import 'package:crm/screens/setting/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  late User? currentUser;
+  Map<String, dynamic> userProfile = {};
+  List<Map<String, dynamic>> profList = [];
+  List<Map<String, dynamic>> filteredProfList = [];
+  @override
+  void initState() {
+    super.initState();
+    currentUser = FirebaseAuth.instance.currentUser;
+    fetchUserProfile();
+  }
+
+  fetchUserProfile() async {
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection('Employee')
+        .doc(currentUser!.uid)
+        .get();
+
+    if (snapshot.exists) {
+      setState(() {
+        userProfile = snapshot.data() as Map<String, dynamic>;
+      });
+    }
+  }
 
   int currentIndex = 0;
   List pages = [
@@ -25,15 +50,29 @@ class _HomePageState extends State<HomePage> {
     const LeadPage(),
     const InstallmentPage(),
     const DashboardPage(),
-    const ProfilePage(),
+    ProfilePage(
+        // userId: FirebaseAuth.instance.currentUser!.uid,
+        address: "Malad",
+        department: 'IT',
+        dateOfJoining: '2023 - 06 - 10',
+        designation: 'Intern',
+        education: 'Diploma',
+        emailAddress: 'abcd@gmail.com ',
+        empId: 'MEM123301',
+        internalNotes: 'SAMPLE Text',
+        workType: 'Part Time',
+        jobDescription: 'Sample Text',
+        name: 'Jash Parmar',
+        officeEmailAddress: 'office@email.com',
+        phnNumber: '1234567891',
+        skill: 'Coding'),
     const SettingPage(),
   ];
 
   void onTap(int index) {
     if (index > 2) {
       _showModalBottomSheet();
-    }
-    else {
+    } else {
       setState(() {
         currentIndex = index;
       });
@@ -63,10 +102,13 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const SizedBox(height: 25.0,),
+              const SizedBox(
+                height: 25.0,
+              ),
               const Text("More Modules"),
-              const SizedBox(height: 35.0,),
-
+              const SizedBox(
+                height: 35.0,
+              ),
               ListTile(
                 leading: const Icon(Icons.dashboard),
                 title: const Text('Dashboard'),
@@ -80,7 +122,21 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.person),
                 title: const Text('Profile'),
                 onTap: () {
-                  Get.to(() => const ProfilePage());
+                  Get.to(() => const ProfilePage(
+                      address: "Malad",
+                      department: 'IT',
+                      dateOfJoining: '2023 - 06 - 10',
+                      designation: 'Intern',
+                      education: 'Diploma',
+                      emailAddress: 'abcd@gmail.com ',
+                      empId: 'MEM123301',
+                      internalNotes: 'SAMPLE Text',
+                      workType: 'Part Time',
+                      jobDescription: 'Sample Text',
+                      name: 'Jash Parmar',
+                      officeEmailAddress: 'office@email.com',
+                      phnNumber: '1234567891',
+                      skill: 'Coding'));
                 },
               ),
               ListTile(
@@ -90,7 +146,6 @@ class _HomePageState extends State<HomePage> {
                   Get.to(() => const SettingPage());
                 },
               ),
-
             ],
           ),
         );
@@ -127,14 +182,9 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             label: "More",
             icon: Icon(Icons.more_horiz),
-
           ),
         ],
       ),
     );
   }
-
 }
-
-
-

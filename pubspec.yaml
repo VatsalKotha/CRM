@@ -49,6 +49,7 @@ dependencies:
   fl_chart: ^0.41.0
   syncfusion_flutter_charts: ^21.2.4
   email_otp: ^2.0.1
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:

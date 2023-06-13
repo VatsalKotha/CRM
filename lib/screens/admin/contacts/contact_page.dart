@@ -39,17 +39,18 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(title: jAppbarContactPageTitle),
+      appBar: const AppBarWidget(title: jAppbarContactPageTitle),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
               itemCount: filteredConList.length,
               itemBuilder: (context, index) {
+                final selectedMeeting = filteredConList[index];
                 return ContactListTileWidget(
-                  contactName: filteredConList[index]["Name"],
-                  contactPhnNo: filteredConList[index]["Phone Number"],
-                  color0to7: int.parse(filteredConList[index]["Color"]),
+                  contactName: selectedMeeting["Name"],
+                  contactPhnNo: selectedMeeting["Phone Number"],
+                  color0to7: int.parse(selectedMeeting["Color"]),
                 );
               },
             ),

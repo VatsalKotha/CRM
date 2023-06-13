@@ -1,11 +1,9 @@
 import 'package:crm/constants/text_string.dart';
-import 'package:crm/screens/home/home_page.dart';
+import 'package:crm/screens/admin/contacts/contact_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
 import 'package:crm/utility/widget/form_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:crm/screens/auth/database/AddContact.dart';
 
@@ -86,7 +84,7 @@ class _ContactFormState extends State<ContactForm> {
                     phoneNo.clear();
                     color.clear();
                     // clearController();
-                    Get.to(() => const HomePage());
+                    Get.to(() => const ContactPage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },
                   buttonTextSize: 20,

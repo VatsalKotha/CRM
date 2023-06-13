@@ -1,4 +1,5 @@
 import 'package:crm/constants/text_string.dart';
+import 'package:crm/screens/admin/deals/deal_page.dart';
 import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
@@ -116,7 +117,7 @@ class _DealFormState extends State<DealForm> {
                   onPressed: () {
                     AddDeal().dataToSave();
                     // clearController();
-                    Get.to(() => const HomePage());
+                    Get.to(() => const DealPage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },
                   buttonTextSize: 20,

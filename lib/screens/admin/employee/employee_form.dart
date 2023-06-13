@@ -1,5 +1,6 @@
 import 'package:crm/constants/text_string.dart';
 import 'package:crm/screens/admin/admin_page.dart';
+import 'package:crm/screens/admin/employee/employee_page.dart';
 import 'package:crm/screens/home/home_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
@@ -132,7 +133,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
                     dept.clear();
                     phoneNo.clear();
                     // clearController();
-                    Get.to(() => const AdminPage());
+                    Get.to(() => const EmployeePage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },
                   buttonTextSize: 20,
