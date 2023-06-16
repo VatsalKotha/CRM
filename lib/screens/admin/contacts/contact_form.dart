@@ -1,4 +1,5 @@
 import 'package:crm/constants/text_string.dart';
+import 'package:crm/screens/admin/admin_page.dart';
 import 'package:crm/screens/admin/contacts/contact_page.dart';
 import 'package:crm/utility/widget/button.dart';
 import 'package:crm/utility/widget/form_text_box.dart';
@@ -84,7 +85,7 @@ class _ContactFormState extends State<ContactForm> {
                     phoneNo.clear();
                     color.clear();
                     // clearController();
-                    Get.to(() => const ContactPage());
+                    Get.to(() => const AdminPage());
                     // Navigator.push(context, const LeadPage() as Route<Object?>);
                   },
                   buttonTextSize: 20,
