@@ -69,4 +69,4 @@ and can be used and modified as per your requirements.
 You can connect with the authors on Instagram and GitHub. Their handles are:
 
 - Jash Parmar: @jash_4305 (Instagram) and @jash4305 (GitHub)
-- Vatsal Kotha: @<your_id>> (Instagram) and @<your_id>> (GitHub)
+- Vatsal Kotha: @vatsal.kotha (Instagram) and @VatsalKotha (GitHub)
