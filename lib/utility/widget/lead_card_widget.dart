@@ -41,7 +41,7 @@ class _LeadCardWidgetState extends State<LeadCardWidget> {
 
   Future<void> retrieveImage() async {
     final images = {
-      'Vatsal Kotha': 'Vatsal.jpg',
+      'Vatsal Kotha': 'Vatsal Photo.jpeg',
       'Jash Parmar': 'jash.png'
 // Add more salesperson-image mappings as needed
     };
