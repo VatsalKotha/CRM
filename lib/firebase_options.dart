@@ -66,8 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '381841773844',
     projectId: 'crm-project-demo',
     storageBucket: 'crm-project-demo.appspot.com',
-    iosClientId:
-        '381841773844-qna8r9n4uv16adlotrg37iqror0pf63p.apps.googleusercontent.com',
+    iosClientId: '381841773844-qna8r9n4uv16adlotrg37iqror0pf63p.apps.googleusercontent.com',
     iosBundleId: 'com.example.crm',
   );
 
@@ -77,8 +76,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '381841773844',
     projectId: 'crm-project-demo',
     storageBucket: 'crm-project-demo.appspot.com',
-    iosClientId:
-        '381841773844-qna8r9n4uv16adlotrg37iqror0pf63p.apps.googleusercontent.com',
+    iosClientId: '381841773844-qna8r9n4uv16adlotrg37iqror0pf63p.apps.googleusercontent.com',
     iosBundleId: 'com.example.crm',
   );
 }
