@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.3
   flutter_native_splash: ^2.2.19
-  awesome_snackbar_content: ^0.1.2
+  awesome_snackbar_content: 0.1.1
   flutter_otp_text_field: ^1.1.1
   table_calendar: ^3.0.8
   quickalert: ^1.0.1
